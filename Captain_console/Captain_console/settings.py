@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CaptainConsole.apps.CaptainconsoleConfig',
+    'checkout.apps.CheckoutConfig',
+    'home.apps.HomeConfig',
+    'login.apps.LoginConfig',
+    'shoppingcart.apps.ShoppingcartConfig',
+    'store.apps.StoreConfig'
 ]
 
 MIDDLEWARE = [
@@ -120,3 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
