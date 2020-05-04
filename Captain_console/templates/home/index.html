@@ -4,6 +4,14 @@
 
     <div>
         <p>Hello, world!</p>
+        {% for d in data %}
+
+            {% if d.price > 100 %}
+                <p>{{ d.name }} is expensive</p>
+            {% else %}
+                <p> {{ d.name }} is cheap</p>
+            {%  endif %}
+        {% endfor %}
     </div>
 
 {% endblock %}
