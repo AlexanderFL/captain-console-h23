@@ -1,3 +1,28 @@
 from django.db import models
 
-# Create your models here.
+
+class Users(models.Model):
+    username = models.CharField(max_length=64)
+    password = models.CharField(max_length=512)
+    email = models.CharField(max_length=128)
+
+
+class PaymentInfo(models.Model):
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    name = models.CharField(max_length=128)
+    card_number = models.CharField(max_length=19)
+    cvc = models.CharField(max_length=3)
+
+
+class Address(models.Model):
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    address = models.CharField(max_length=64)
+    city = models.CharField(max_length=64)
+    country = models.CharField(max_length=64)
+    zip_code = models.CharField(max_length=10)
+
+
+class UserPhotos(models.Model):
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    path = models.CharField(max_length=128)
+    alt = models.CharField(max_length=128)
