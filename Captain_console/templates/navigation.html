@@ -4,14 +4,13 @@
             <a href="#" class="brand-logo center">Logo</a></li>
             <a href="#" data-target="mobile-dropdown" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-store" class="left hide-on-med-and-down">
-                <li><a href="badges.html">Games</a></li>
-                <li><a href="collapsible.html">Consoles</a></li>
+                <li><a href="{% url "games_index" %}">Games</a></li>
+                <li><a href="{% url "consoles_index" %}">Consoles</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-                <li><a href="{url><i class="cart-icons">cart</i></a></li>
-                <li><a href="sass.html"><i class="profile-icons">profile</i></a></li>
-
+                <li><a href="{% url "shoppingcart_index" %}"><i class="material-icons">shopping_cart</i></a></li>
+                <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
             </ul>
         </div>
     </div>
