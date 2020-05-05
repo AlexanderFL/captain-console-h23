@@ -1,53 +1,73 @@
 from django.db import models
-from account.models import Users
+from account.models import User
 
 
-class Products(models.Model):
-    name = models.CharField(max_length=64)
+class Product(models.Model):
+    name = models.CharField(max_length=128)
     price = models.FloatField()
-    discount = models.FloatField()
+    discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
 
 
-class Genres(models.Model):
-    genre = models.CharField(max_length=32)
+class Genre(models.Model):
+    genre = models.CharField(max_length=128)
 
 
-class Developers(models.Model):
-    developer = models.CharField(max_length=64)
+class Developer(models.Model):
+    developer = models.CharField(max_length=128)
 
 
 class ProductDetails(models.Model):
-    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
-    genre_id = models.ForeignKey(Genres, on_delete=models.CASCADE)
-    developer_id = models.ForeignKey(Developers, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    genre_id = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    developer_id = models.ForeignKey(Developer, on_delete=models.CASCADE)
     release_date = models.DateField()
-    description = models.CharField(max_length=1024)
+    description = models.TextField()
 
 
-class ProductPhotos(models.Model):
-    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
-    path = models.CharField(max_length=128)
-    alt = models.CharField(max_length=128)
+class ProductPhoto(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    path = models.CharField(max_length=200)
+    alt = models.CharField(max_length=128, blank=True)
 
-
-class Reviews(models.Model):
-    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=2048)
-    rating = models.FloatField()
-
+class Review(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField(blank=True)
 
 # Maybe these models can change locations but I'll leave it here for now
-class Orders(models.Model):
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
-    total = models.FloatField()
-    tracking_nr = models.CharField(max_length=10)
-    date = models.DateTimeField()
+class Order(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_price = models.FloatField()
+    tracking_nr = models.CharField(max_length=128)
+    date = models.DateField(auto_now_add=True)
 
 
 class OrderProduct(models.Model):
-    order_id = models.ForeignKey(Orders, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.FloatField()
+
+
+#######################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
