@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import Users
 
 
 class Products(models.Model):
@@ -22,3 +23,10 @@ class ProductDetails(models.Model):
     developer_id = models.ForeignKey(Developers, on_delete=models.CASCADE)
     release_date = models.DateField()
     description = models.CharField(max_length=1024)
+
+
+class Reviews(models.Model):
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=2048)
+    rating = models.FloatField()
