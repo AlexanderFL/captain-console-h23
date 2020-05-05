@@ -36,3 +36,18 @@ class Reviews(models.Model):
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
     comment = models.CharField(max_length=2048)
     rating = models.FloatField()
+
+
+# Maybe these models can change locations but I'll leave it here for now
+class Orders(models.Model):
+    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    total = models.FloatField()
+    tracking_nr = models.CharField(max_length=10)
+    date = models.DateTimeField()
+
+
+class OrderProduct(models.Model):
+    order_id = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
