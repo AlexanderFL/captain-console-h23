@@ -30,11 +30,13 @@ class ProductPhoto(models.Model):
     path = models.CharField(max_length=200)
     alt = models.CharField(max_length=128, blank=True)
 
+
 class Review(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
+
 
 # Maybe these models can change locations but I'll leave it here for now
 class Order(models.Model):
