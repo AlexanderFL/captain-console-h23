@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'Captain_console.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'captainconsole',
+        'USER': 'postgres',
+        'PASSWORD': 'Elk9vdu53x5PO7KDKl67m6awa4ldpfuu',
+        'HOST': 'sql-connect.alexfreyr.com',
+        'PORT': '5432',
     }
 }
 
