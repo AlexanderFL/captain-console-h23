@@ -25,6 +25,12 @@ class ProductDetails(models.Model):
     description = models.CharField(max_length=1024)
 
 
+class ProductPhotos(models.Model):
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
+    path = models.CharField(max_length=128)
+    alt = models.CharField(max_length=128)
+
+
 class Reviews(models.Model):
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
