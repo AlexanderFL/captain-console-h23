@@ -1,7 +1,11 @@
 <nav>
     <div class="nav-wrapper blue accent-3">
         <div class="container">
+<<<<<<< HEAD
             <a href="{% url "home_index" %}" class="brand-logo center">Logo</a></li>
+=======
+            <a href="{% url "home_index" %}" class="brand-logo center">Captain Console</a></li>
+>>>>>>> fb8a52a6e997f9e3d338da4e7b939491d61cc93b
             <a href="#" data-target="mobile-dropdown" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-store" class="left hide-on-med-and-down">
                 <li><a href="{% url "games_index" %}">Games</a></li>
@@ -10,10 +14,16 @@
 
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                <li>
+                    <div class="input-field col s6 white-text">
+                        <input placeholder="Search" id="first_name" type="text" class="white-text">
+                    </div>
+                </li>
+                <li><a href="#"><i class="material-icons">search</i></a></li>
                 <li><a href="{% url "shoppingcart_index" %}"><i class="material-icons">shopping_cart</i></a></li>
                 <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
             </ul>
+
         </div>
     </div>
 </nav>
