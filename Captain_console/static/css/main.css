@@ -9,6 +9,11 @@ main {
     flex: 1 0 auto;
 }
 
+/* Making the container larger */
+.container{
+    max-width: none !important;
+}
+
 /* Slight grey background behind content*/
 .content-background{
     background-color: #F6F6F6;
