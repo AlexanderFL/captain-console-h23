@@ -1,11 +1,11 @@
 .store {
     justify-content: center;
     display: flex;
-    background-color: yellow;
 }
 
 .store-product {
-    flex-basis: 290px;
+    flex: 2;
+    flex-basis: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
     justify-content: space-between;
