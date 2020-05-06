@@ -1,0 +1,15 @@
+.store {
+    justify-content: center;
+    display: flex;
+    background-color: yellow;
+}
+
+.store-product {
+    flex-basis: 290px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    height: 150px;
+    padding-bottom: 50px;
+}
+
