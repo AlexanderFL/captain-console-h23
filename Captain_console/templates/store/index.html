@@ -7,8 +7,6 @@
 {% block content %}
 
 <div class = "container">
-
-
         <div class="store">
             {% for product in products %}
                 {% include 'store/single_product.html' with product=product%}

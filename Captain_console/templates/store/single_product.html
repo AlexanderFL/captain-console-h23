@@ -1,14 +1,17 @@
-<div class="card horizontal store-product">
-  <div class="card-image">
-  <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="172px" height="172px"/>
-  </div>
-  <div class="card-stacked">
-    <div class="card-content">
-        <h4>{{ product.name }}</h4>
-        <h5>{{ product.price }}$</h5>
+<div class="col s2 m6 l6 store-product">
+<div class="card horizontal">
+        <div class="card-image">
+            <img class="product-img"  src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="172rem" height="172rem"/>
+        </div>
+    <div class="card-stacked">
+        <div class="card-content">
+            <h4>{{ product.name }}</h4>
+            <h5>{{ product.price }}$</h5>
+        </div>
+        <div class="card-action">
+            <a href="/store/{{ product.id }}">Details</a>
+            <a href="#"><i class="material-icons">shopping_cart</i></a>
+        </div>
     </div>
-    <div class="card-action">
-        <a href="#">Details</a>
-    </div>
-  </div>
+</div>
 </div>

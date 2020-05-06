@@ -1,15 +1,27 @@
 .store {
     justify-content: center;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .store-product {
-    flex: 2;
-    flex-basis: 100px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    flex: 1;
+    flex-basis: 30%;
+    padding: 1%;
+    flex-grow: 1;
     justify-content: space-between;
-    height: 150px;
-    padding-bottom: 50px;
 }
+.square {
+ position: relative;
+ width: 300px;
+ height: 300px;
+ overflow: hidden;
+}
+
+.card-image{
+     background-position: 50% 50%;
+     background-repeat: no-repeat;
+     background-size: cover;
+     margin-bottom: auto;
+  }
 
