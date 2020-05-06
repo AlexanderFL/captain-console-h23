@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'captainconsole',
         'USER': 'postgres',
         'PASSWORD': 'Elk9vdu53x5PO7KDKl67m6awa4ldpfuu',
-        'HOST': 'sql-connect.alexfreyr.com',
+        'HOST': '157.245.44.28',
         'PORT': '5432',
     }
 }
