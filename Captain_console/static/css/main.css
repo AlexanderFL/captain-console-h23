@@ -9,9 +9,15 @@ main {
     flex: 1 0 auto;
 }
 
+/* Slight grey background behind content*/
+.content-background{
+    background-color: #F6F6F6;
+}
+
 /* Navbar */
+
 /* label underline focus color */
-.input-field input[type=text]:focus {
+nav div div ul li .input-field input[type=text]:focus {
     border-bottom: 1px solid #ffffff !important;
     box-shadow: 0 1px 0 0 #ffffff !important;
 }
