@@ -1,16 +1,13 @@
 {%  extends 'base.html' %}
 {% block content %}
-<h2>Captain Console Store </h2>
-<div class="input-group">   <!-- Jquery input tag-->
-    <input type="search" class="form-control" id="search-box" placeholder="Enter your search here."/>
-    <div class="input-group-btn">
-        <button type="button" id="search-btn" class="btn btn-default">Search</button>
+<div class = "store container">
+    <div class="products container row">
+        <div class="col s2 m4">
+            {% for product in products %}
+                {% include 'store/single_product.html' with product=product%}
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-<div class="products">
-    {% for product in products %}  <!-- syntax til að framkvæma aðgerðir (% slaufusvigar) -->
-        {% include 'store/single_product.html' with product=product%}
-    {% endfor %}
 </div>
 {% endblock %}
