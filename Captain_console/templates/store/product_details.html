@@ -1,8 +1,7 @@
-{% extends base.html %}
+{% extends "base.html" %}
 {% block content %}
-    <h1>{{ product.name }}</h1>
-    <h2>{{ product.productdetails_set.first.description }}</h2>
-    <h3>{{ product.price }}</h3>
-
+    <h2>Here will be some product details about the games.</h2>
+    <h2>{{ productdetails.description }}</h2>
+    <h3>{{ productdetails.release_date }}</h3>
 
 {% endblock %}

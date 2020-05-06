@@ -7,8 +7,10 @@ class Product(models.Model):
     price = models.FloatField()
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
+
     def __str__(self):
         return self.name
+
 
 class Genre(models.Model):
     genre = models.CharField(max_length=128)
@@ -30,6 +32,7 @@ class ProductPhoto(models.Model):
     path = models.CharField(max_length=999)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     alt = models.CharField(max_length=128, blank=True)
+
     def __str__(self):
         return self.path
 
@@ -55,24 +58,4 @@ class OrderProduct(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
 
-
 #######################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from store.models import Product
+from django.shortcuts import render, get_object_or_404
+from store.models import Product, ProductDetails
 
 
 def index(request):
@@ -17,6 +17,7 @@ def consoles(request):
     return render(request, 'store/consoles.html', context)
 
 
-def get_product_by_id(request):
-    context = {'products': Product.objects.all().order_by('name')}
-    return render(request, 'store/product_details.html', context)
+def get_product_by_id(request, id):
+    return render(request, 'store/product_details.html', {
+        'productdetails': get_object_or_404(ProductDetails, pk=id)
+    })
