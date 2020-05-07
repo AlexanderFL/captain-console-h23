@@ -13,3 +13,6 @@ def shipping(request):
 
 def payment(request):
     return render(request, 'checkout/payment.html/')
+
+def confirmation(request):
+    return render(request, 'checkout/confirmation.html')
