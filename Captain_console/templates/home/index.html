@@ -45,15 +45,34 @@
 
                     <!-- Make these cards dynamically served from models -->
                     <div class="row">
-                        {% for i in '012'|make_list %}
-                        <div class="col s12 m12 l12 xl12">
+                        {% for i in '012345'|make_list %}
+                        <div class="col s12 m12 l6 xl6">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="https://photos.alexfreyr.com/game-covers/super-mario-64-cover.jpg">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">Super Mario 64<i class="material-icons right">more_vert</i></span>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">See details</a>
+                                    <a href="#"><i class="material-icons">shopping_cart</i></a>
+                                </div>
+                            </div>
+
+
+                            <!--
                             <div class="card horizontal">
                                 <div class="card-image">
                                     <img src="https://photos.alexfreyr.com/game-covers/super-mario-64-cover.jpg" class="responsive-img resize-img">
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
-                                        <span class="card-title flow-text">Super Mario Bros 64</span>
+                                        <span class="card-title">Super Mario Bros 64</span>
                                         <div class="game-price">
                                             <strong class="flow-text">$6.99</strong>
                                         </div>
@@ -64,6 +83,7 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
                         </div>
                         {% endfor %}
                     </div>
