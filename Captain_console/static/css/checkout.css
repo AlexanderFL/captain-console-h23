@@ -1,5 +1,9 @@
+h3 {
+  text-align: center;
+}
 
- input {
+
+input {
      display: block;
  }
 
@@ -8,5 +12,5 @@
   justify-content: center;
   align-items: center;
   height: 200px;
-  border: 3px solid green;
+  border: 3px;
 }
