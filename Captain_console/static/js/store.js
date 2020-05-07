@@ -1,5 +1,7 @@
 
 //Allow dropdown in store
+
+/*
 var store_dropdown = document.getElementsByClassName(store_dropdown);
 
 store_dropdown.onclick = function(event) {
@@ -15,3 +17,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 $('.dropdown-trigger').dropdown();
+*/
