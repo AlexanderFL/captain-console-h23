@@ -1,14 +1,38 @@
+h7 {
+    color: green;
+}
+
+.store-nav {
+
+}
+
+#banner {
+    margin: auto;
+    word-wrap: break-word;
+    overflow: auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
 .content {
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
 .store {
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 5%;
+    padding-left: 5%;
+    border: black;
 }
 
 .store-product {
+    flex: 1;
+    flex-basis: 30%;
+    padding: 1%;
+    justify-content: space-between;
+}
+
+.custom-select {
     flex: 1;
     flex-basis: 30%;
     padding: 1%;
@@ -28,3 +52,23 @@
      margin-bottom: auto;
   }
 
+.store-nav {
+    float: left;
+
+}
+
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+}
