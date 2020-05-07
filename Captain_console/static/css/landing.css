@@ -18,10 +18,34 @@
   vertical-align: middle;
 }
 
+.card-action p{
+  text-align: right;
+  position: absolute;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
 .discount{
   text-decoration: line-through;
 }
 
 .set-price{
   color: #2979ff;
+}
+
+.tag {
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  background-color: #FFF;
+  padding: 20px 20px;
+  vertical-align: middle;
+  margin: 10px;
+  color: #2979ff;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 3px solid #2979ff;
+  font-size: 2em;
 }

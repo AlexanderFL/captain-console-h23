@@ -48,6 +48,9 @@
                             <div class="col s12 m12 l6 xl6">
                                 <div class="card">
                                     <div class="card-image waves-effect waves-block waves-light">
+                                        {% if product.product_id.discount > 0 %}
+                                            <div class="tag">-{{ product.product_id.discount }}%</div>
+                                        {% endif %}
                                         <img class="activator" src="{{ product.path }}">
                                     </div>
                                     <div class="card-content">
@@ -56,14 +59,12 @@
                                             <strong class="flow-text set-price">${{ product.product_id.price }}</strong>
                                         {% else %}
                                             <strong class="flow-text">
-                                                <span class="discount">
-                                                    ${{ product.product_id.price }}
-                                                </span>
                                                 <span class="set-price">
-                                                    ${{ product.product_id.get_discounted_price }}
+                                                     ${{ product.product_id.get_discounted_price }}
                                                 </span>
-                                                - {{ product.product_id.discount }}% Off
-
+                                                <span class="discount">
+                                                    <sup>${{ product.product_id.price }}</sup>
+                                                </span>
                                             </strong>
                                         {% endif %}
                                     </div>
