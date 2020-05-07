@@ -1,10 +1,7 @@
 from django.shortcuts import render
+from store.models import ProductPhoto
 
-# Create your views here.
-
-context = [
-    {'name': 'supermario','price': 123},
-    {'name': 'crashbandicoot',"price": 50}]
 
 def index(request):
-    return render(request, 'home/index.html', context={"data": context})
+    context = {'products': ProductPhoto.objects.all()[:4]}
+    return render(request, 'home/index.html', context)

@@ -17,3 +17,11 @@
   display: inline-flex;
   vertical-align: middle;
 }
+
+.discount{
+  text-decoration: line-through;
+}
+
+.set-price{
+  color: #2979ff;
+}

@@ -8,6 +8,12 @@ class Product(models.Model):
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
 
+    """
+        Returns the discounted price with two decimal numbers
+    """
+    def get_discounted_price(self):
+        return "{:.2f}".format(self.price * 0.01 * (100 - self.discount))
+
     def __str__(self):
         return self.name
 
