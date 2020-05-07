@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% comment %}
+    context = {
+        'user': User.objects.filter(username),
+        'payment': PaymentInfo.objects.filter(account.id),
+        'address': Address.objects.filter(account.id),
+        'user_photo': UserPhoto.objects.filter(account.id),
+        'order_history': OrderProduct.objects.filter(account.id)
+    }
+{% endcomment %}
+
+
+<div class="card-stacked">
+    <div class="card-content">
+        <h2>{{ order.product_id }}</h2>
+        <p>{{ order.quantity }} copies for{{ order.price }}$ per game</p>
+    </div>
+</div>
