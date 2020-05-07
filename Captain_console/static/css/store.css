@@ -1,9 +1,12 @@
-.store {
+.content {
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
 }
-
+.store {
+    padding-right: 10%;
+    padding-left: 10%;
+}
 .store-product {
     flex: 1;
     flex-basis: 30%;
