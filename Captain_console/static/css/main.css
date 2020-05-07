@@ -39,7 +39,7 @@ nav .brand-logo{
     padding-left: 20px;
 }
 
-/* Mobile navbar search */
+/* Mobile navbar styles */
 .input-field .prefix.active{
     color: #FFFFFF !important;
 }
@@ -47,4 +47,18 @@ nav .brand-logo{
 input[type=text]:not(.browser-default):focus:not([readonly]){
     border-bottom: 1px solid #FFFFFF;
     box-shadow: 0 1px 0 0 #FFFFFF;
+}
+
+.seperator{
+    border-top: 1px solid #c1c1c1;
+}
+
+.sidenav li .input-field{
+    margin: 0 !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.sidenav li .input-field .prefix{
+    top: 2rem;
 }
