@@ -19,6 +19,10 @@ main {
     background-color: #F6F6F6;
 }
 
+.indent-links{
+    margin-left: 20em;
+}
+
 /* Navbar */
 
 /* label underline focus color */
@@ -29,4 +33,18 @@ nav div div ul li .input-field input[type=text]:focus {
 
 nav div div ul li .input-field input{
     padding-left: 10px !important;
+}
+
+nav .brand-logo{
+    padding-left: 20px;
+}
+
+/* Mobile navbar search */
+.input-field .prefix.active{
+    color: #FFFFFF !important;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: 1px solid #FFFFFF;
+    box-shadow: 0 1px 0 0 #FFFFFF;
 }
