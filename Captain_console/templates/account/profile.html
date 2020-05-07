@@ -2,15 +2,29 @@
 
 {% endcomment %}
 
-<div class="h2">
+
     <div class="card-stacked">
         <div class="card-content">
-            <h3>{{ user.username }}</h3>
-            <p>{{ user.email }}</p>
+
+          <h3><div class="card-image"><img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}" width="145rem" height="145rem"/>
+              {{ user.username }}</div></h3>
+
+
+            <form action="#"  method="get">
+
+                Username: <input type="text" id="userfield" name="username"  value=" {{ user.username }} "><br>
+                Email address: <input type="text" id="userfield_email" name="useremail"  value=" {{ user.email }} "><br>
+                Shipping address: <input type="text" id="userfield_address" name="shipping_address"  value=""><br>
+                City: <input type="text" id="userfield_city" name="city"  value="">
+                Zip: <input type="text" id="userfield_zip" name="zip"  value="">
+                Country: <input type="text" id="userfield_country" name="country"  value=""><br>
+
+
+            </form>
+
 
         </div>
         <div class="card-action">
-            <a href="#">Details</a>
+            <a href="#">Save changes</a>
         </div>
     </div>
-</div>

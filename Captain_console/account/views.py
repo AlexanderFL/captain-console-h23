@@ -7,11 +7,15 @@ from store.models import OrderProduct, Product, ProductPhoto
 
 def index(request, id):
     context = {
-#        'user': get_object_or_404(User, pk=id)
-        'user': User.objects.get(pk=id)
+        'user': User.objects.get(pk=id),
+        'photo': UserPhoto.objects.get(user_id=id)
     }
     return render(request, 'account/index.html', context)
 
+
+
+
+    #        'user': get_object_or_404(User, pk=id)
     # account = {
     #     'user': User.objects.filter(id=user_id)
     # }
