@@ -2,9 +2,11 @@ h3 {
   text-align: center;
 }
 
-input {
-     display: block;
- }
+/*.input-field {
+    border-style: solid;
+    display: block;
+    text-align: center;
+}
 
  label, button {
   display: flex;
@@ -14,3 +16,14 @@ input {
   border: 3px;
 }
 
+ .frame {
+    justify-content: center;
+    display: block;
+    flex-wrap: wrap;
+     border-style: solid;
+}
+
+ .button {
+     position: center;
+ }
+*/
