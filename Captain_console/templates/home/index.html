@@ -45,11 +45,12 @@
 
                     <div class="row">
                         {% for product in products %}
-                            <div class="col s12 m12 l6 xl6">
+                            <div class="col s12 m6 l6 xl4">
+                                <a href="{% url "product_details" product.product_id.id %}">
                                 <div class="card">
                                     <div class="card-image waves-effect waves-block waves-light">
                                         {% if product.product_id.discount > 0 %}
-                                            <div class="tag">-{{ product.product_id.discount }}%</div>
+                                            <div class="tag">-{{ product.product_id.get_discount }}%</div>
                                         {% endif %}
                                         <img class="activator" src="{{ product.path }}">
                                     </div>
@@ -69,10 +70,11 @@
                                         {% endif %}
                                     </div>
                                     <div class="card-action">
-                                        <a href="{% url "product_details" product.product_id.id %}">See details</a>
-                                        <a href="#"><i class="material-icons">shopping_cart</i></a>
+                                        <a href="{% url "product_details" product.product_id.id %}" class="blue-text text-accent-3">See details</a>
+                                        <a href="#" class="blue-text text-accent-3"><i class="material-icons">shopping_cart</i></a>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>

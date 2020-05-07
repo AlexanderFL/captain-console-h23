@@ -14,6 +14,13 @@ class Product(models.Model):
     def get_discounted_price(self):
         return "{:.2f}".format(self.price * 0.01 * (100 - self.discount))
 
+    """
+        Returns the total discount and removes any trailing zeros from float,
+        ex. '50.0 => 50', and '13.5 => 13.5'
+    """
+    def get_discount(self):
+        return "{:g}".format(self.discount)
+
     def __str__(self):
         return self.name
 
