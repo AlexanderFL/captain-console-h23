@@ -9,7 +9,7 @@
     <div class="container">
 
         <h2 class="flow-text">
-            Search results based on '{{ search_query }}'
+            {{ search_results|length }} Search results based on '{{ search_query }}'
         </h2>
         <div class="row">
             {% for product in search_results %}

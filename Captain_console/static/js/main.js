@@ -10,12 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Parallax.init(elems, '');
   });
 
-// Initializing date picker
- document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, '');
-});
-
  window.onload = function(){
      /* These functions are kind whack, but they work*/
      $('#search-bar-submit').on('click', function(){
@@ -28,3 +22,4 @@ document.addEventListener('DOMContentLoaded', function() {
          }
      });
  }
+
