@@ -11,11 +11,12 @@ def index(request, id):
     }
     return render(request, 'account/index.html', context)
 
-    def index(request, id):
-        context = {
-            'user': User.objects.get(pk=id)
-        }
-        return render(request, 'account/edit_profile.html', context)
+def edit(request, id):
+    context = {
+        'user': User.objects.get(pk=id),
+        # 'address': Address.objects.filter(user_id.id),
+    }
+    return render(request, 'account/change_profile.html', context)
 
     #        'user': get_object_or_404(User, pk=id)
     # account = {

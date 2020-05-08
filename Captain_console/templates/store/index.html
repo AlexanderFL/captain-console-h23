@@ -16,24 +16,19 @@
                     <div class="row">
                         <div class="input-field col s2"></div>
                         <div class="input-field col s12">
-                            <input id="icon_prefix" type="text" class="validate" />
-                            <label for="icon_prefix">Search</label>
+                            <input id="search_product" type="text" class="validate" />
+                            <label for="search_product">Search</label>
                         </div>
                          <div class="input-field col s12">
-                            <select>
+                            <select id = "orderby">
                                 <option value="" disabled="disabled" selected="selected">Order by</option>
-                                <option value="1">PRICE Low -> High</option>
-                                <option value="2">PRICE High -> Low</option>
-                                <option value="3">NAME A -> Z</option>
-                                <option value="3">NAME Z -> A</option>
-                                <option value="3">RATING Low -> High</option>
-                                <option value="3">RATING High -> Low</option>
-
-
+                                <option value="1">Price</option>
+                                <option value="3">Name</option>
+                                <option value="3">Rating</option>
                             </select>
                         </div>
                         <div class="input-field col s12">
-                            <select>
+                            <select id ="developer_filter" >
                                 <option value="" disabled="disabled" selected="selected">Developer</option>
                                 <option value="1">Nintendo</option>
                                 <option value="2">Sony</option>
@@ -43,7 +38,7 @@
                             </select>
                         </div>
                         <div class="input-field col s12">
-                            <select>
+                            <select id = "genre_filter">
                                 <option value="" disabled="disabled" selected="selected">Genre</option>
                                 <option value="1">First Person Shooter</option>
                                 <option value="2">Adventure</option>
@@ -57,6 +52,11 @@
                 </form>
             </div>
         <div class="content  col s10">  <!-- Products-->
+
+        <div>
+            {% regroup products|dictsort:"price" by price as price_list %}
+
+        </div>
         {% for product in products %}
             {% include 'store/single_product.html' with product=product%}
         {% endfor %}

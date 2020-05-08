@@ -1,0 +1,62 @@
+#banner {
+    margin: auto;
+    word-wrap: break-word;
+    overflow: auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.store {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.content {
+    margin: auto;
+    align-self: center;
+}
+
+.container {
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+#product-price {
+    font-size: 26px;
+    color: black;
+    font-weight: bold;
+}
+
+.details {
+    border: solid 2px;
+    background-color: white;
+    padding: 2%;
+    align-content: center;
+    margin-bottom: 100px;
+    border-radius: 8px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+h7 {
+    color: red;
+    font-weight: bold;
+}
+
+img {
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.btn-small {
+    margin-top: 1rem;
+}
+
+.checked {
+    color: orange;
+}
+.stars {
+    padding-top: 1rem;
+}
