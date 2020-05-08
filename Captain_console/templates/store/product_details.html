@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Here will be some product details about the games.</h2>
+
+    <span class="col s12" id="banner">
+            <h4> Home / Store / Games / Super Mario 64</h4> <!-- Bæta við nafni -->
+        </span>
+    <div class="row">
+        <div class="content col s6">    <!-- Filter and select-->
+            <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="172rem" height="172rem"/>
+        </div>
+        <div class="content  col s6">  <!-- Products-->
+            <h4>{{ product.name }}</h4>
+            On stock
+            <h6>{{ product.productdetails_set.first.description }}</h6>
+        </div>
+
+    </div>
+    <span class = "col s12" id="more-details">
+        More details
+    </span>
     <h2>{{ productdetails.description }}</h2>
     <h3>{{ productdetails.release_date }}</h3>
 {% endblock %}

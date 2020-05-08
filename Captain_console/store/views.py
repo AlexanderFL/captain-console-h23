@@ -19,5 +19,5 @@ def consoles(request):
 
 def get_product_by_id(request, id):
     return render(request, 'store/product_details.html', {
-        'productdetails': get_object_or_404(ProductDetails, pk=id)
+        'product': get_object_or_404(Product, pk=id)
     })
