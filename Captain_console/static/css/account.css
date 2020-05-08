@@ -13,6 +13,12 @@ form.col.s12 {
     align-content: center;
 }
 
+/* login */
+form.col.s12.m10 {
+    align-content: center;
+    border-radius: 25px;
+}
+
 .col.s4.m6 {
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +38,15 @@ div.account.container {
     width: 90%;
 }
 
+div.login {
+    width: 100%;
+
+}
+
+div.login.container {
+    border-radius: 25px;
+    width: 70%;
+}
 
 form {
     display: inline-block;
@@ -42,19 +57,19 @@ label, input {
     display: inline-block;
 }
 
-label, button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 200px;
-      border: 3px;
-}
+/*label, button {*/
+/*      display: flex;*/
+/*      justify-content: center;*/
+/*      align-items: center;*/
+/*      height: 200px;*/
+/*      border: 3px;*/
+/*}*/
 
-label {
-    width: 30%;
-    /* Positions the label text beside the input */
-    text-align: right;
-}
+/*label {*/
+/*    width: 30%;*/
+/*    !* Positions the label text beside the input *!*/
+/*    text-align: right;*/
+/*}*/
 
 /*.highlight {
     border-collapse: collapse;
@@ -83,7 +98,7 @@ card-image {
 
 
  a.btn.waves-effect.blue.accent-3, button.btn.waves-effect.blue.accent-3{
-    margin-top: 50px;
+    margin-top: 5px;
     margin-left: 3rem;
 }
 

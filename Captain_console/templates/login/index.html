@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/account.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class = "login">
+    <div class="login container">
+        <div class="col s12 m10">
+
+                {% include 'login/login.html' with user=user %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
