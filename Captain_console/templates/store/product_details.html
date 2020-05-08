@@ -1,43 +1,81 @@
 {% extends "base.html" %}
-{% block content %}
 {% load static %}
+
 {% block style %}
-    <link rel="stylesheet" href="{% static "css/product_details.css" %}">
+        <link rel="stylesheet" href="{% static "css/product_details.css" %}">
 {% endblock %}
 
+{% block content %}
     <div class="row store">
-    <span class="col s12" id="banner">
-            <h4> Home / Store / Games / Super Mario 64</h4> <!-- Bæta við nafni -->
-    </span>
-    <div class="container">
-         <div class="container details">
-            <div class ="image">
-                <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="300rem" height="300rem"/>
-                <div class="stars">
-                    <i class="material-icons checked">star</i>
-                    <i class="material-icons checked">star</i>
-                    <i class="material-icons checked">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
+        <span class="col s12" id="banner">
+            <h4> Home / Store / Games / {{ product.name }}</h4>
+        </span>
+
+        <div class="card-panel white col s12">
+            <div class="row">
+                <div class="col s12 m6 l4">
+                    <div class="product-image">
+                        <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
+                        <div class="stars">
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                        </div>
+                    </div>
                 </div>
-
-
-            </div>
-            <div class ="info">
-                <div>  <!-- Products-->
+                <div class="col s12 m6 l8">
                     <h4>{{ product.name }}</h4>
-                    <h7>On stock</h7>
+                    <h7>In stock</h7>
                     <h6>{{ product.productdetails_set.first.description }}</h6>
                     <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
-                    <h6>Developer: {{ product.developer_set.developer}}</h6>
-                    <h6>Genre: {{ product.productdetails_set.first.developer_set.first.developer }} </h6>
+                    <h6>Developer: {{ product.productdetails_set.first.developer_id.developer }}</h6>
+                    <h6>Genre: {{ product.productdetails_set.first.genre_id.genre }} </h6>
                     <div>
-                        <div id="product-price">{{ product.price }}$ </div>
-                        <a class="waves-effect waves-light btn-small blue lighten-1"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                        <div id="product-price">
+                            {% if product.discount > 0 %}
+                                <span class="set-price">${{ product.get_discounted_price }}</span>
+                                <sup class="normal-price">{{ product.price }}</sup>
+                            {% else %}
+                                <span class="set-price">${{ product.price }}</span>
+                            {% endif %}
+                        </div>
+                        <a class="waves-effect waves-light btn blue accent-3"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div class="container">
+             <div class="container details">
+                <div class="image">
+                    <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="300rem" height="300rem"/>
+                    <div class="stars">
+                        <i class="material-icons checked">star</i>
+                        <i class="material-icons checked">star</i>
+                        <i class="material-icons checked">star</i>
+                        <i class="material-icons">star</i>
+                        <i class="material-icons">star</i>
+                    </div>
+                </div>
+                <div class ="info">
+                    <div>
+                        <h4>{{ product.name }}</h4>
+                        <h7>On stock</h7>
+                        <h6>{{ product.productdetails_set.first.description }}</h6>
+                        <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
+                        <h6>Developer: {{ product.developer_set.developer}}</h6>
+                        <h6>Genre: {{ product.productdetails_set.first.developer_set.first.developer }} </h6>
+                        <div>
+                            <div id="product-price">{{ product.price }}$ </div>
+                            <a class="waves-effect waves-light btn-small blue lighten-1"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                        </div>
                     </div>
                 </div>
              </div>
+        </div>-->
     </div>
-</div>
 
 {% endblock %}
