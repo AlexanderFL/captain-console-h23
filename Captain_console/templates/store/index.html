@@ -52,6 +52,11 @@
                 </form>
             </div>
         <div class="content  col s10">  <!-- Products-->
+
+        <div>
+            {% regroup products|dictsort:"price" by price as price_list %}
+
+        </div>
         {% for product in products %}
             {% include 'store/single_product.html' with product=product%}
         {% endfor %}
