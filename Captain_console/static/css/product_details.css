@@ -50,6 +50,13 @@ img {
     box-shadow: 10px 10px 8px #888888;
 }
 
-a {
-    color: dodgerblue;
+.btn-small {
+    margin-top: 1rem;
+}
+
+.checked {
+    color: orange;
+}
+.stars {
+    padding-top: 1rem;
 }
