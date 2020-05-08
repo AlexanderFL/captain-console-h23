@@ -9,6 +9,10 @@ body {
     background-color: #f0f0f0;
 }
 
+form.col.s12 {
+    align-content: center;
+}
+
 .col.s4.m6 {
     display: flex;
     flex-wrap: wrap;
@@ -78,3 +82,13 @@ card-image {
 }
 
 
+ a.btn.waves-effect.blue.accent-3, button.btn.waves-effect.blue.accent-3{
+    margin-top: 50px;
+    margin-left: 3rem;
+}
+
+.input-field {
+
+     margin-top: 0rem;
+     margin-bottom: 0rem;
+}
