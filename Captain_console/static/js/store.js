@@ -3,13 +3,27 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
+//Order by function
 window.onload = function(){
     $(document).ready(function(){
         $('#orderby').on('change', function(){
-            alert('Change detected');
+            order_var = orderby.selectedIndex
+            console.log(order_var)
+
+            //Order by price
+            if (order_var === 1) {
+
+
+            }
+
+
+
         });
     });
 }
+
+
+
 
 /*
 var orderby = document.getElementById("orderby")

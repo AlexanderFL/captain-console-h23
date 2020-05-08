@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
 {% endblock %}
 
+{% block js %}
+        <script src="{% static "js/checkout.js" %}"></script>
+{%endblock%}
+
 {% block content %}
 <div class = "checkout">
     {% include 'checkout/contactinfo.html' %}
