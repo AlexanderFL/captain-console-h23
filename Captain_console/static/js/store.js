@@ -35,7 +35,7 @@ window.onload = function(){
                         return `<div class="col s2 m6 store-product" id="singleprod">
                                     <div class="card">
                                         <div class="card-image">
-                                            <a href="/store/${d.id}"><img class="product-img" src="${d.firstImage}" alt="${d.firstAlt}" width="172rem" height="172rem"/></a>
+                                            <a href="/store/${d.id}"><img class="product-img" src="${d.firstPath}" alt="${d.firstAlt}" width="172rem" height="172rem"/></a>
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
                                         </div>
                                         <div class="card-stacked">

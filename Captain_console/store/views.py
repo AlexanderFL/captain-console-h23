@@ -14,6 +14,7 @@ def index(request):
             products = Product.objects.order_by('price').values()
         elif sort_by == "name":
             products = Product.objects.order_by('name').values()
+            print(list(products))
         elif sort_by == "rating":
             products = Product.objects.all()
 
@@ -30,6 +31,8 @@ def index(request):
             products = []
             for k, v in sort_dict.items():
                 products.append(v)
+
+            return JsonResponse({'data': products})
 
         print(products)
         return JsonResponse({'data': list(products)})
