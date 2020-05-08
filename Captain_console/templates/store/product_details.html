@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/product_details.css" %}">
+{% endblock %}
 
+    <div class="row store">
     <span class="col s12" id="banner">
             <h4> Home / Store / Games / Super Mario 64</h4> <!-- Bæta við nafni -->
-        </span>
-    <div class="row">
-        <div class="content col s6">    <!-- Filter and select-->
-            <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="172rem" height="172rem"/>
-        </div>
-        <div class="content  col s6">  <!-- Products-->
-            <h4>{{ product.name }}</h4>
-            On stock
-            <h6>{{ product.productdetails_set.first.description }}</h6>
-        </div>
-
-    </div>
-    <span class = "col s12" id="more-details">
-        More details
     </span>
-    <h2>{{ productdetails.description }}</h2>
-    <h3>{{ productdetails.release_date }}</h3>
+    <div class="container">
+         <div class="container details">
+            <div class ="image">
+                <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="300rem" height="300rem"/>
+            </div>
+            <div class ="info">
+                <div>  <!-- Products-->
+                    <h4>{{ product.name }}</h4>
+                    <h7>On stock</h7>
+                    <h6>{{ product.productdetails_set.first.description }}</h6>
+                    <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
+                    <h6>Developer: {{ product.developer_set.developer}}</h6>
+                    <h6>Genre: {{ product.productdetails_set.first.developer_set.first.developer }} </h6>
+                    <div class = "container">
+                        <div id="product-price">{{ product.price }}$ </div>
+                        <a class="waves-effect waves-light btn-small blue lighten-1"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                    </div>
+                </div>
+             </div>
+    </div>
+</div>
+
 {% endblock %}
