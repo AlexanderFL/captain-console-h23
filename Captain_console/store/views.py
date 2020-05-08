@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from store.models import Product, ProductDetails
+from django.shortcuts import render, get_object_or_404, get_list_or_404
+from store.models import Product, ProductDetails, ProductPhoto
 
 
 def index(request):
@@ -20,4 +20,11 @@ def consoles(request):
 def get_product_by_id(request, id):
     return render(request, 'store/product_details.html', {
         'product': get_object_or_404(Product, pk=id)
+    })
+
+
+def search(request, query):
+    return render(request, 'store/search.html', {
+        'search_results': get_list_or_404(ProductPhoto.objects.filter(product_id__name__icontains=query)),
+        'search_query': query
     })
