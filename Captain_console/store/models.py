@@ -8,6 +8,10 @@ class Product(models.Model):
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
+
     """
         Returns the discounted price with two decimal numbers
     """
@@ -21,17 +25,12 @@ class Product(models.Model):
     def get_discount(self):
         return "{:g}".format(self.discount)
 
-    def __str__(self):
-        return self.name
-
 
 class Genre(models.Model):
     genre = models.CharField(max_length=128)
 
-
 class Developer(models.Model):
     developer = models.CharField(max_length=128)
-
 
 class ProductDetails(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)

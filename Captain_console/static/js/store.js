@@ -5,22 +5,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Order by function
 window.onload = function(){
-    $(document).ready(function(){
-        $('#orderby').on('change', function(){
-            order_var = orderby.selectedIndex
+    $(document).ready(function() {
+        $('#orderby').on('change', function (e) {
+            e.preventDefault();
+            var order_var = orderby.selectedIndex
             console.log(order_var)
 
+            var order_name = "price"
             //Order by price
-            if (order_var === 1) {
+            console.log("filtering by " + order_name)
 
-
-            }
-
-
-
+            $.ajax({
+                url: '/store?sort_by=' + order_name,
+                type: 'GET',
+                success: function (resp) {
+                    console.log(resp)
+                    var newHtml = resp.data.map(d => {
+                        return `<div>Hello</div>`
+                    });
+                    $('.all_products').html(newHtml.join(''));
+                },
+                error: function (xhr, status, error) {
+                    // TODO: Show toastr
+                    console.log(error);
+                }
+            });
         });
     });
-}
+};
+
+
 
 
 

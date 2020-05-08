@@ -1,8 +1,15 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from store.models import Product, ProductDetails, ProductPhoto
 
 
 def index(request):
+    if 'sort_by' in request.GET:
+        sort_by = request.GET['sort_by']
+        products = list(Product.objects.order_by('price'))
+        print(products)
+        return JsonResponse({'data': products})
+
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/index.html', context)
 
