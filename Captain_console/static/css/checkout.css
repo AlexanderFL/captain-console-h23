@@ -1,29 +1,37 @@
-h3 {
+.container .card-panel .card-title {
   text-align: center;
 }
-
-/*.input-field {
-    border-style: solid;
-    display: block;
+.checkout-crumbs{
+    width: 100%;
+    margin: auto;
+}
+.checkout-crumbs li{
+    display: inline;
+    font-size: 32px;
     text-align: center;
 }
-
- label, button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  border: 3px;
+.checkout-crumbs .active{
+    color: #2979ff;
 }
-
- .frame {
-    justify-content: center;
-    display: block;
-    flex-wrap: wrap;
-     border-style: solid;
+.checkout-crumbs .active:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
-
- .button {
-     position: center;
- }
-*/
+ul.checkout-crumbs li+li:before{
+    padding: 7px;
+    color: black;
+    content: "/\00a0";
+}
+i.icon-blue{
+    color: black;
+}
+.input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label {
+    color: #2979ff !important;
+}
+.input-field .prefix.active {
+    color: #2979ff;
+}
+.input-field input[type=text]:focus, .input-field input[type=email]:focus {
+    border-bottom: 1px solid #2979ff !important;
+    box-shadow: 0 1px 0 0 #2979ff !important;
+}

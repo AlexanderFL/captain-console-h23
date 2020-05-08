@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% comment %}
+
+{% endcomment %}
+
+
+    <div class="card-stacked">
+        <div class="card-content">
+
+
+            <table class="highlight">
+
+                <tr>
+                    <td><div class="card-image"><img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/></td>
+                    <td><h3>{{ user.username }}</h3></td>
+                </tr>
+                <tr>
+                    <td>E-mail adddress: </td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>Shipping adddress: </td>
+                    <td>{{ user.adddress_set.first.address }}</td>
+                </tr>
+                <tr>
+                    <td>City: </td>
+                    <td>{{ user.adddress_set.first.city }}</td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td>{{ user.adddress_set.first.country }}</td>
+                </tr>
+            </table>
+
+
+
+
+
+
+
+        </div>
+        <div class="card-action">
+            <a class="waves-effect waves-light btn-small blue accent-3"  href="">Edit profile</a>
+
+        </div>
+    </div>

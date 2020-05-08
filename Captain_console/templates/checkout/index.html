@@ -1,16 +1,16 @@
 {%  extends 'base.html' %}
-{% block content %}
-<div class = "checkout">
-    {% include 'checkout/paymentinfo.html' %}
-</div>
-{% endblock %}
-
 {% load static %}
+
 {% block style %}
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
-    <link rel="stylesheet" href="{% static "css/paymentinfo.css" %}">
 {% endblock %}
 
 {% block js %}
         <script src="{% static "js/checkout.js" %}"></script>
 {%endblock%}
+
+{% block content %}
+<div class = "checkout">
+    {% include 'checkout/contactinfo.html' %}
+</div>
+{% endblock %}
