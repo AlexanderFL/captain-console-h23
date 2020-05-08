@@ -1,3 +1,5 @@
+import json
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from store.models import Product, ProductDetails, ProductPhoto
@@ -6,9 +8,9 @@ from store.models import Product, ProductDetails, ProductPhoto
 def index(request):
     if 'sort_by' in request.GET:
         sort_by = request.GET['sort_by']
-        products = list(Product.objects.order_by('price'))
+        products = Product.objects.order_by('price').values()
         print(products)
-        return JsonResponse({'data': products})
+        return JsonResponse({'data': list(products)})
 
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/index.html', context)
