@@ -6,25 +6,40 @@
     <div class="card-stacked">
         <div class="card-content">
 
-          <h3><div class="card-image"><img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}" width="145rem" height="145rem"/>
-              {{ user.username }}</div></h3>
+
+            <table class="highlight">
+
+                <tr>
+                    <td><div class="card-image"><img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/></td>
+                    <td><h3>{{ user.username }}</h3></td>
+                </tr>
+                <tr>
+                    <td>E-mail adddress: </td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>Shipping adddress: </td>
+                    <td>{{ user.adddress_set.first.address }}</td>
+                </tr>
+                <tr>
+                    <td>City: </td>
+                    <td>{{ user.adddress_set.first.city }}</td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td>{{ user.adddress_set.first.country }}</td>
+                </tr>
+            </table>
 
 
-            <form action="#"  method="get">
-
-                Username: <input type="text" id="userfield" name="username"  value=" {{ user.username }} "><br>
-                Email address: <input type="text" id="userfield_email" name="useremail"  value=" {{ user.email }} "><br>
-                Shipping address: <input type="text" id="userfield_address" name="shipping_address"  value=""><br>
-                City: <input type="text" id="userfield_city" name="city"  value="">
-                Zip: <input type="text" id="userfield_zip" name="zip"  value="">
-                Country: <input type="text" id="userfield_country" name="country"  value=""><br>
 
 
-            </form>
+
 
 
         </div>
         <div class="card-action">
-            <a href="#">Save changes</a>
+            <a class="waves-effect waves-light btn-small blue accent-3"  href="">Edit profile</a>
+
         </div>
     </div>

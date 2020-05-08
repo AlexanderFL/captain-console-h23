@@ -52,13 +52,25 @@ label {
     text-align: right;
 }
 
+/*.highlight {
+    border-collapse: collapse;
+}*/
 
+table {
+    border-collapse: inherit;
+}
 
 card-image {
     text-align: start;
 }
 
-div.card-content.input[type=text] {
+.product-img {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+}
+
+.card-content.input[type=text] {
     width: 40%;
     padding: 8px 122px;
     margin: 8px 0;

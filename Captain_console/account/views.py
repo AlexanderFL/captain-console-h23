@@ -7,13 +7,15 @@ from store.models import OrderProduct, Product, ProductPhoto
 
 def index(request, id):
     context = {
-        'user': User.objects.get(pk=id),
-        'photo': UserPhoto.objects.get(user_id=id)
+        'user': User.objects.get(pk=id)
     }
     return render(request, 'account/index.html', context)
 
-
-
+    def index(request, id):
+        context = {
+            'user': User.objects.get(pk=id)
+        }
+        return render(request, 'account/edit_profile.html', context)
 
     #        'user': get_object_or_404(User, pk=id)
     # account = {
