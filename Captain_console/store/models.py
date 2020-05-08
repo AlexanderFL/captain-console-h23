@@ -8,9 +8,20 @@ class Product(models.Model):
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
 
+    """
+    Returns average rating of a product
+    """
+    def get_rating(self):
+        reviews = Review.objects.filter(product_id=self.id)
+
+        total_ratings = 0
+        for review in reviews:
+            total_ratings += review.rating
+        avg_rating = total_ratings/len(reviews)
+        return avg_rating
+
     def __str__(self):
         return self.name
-
 
     """
         Returns the discounted price with two decimal numbers
@@ -54,6 +65,9 @@ class Review(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
+
+    def __str__(self):
+        return str(self.rating)
 
 
 # Maybe these models can change locations but I'll leave it here for now
