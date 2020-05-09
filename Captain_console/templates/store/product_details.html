@@ -16,11 +16,11 @@
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
                         <div id="stars">
-                            <i class="material-icons checked" data-prod="{{ product }}">star</i>
-                            <i class="material-icons checked" data-prod="{{ product }}">star</i>
-                            <i class="material-icons checked"data-prod="{{ product }}">star</i>
-                            <i class="material-icons" data-prod="{{ product.id }}">star</i>
-                            <i class="material-icons" data-prod="{{ product.id }}">star</i>
+                            <button class="star" data-rate="1" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="2" data-prod="{{ product.id  }}" ><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="3" data-prod="{{ product.id  }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="4" data-prod="{{ product.id  }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="5" data-prod="{{ product.id  }}"><i class="material-icons">star</i></button>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             {% endif %}
                         </div>
                         <a class="waves-effect waves-light btn blue accent-3"><i class="material-icons left">shopping_cart</i>Add to cart</a>
-                        <a class="waves-effect waves-light btn blue accent-3" id="give_review" data-prod="${{ product }}">Rate product</a>
+                        <a class="waves-effect waves-light btn blue accent-3" data-prod="{{ product }}" id="give-review" >Rate product</a>
                     </div>
                 </div>
             </div>
@@ -50,6 +50,8 @@
 
 {% block js %}
     <script src="{% static "js/store.js" %}"></script>
+    <script src="{% static "js/product_details.js" %}"></script>
+
 {%endblock%}
 
 {% endblock %}

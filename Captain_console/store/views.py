@@ -66,9 +66,16 @@ def consoles(request):
 
 
 def get_product_by_id(request, id):
-    instance = get_object_or_404(Product, pk=id)
+    print("hello")
+    if "review_product" in request.POST:
+        print("hello 1")
+        give_review = request.POST['review_product']
+        print("hello 2")
+        product = give_review
 
-    if "give_review" in request.POST:
+        print("Giving rating")
+        instance = get_object_or_404(Product, pk=product)
+
         form = GiveRatingForm(data=request.POST, instance=instance)
         form.save()
 
@@ -78,13 +85,15 @@ def get_product_by_id(request, id):
 
         return redirect('product_details', id=id)
 
-    elif "give_review" in request.GET:
-        print(instance)
+    elif "review_mode" in request.GET:
+        print("I'm here")
+        instance = Product.objects.get(id=id)
         return JsonResponse({'data': instance})
 
     return render(request, 'store/product_details.html', {
         'product': get_object_or_404(Product, pk=id)
     })
+
 
 def search(request, query):
     return render(request, 'store/search.html', {
