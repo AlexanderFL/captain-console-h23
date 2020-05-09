@@ -3,28 +3,25 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
+    <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
 
 {% block js %}
         <script src="{% static "js/checkout.js" %}"></script>
 {%endblock%}
 
-
 {% block content %}
-
 
 <div class = "checkout container">
     <div class="checkout_inner container">
-        <ul class="checkout-crumbs">
-            <li class="active"><span class="flow-text">Contact Info</span></li>
-            <li class="flow-text"><a href="shipping">Shipping</a></li>
-            <li class="flow-text"><a href="payment">Payment</a></li>
-            <li class="flow-text"><a href="comfirmation">Comfirmation</a></li>
+        <ul class="crumbs crumbs-store-padding">
+            <li><a href="#">Contact Info</a></li>
+            <li><a href="shipping">Shipping</a></li>
+            <li><a href="payment">Payment</a></li>
+            <li class="active"><a href="comfirmation">Confirmation</a></li>
         </ul>
 
-
         <div class="col s4 m6">
-
 
             {% if page_checkout == 'contactinfo' %}
                 {% include 'checkout/contactinfo.html' %}
@@ -36,7 +33,6 @@
                 {% include 'checkout/confirmation.html' %}
             {% endif %}
 
-
         </div>
         <div class="col s4 m6">
 
@@ -45,8 +41,6 @@
 {#            {% for order in order_history %}#}
 {#                {% include 'account/order_history.html' with order=order%}#}
 {#            {% endfor %}#}
-
-
 
         </div>
     </div>
