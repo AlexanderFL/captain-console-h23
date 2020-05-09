@@ -2,8 +2,9 @@ import json
 from django.forms.models import model_to_dict
 from collections import OrderedDict
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from store.models import Product, ProductDetails, ProductPhoto, Review
+from store.store_forms.store_form import GiveRatingForm
 
 
 def index(request):
@@ -65,21 +66,28 @@ def consoles(request):
 
 
 def get_product_by_id(request, id):
+    instance = get_object_or_404(Product, pk=id)
+
+    if "give_review" in request.POST:
+        form = GiveRatingForm(data=request.POST, instance=instance)
+        form.save()
+
+        new_rating = instance.average_rating()
+        instance.average_rating = new_rating
+        instance.save()
+
+        return redirect('product_details', id=id)
+
+    elif "give_review" in request.GET:
+        print(instance)
+        return JsonResponse({'data': instance})
+
     return render(request, 'store/product_details.html', {
         'product': get_object_or_404(Product, pk=id)
     })
-
 
 def search(request, query):
     return render(request, 'store/search.html', {
         'search_results': get_list_or_404(ProductPhoto.objects.filter(product_id__name__icontains=query)),
         'search_query': query
     })
-
-
-
-# def give_rating(request):
-#     if request.method == 'POST':
-#         print(1)
-#     else:
-#         form =

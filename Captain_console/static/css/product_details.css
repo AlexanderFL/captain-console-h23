@@ -25,15 +25,6 @@
 
 .content {
     margin: auto;
-    align-self: center;
-}
-
-.container {
-    justify-content: space-evenly;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: row;
 }
 
 #product-price {
