@@ -6,6 +6,13 @@
     padding-top: 20px;
 }
 
+@media only screen and (max-width: 600px) {
+    .product-image{
+        float: none !important;
+        margin: auto;
+    }
+}
+
 .store {
     padding-right: 5%;
     padding-left: 5%;
