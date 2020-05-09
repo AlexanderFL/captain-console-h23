@@ -3,13 +3,16 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static "css/product_details.css" %}">
+    <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
 
 {% block content %}
     <div class="row store">
-        <span class="col s12" id="banner">
-            <h4> Home / Store / Games / {{ product.name }}</h4>
-        </span>
+        <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li><a href="{% url "store_index" %}">Store</a></li>
+            <li class="active"><a href="#">{{ product.name }}</a></li>
+        </ul>
         <div class="card-panel white col s12">
             <div class="row">
                 <div class="col s12 m6 l4">

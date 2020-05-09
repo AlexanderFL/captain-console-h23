@@ -2,14 +2,17 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static "css/store.css" %}">
+    <link rel="stylesheet" href="{% static 'css/shared/product-card-view.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/custom-breadcrumbs.css' %}">
 {% endblock %}
 
 {% block content %}
 
     <div class="row store">
-        <span class="col s12" id="banner">
-            <h4> Home / Store</h4>
-        </span>
+        <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li class="active"><a href="#">Store</a></li>
+        </ul>
         <div class="col s12 m12 l2">    <!-- Filter and select-->
             <form class="col s12">
                 <div class="row">

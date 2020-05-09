@@ -2,22 +2,10 @@
 * product_details.css
 *
 * Index
-* - Breadcrumbs (move later)
 * - Image placement
 * - Product pricing styles
 * - Rating styles
 */
-
-/**
-* Breadcrumbs (move later)
-*/
-#banner {
-    margin: auto;
-    word-wrap: break-word;
-    overflow: auto;
-    padding-bottom: 20px;
-    padding-top: 20px;
-}
 
 /**
 * Image placement
@@ -55,10 +43,6 @@
 #product-price {
     font-size: 26px;
     font-weight: bold;
-}
-
-.set-price{
-    color: #2979FF;
 }
 
 .normal-price{
