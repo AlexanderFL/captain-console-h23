@@ -10,26 +10,24 @@ window.onload = function() {
         $('#give-review').on("click", function (e) {
             e.preventDefault();
 
-            var product = $(this).data("prod")
-
             give_review_btn = document.getElementById("give-review")
             give_review_btn.disabled = true;   //Grey out button while in review mode
             give_review_btn.classList.add("disabled")
+
+
         });
 
         //Give review
         $('.star').on('click', function (e) {
             e.preventDefault();
 
-            var prod_id = $(this).data("prod")
-            var rating = $(this).data("rating")
-
-            alert("Your values are: " + $(this).data("rate") + $(this).data("prod"))
+            var prod_id = $(this).data('prod')
+            var rating = $(this).data('rate')
 
             $.ajax({
                 url: "/store/" + prod_id + "?review_product=" + prod_id,
                 type: "POST",
-                data: {product: prod_id, rating: rating},
+                data: {prod_id: prod_id, rating: rating},
                 success: function(status){
                     console.log("SUCCESS: " + status)
                 },

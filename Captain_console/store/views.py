@@ -3,7 +3,10 @@ from django.forms.models import model_to_dict
 from collections import OrderedDict
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.views.decorators.csrf import csrf_exempt
+
 from store.models import Product, ProductDetails, ProductPhoto, Review
+from account.models import User
 from store.store_forms.store_form import GiveRatingForm
 
 
@@ -65,25 +68,32 @@ def consoles(request):
     return render(request, 'store/consoles.html', context)
 
 
+@csrf_exempt
 def get_product_by_id(request, id):
-    print("hello")
-    if "review_product" in request.POST:
-        print("hello 1")
-        give_review = request.POST['review_product']
-        print("hello 2")
-        product = give_review
 
-        print("Giving rating")
-        instance = get_object_or_404(Product, pk=product)
+    #Review product
+    if 'review_product' in request.GET:
 
-        form = GiveRatingForm(data=request.POST, instance=instance)
-        form.save()
+        #Extract data from jQuery dict
+        data = request.POST
+        prod_id = data.get("prod_id")
+        rating = data.get("rating")
 
-        new_rating = instance.average_rating()
-        instance.average_rating = new_rating
-        instance.save()
+        #Get Product and User instances and create review
+        product = get_object_or_404(Product, pk=prod_id)
+        user = get_object_or_404(User, pk=1)
+        new_review = Review()
+        new_review.create_review(product, user, rating)
 
+        print("Rating before: " + str(product.average_rating))
+
+        #Update average rating for the product
+        new_rating = product.get_rating()
+        product.set_rating(new_rating, prod_id)
+
+        print("Rating after: " + str(product.average_rating))
         return redirect('product_details', id=id)
+
 
     elif "review_mode" in request.GET:
         print("I'm here")

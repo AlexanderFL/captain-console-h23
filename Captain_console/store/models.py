@@ -75,9 +75,9 @@ class Review(models.Model):
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
 
-    def create_review(self, prod_id, rating):
+    def create_review(self, prod_id, user_id, rating):
         #TODO: User_id
-        Review.objects.create(product_id=prod_id,user_id=1,rating=rating,comment="")
+        Review.objects.create(product_id=prod_id,user_id=user_id,rating=rating,comment="")
 
     def __str__(self):
         return str(self.rating)
