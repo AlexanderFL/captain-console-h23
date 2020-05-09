@@ -1,22 +1,22 @@
-.profile {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 10px;
-}
 
-body {
-    background-color: #f0f0f0;
-}
 
 form.col.s12 {
     align-content: center;
 }
 
 /* login */
-form.col.s12.m10 {
-    align-content: center;
+.col.s12.m6 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 10px;
+    flex-grow: 1;
+    width: 60%;
+
+    padding: 15px;
     border-radius: 25px;
+    border: 2px solid black;
+    background-color: #ffffff;
 }
 
 .col.s4.m6 {
@@ -31,21 +31,31 @@ form.col.s12.m10 {
     border-radius: 25px;
     border: 2px solid black;
     background-color: #ffffff;
-
 }
 
 div.account.container {
     width: 90%;
 }
 
-div.login {
-    width: 100%;
-
+div.login.container {
+    width: 90%;
 }
 
-div.login.container {
-    border-radius: 25px;
-    width: 70%;
+div.profile.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+div.signup {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    max-width: 450px;
 }
 
 form {
