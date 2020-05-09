@@ -9,20 +9,48 @@
         <script src="{% static "js/checkout.js" %}"></script>
 {%endblock%}
 
-<div class = "checkout container">
+
 {% block content %}
 
 
-{#{% if var1 %}#}
-{#    {{ var1 }}#}
-{#{% elif var2 %}#}
-{#    {{ var2 }}#}
-{#{% elif var3 %}#}
-{#    {{ var3 }}#}
-{#{% endif %}#}
+<div class = "checkout container">
+    <div class="checkout_inner container">
+        <ul class="checkout-crumbs">
+            <li class="active"><span class="flow-text">Contact Info</span></li>
+            <li class="flow-text"><a href="shipping">Shipping</a></li>
+            <li class="flow-text"><a href="payment">Payment</a></li>
+            <li class="flow-text"><a href="comfirmation">Comfirmation</a></li>
+        </ul>
 
-    {% include 'checkout/contactinfo.html' %}
 
-{% endblock %}
+        <div class="col s4 m6">
+
+
+            {% if page_checkout == 'contactinfo' %}
+                {% include 'checkout/contactinfo.html' %}
+            {% elif page_checkout == 'shipping' %}
+                {% include 'checkout/shipping.html' %}
+            {% elif page_checkout == 'paymentinfo' %}
+                {% include 'checkout/paymentinfo.html' %}
+            {% elif page_checkout == 'confirmation' %}
+                {% include 'checkout/confirmation.html' %}
+            {% endif %}
+
+
+        </div>
+        <div class="col s4 m6">
+
+            {% include 'checkout/shoppingcart.html' with user=user %}
+
+{#            {% for order in order_history %}#}
+{#                {% include 'account/order_history.html' with order=order%}#}
+{#            {% endfor %}#}
+
+
+
+        </div>
+    </div>
 </div>
+{% endblock %}
+
 
