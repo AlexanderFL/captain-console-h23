@@ -1,9 +1,23 @@
-<div class="contact-info container">
+{%  extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/checkout.css" %}">
+{% endblock %}
+
+{% block js %}
+        <script src="{% static "js/checkout.js" %}"></script>
+{%endblock%}
+
+{% block content %}
+
+<div class = "checkout">
+    <div class="contact-info container">
     <div class="row checkout-process">
         <ul class="checkout-crumbs">
-            <li><span class="flow-text">Contact Info</span></li>
+            <li><span class="flow-text"><a href="/checkout">Contact Info</a></span></li>
             <li class="active"><span class="flow-text">Shipping</span></li>
-            <li><span class="flow-text">Payment</span></li>
+            <li><span class="flow-text"><a href="payment">Payment</a></span></li>
         </ul>
     </div>
     <div class="card-panel white">
@@ -42,3 +56,5 @@
 
                 </form>
               </div>
+    </div>
+{% endblock %}
