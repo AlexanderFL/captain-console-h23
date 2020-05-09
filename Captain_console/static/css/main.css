@@ -1,3 +1,18 @@
+/**
+* main.css
+*
+* Index
+* - Footer placement
+* - Container override
+* - Content background color
+* - Navbar placements and styles
+* - Mobile navbar styles
+*/
+
+/**
+* Footer placement
+*/
+
 /* Sticking the footer to the end of the page */
 body {
     display: flex;
@@ -9,23 +24,37 @@ main {
     flex: 1 0 auto;
 }
 
+/**
+* Container override
+*/
+
 /* Making the container larger */
 .container{
     max-width: none !important;
 }
 
-/* Slight grey background behind content*/
+/**
+* Content background color
+*/
+
 .content-background{
     background-color: #F6F6F6;
 }
+
+/**
+* Navbar placements and styles
+*/
 
 .indent-links{
     margin-left: 20em;
 }
 
-/* Navbar */
+nav .brand-logo{
+    padding-left: 20px;
+    padding-top: 10px;
+}
 
-/* label underline focus color */
+/* Override search bar color scheme */
 nav div div ul li .input-field input[type=text]:focus {
     border-bottom: 1px solid #ffffff !important;
     box-shadow: 0 1px 0 0 #ffffff !important;
@@ -35,12 +64,11 @@ nav div div ul li .input-field input{
     padding-left: 10px !important;
 }
 
-nav .brand-logo{
-    padding-left: 20px;
-    padding-top: 10px;
-}
 
-/* Mobile navbar styles */
+/**
+* Mobile navbar styles
+*/
+
 .sidenav .input-field .prefix.active{
     color: #FFFFFF !important;
 }
@@ -60,6 +88,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
     padding-bottom: 1rem;
 }
 
+/* Lowers the search icon inline with the search bar */
 .sidenav li .input-field .prefix{
     top: 2rem;
 }

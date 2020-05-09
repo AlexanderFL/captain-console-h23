@@ -1,46 +1,15 @@
-.store {
+/**
+* store.css
+*
+* Index
+* - Store container
+*/
+
+/**
+* Store container
+*/
+
+.store-container {
     padding-right: 5%;
     padding-left: 5%;
-}
-
-.store-product {
-    align-self: flex-start;
-    padding: 1%;
-    flex-basis: 25%;
-    height: 350px;
-}
-
-.custom-select {
-    flex: 1;
-    flex-basis: 30%;
-    padding: 1%;
-    justify-content: space-between;
-}
-
-.store-nav {
-    float: left;
-}
-
-#product-title {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#product-price {
-    font-size: 26px;
-    color: black;
-    font-weight: bold;
-    align-self: center;
-}
-
-.price-box {
-    padding: 5px;
-    border: 1px solid #000 !important;
-    border-radius: 5px;
-    background-color: indianred;
-    width: 90px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
