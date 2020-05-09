@@ -57,10 +57,6 @@
     font-weight: bold;
 }
 
-.set-price{
-    color: #2979FF;
-}
-
 .normal-price{
     color: black;
     text-decoration: line-through;
