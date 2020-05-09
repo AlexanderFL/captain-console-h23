@@ -10,18 +10,17 @@
         <span class="col s12" id="banner">
             <h4> Home / Store / Games / {{ product.name }}</h4>
         </span>
-
         <div class="card-panel white col s12">
             <div class="row">
                 <div class="col s12 m6 l4">
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
-                        <div class="stars">
-                            <button class="star" data-rate="1" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
-                            <button class="star" data-rate="2" data-prod="{{ product }}"><i class="material-icons checked">star</i></button>
-                            <button class="star" data-rate="3" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
-                            <button class="star" data-rate="4" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
-                            <button class="star" data-rate="5" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
+                        <div id="stars">
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons checked">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
                         </div>
                     </div>
                 </div>
@@ -42,6 +41,8 @@
                             {% endif %}
                         </div>
                         <a class="waves-effect waves-light btn blue accent-3"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                        <a class="waves-effect waves-light btn blue accent-3" id="give_review">Give review</a>
+
                     </div>
                 </div>
             </div>
@@ -77,5 +78,9 @@
              </div>
         </div>-->
     </div>
+
+{% block js %}
+<script src="{% static "js/store.js" %}"></script>
+{%endblock%}
 
 {% endblock %}

@@ -76,6 +76,8 @@ def search(request, query):
         'search_query': query
     })
 
+
+
 # def give_rating(request):
 #     if request.method == 'POST':
 #         print(1)

@@ -7,6 +7,7 @@ class Product(models.Model):
     price = models.FloatField()
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
+    average_rating = models.FloatField(null=True)
 
     """
     Returns average rating of a product

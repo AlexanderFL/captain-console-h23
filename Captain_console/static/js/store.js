@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 
-window.onload = function(){
-    $(document).ready(function() {
+window.onload = function() {
+    $(document).ready(function () {
 
         //Order by function
         $('#orderby').on('change', function (e) {
@@ -17,11 +17,9 @@ window.onload = function(){
             //Check what order variable was pressed
             if (order_var === 1) {
                 var order_name = "price"
-            }
-            else if (order_var === 2) {
+            } else if (order_var === 2) {
                 var order_name = "name"
-            }
-            else if (order_var === 3) {
+            } else if (order_var === 3) {
                 var order_name = "rating"
             }
 
@@ -58,14 +56,45 @@ window.onload = function(){
             });
         });
 
+        //Give review
+        $('.star').on('click', function (e) {
+
+            var product = $(this).data("prod")
+            var rating = $(this).data("rating")
+
+            $.ajax({
+                url: "/review_product=" + product.id,
+                type: "POST",
+                data: {product: product}
+
+            })
+
+                    console.log("hello")
+        console.log($(this).data("rate"))
+        alert("Your values are: " + $(this).data("rate") + $(this).data("prod"))
+        });
+
+
+
+        $('#give_review').on("click", function (e) {
+
+            console.log("clicked")
+
+            var newHtml =` 
+                                <button class="star" data-rate="1" data-prod="{{ product }}"><i class="material-icons">star</i></button>
+                                <button class="star" data-rate="2" data-prod="{{ product }}"><i class="material-icons">star</i></button>
+                                <button class="star" data-rate="3" data-prod="{{ product }}"><i class="material-icons">star</i></button>
+                                <button class="star" data-rate="4" data-prod="{{ product }}"><i class="material-icons">star</i></button>
+                                <button class="star" data-rate="5" data-prod="{{ product }}"><i class="material-icons">star</i></button>
+                                  `
+            document.getElementById("stars").innerHTML = newHtml
+
+            give_review_btn = document.getElementById("give_review")
+            give_review_btn.disabled = true;   //Grey out button while in review mode
+            give_review_btn.classList.add("disabled")
+        });
     });
-};
+}
 
 
-var rating = document.getElementsByClassName("star");
-button.addEventListener("click", function(event){
-       console.log("hello")
-                alert("Your values are: " +$(this).data("rate") + $(this).data("product".name))
-   alert(event.target);
-});
 

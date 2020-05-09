@@ -65,7 +65,7 @@ h7 {
     font-weight: bold;
 }
 
-img {
+.responsive-img {
     box-shadow: 10px 10px 8px #888888;
 }
 
@@ -76,6 +76,25 @@ img {
 .checked {
     color: orange;
 }
-.stars {
+#stars {
     padding-top: 1rem;
 }
+.star {
+    background: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.star:hover {
+    color: orange
+}
+
+.star:hover span {
+    transform: translateY(0) scale(2);
+}
+
+#give_review {
+    margin-left: 0.5rem;
+}
+
