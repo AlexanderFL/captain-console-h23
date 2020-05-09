@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
-//Order by function
+
 window.onload = function(){
     $(document).ready(function() {
+
+        //Order by function
         $('#orderby').on('change', function (e) {
             e.preventDefault();
             var order_var = orderby.selectedIndex
@@ -55,22 +57,15 @@ window.onload = function(){
                 }
             });
         });
+
     });
 };
 
 
+var rating = document.getElementsByClassName("star");
+button.addEventListener("click", function(event){
+       console.log("hello")
+                alert("Your values are: " +$(this).data("rate") + $(this).data("product".name))
+   alert(event.target);
+});
 
-
-
-
-/*
-var orderby = document.getElementById("orderby")
-
-orderby.addEventListener('change', filter_by_genre);
-
-function filter_by_genre() {
-    console.log(orderby.innerText)
-    console.log(orderby.options.length)
-    console.log(orderby.selectedIndex)
-    console.log()
-}*/

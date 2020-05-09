@@ -17,11 +17,11 @@
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
                         <div class="stars">
-                            <i class="material-icons checked">star</i>
-                            <i class="material-icons checked">star</i>
-                            <i class="material-icons checked">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
+                            <button class="star" data-rate="1" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
+                            <button class="star" data-rate="2" data-prod="{{ product }}"><i class="material-icons checked">star</i></button>
+                            <button class="star" data-rate="3" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
+                            <button class="star" data-rate="4" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
+                            <button class="star" data-rate="5" data-prod="{{ product }}"> <i class="material-icons checked">star</i></button>
                         </div>
                     </div>
                 </div>
