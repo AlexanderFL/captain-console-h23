@@ -2,12 +2,10 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static "css/store.css" %}">
-
 {% endblock %}
 
 {% block content %}
 
-    </div>
     <div class="row store">
         <span class="col s12" id="banner">
             <h4> Home / Store</h4>
@@ -20,7 +18,7 @@
                         <label for="search_product">Search</label>
                     </div>
                      <div class="input-field col s12">
-                        <select id = "orderby">
+                        <select id="orderby">
                             <option value="" disabled="disabled" selected="selected">Order by</option>
                             <option value="1">Price</option>
                             <option value="3">Name</option>
@@ -28,7 +26,7 @@
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <select id ="developer_filter" >
+                        <select id="developer_filter" >
                             <option value="" disabled="disabled" selected="selected">Developer</option>
                             <option value="1">Nintendo</option>
                             <option value="2">Sony</option>
@@ -38,7 +36,7 @@
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <select id = "genre_filter">
+                        <select id="genre_filter">
                             <option value="" disabled="disabled" selected="selected">Genre</option>
                             <option value="1">First Person Shooter</option>
                             <option value="2">Adventure</option>
@@ -51,11 +49,12 @@
             </form>
         </div>
         <div class="content col s10">  <!-- Products-->
-            <div class="all_products">
+            <div class="row">
                 {% for product in products %}
                     {% include 'store/single_product.html' with product=product%}
                 {% endfor %}
             </div>
+        </div>
     </div>
 
     {% block js %}
