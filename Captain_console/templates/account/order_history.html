@@ -1,51 +1,28 @@
-{% comment %}
-    context = {
-        'user': User.objects.filter(username),
-        'payment': PaymentInfo.objects.filter(account.id),
-        'address': Address.objects.filter(account.id),
-        'user_photo': UserPhoto.objects.filter(account.id),
-        'order_history': OrderProduct.objects.filter(account.id)
-    }
-{% endcomment %}
-
-{##}
-{#<div class="card-stacked">#}
-{#    <div class="card-content">#}
-{#        <h5>Order history</h5>#}
-{#        <p>Blah blah, you bought 4 mario bros game... then you bough like 10 other shitty games. Then in a search for the perfect game, you bought 50 more game!</p>#}
-{#        {% comment %}#}
-{#        <h2>{{ order.product_id }}</h2>#}
-{#        <p>{{ order.quantity }} copies for{{ order.price }}$ per game</p>#}
-{#        {% endcomment %}#}
-{##}
-{#    </div>#}
-{#</div>#}
 
 
-<div class="row">
-    <span class="col s12">
 
-        <div class="row">
+
+<span class="col s12">
+    <div class="row">
         <div class="input-field col s12">
             <h5>Order history</h5>
             <p>Blah blah, you bought 4 mario bros game... then you bough like 10 other shitty games. Then in a search for the perfect game, you bought 50 more game!</p>
 
         </div>
-        </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
         <div class=" col s12">
             <h5>Order history</h5>
             <p>Blah blah, you bought 4 mario bros game... then you bough like 10 other shitty games. Then in a search for the perfect game, you bought 50 more game!</p>
         </div>
 
-        </div>
-        <div class="row">
-        <div class="input-field col s6">
+    </div>
+    <div class="row">
+        <div class=" col s12">
             <h5>Order history</h5>
             <p>Blah blah, you bought 4 mario bros game... then you bough like 10 other shitty games. Then in a search for the perfect game, you bought 50 more game!</p>
         </div>
-        </div>
-
+    </div>
 </span>
-  </div>
+
