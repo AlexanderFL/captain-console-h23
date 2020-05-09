@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-        <link rel="stylesheet" href="{% static "css/product_details.css" %}">
+    <link rel="stylesheet" href="{% static "css/product_details.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col s12 m6 l8">
                     <h4>{{ product.name }}</h4>
-                    <h7>In stock</h7>
+                    <span class="stock-text in-stock">In stock</span>
                     <h6>{{ product.productdetails_set.first.description }}</h6>
                     <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
                     <h6>Developer: {{ product.productdetails_set.first.developer_id.developer }}</h6>
@@ -46,40 +46,10 @@
                 </div>
             </div>
         </div>
-
-        <!--
-        <div class="container">
-             <div class="container details">
-                <div class="image">
-                    <img class="product-img" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}" width="300rem" height="300rem"/>
-                    <div class="stars">
-                        <i class="material-icons checked">star</i>
-                        <i class="material-icons checked">star</i>
-                        <i class="material-icons checked">star</i>
-                        <i class="material-icons">star</i>
-                        <i class="material-icons">star</i>
-                    </div>
-                </div>
-                <div class ="info">
-                    <div>
-                        <h4>{{ product.name }}</h4>
-                        <h7>On stock</h7>
-                        <h6>{{ product.productdetails_set.first.description }}</h6>
-                        <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
-                        <h6>Developer: {{ product.developer_set.developer}}</h6>
-                        <h6>Genre: {{ product.productdetails_set.first.developer_set.first.developer }} </h6>
-                        <div>
-                            <div id="product-price">{{ product.price }}$ </div>
-                            <a class="waves-effect waves-light btn-small blue lighten-1"><i class="material-icons left">shopping_cart</i>Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-             </div>
-        </div>-->
     </div>
 
 {% block js %}
-<script src="{% static "js/store.js" %}"></script>
+    <script src="{% static "js/store.js" %}"></script>
 {%endblock%}
 
 {% endblock %}

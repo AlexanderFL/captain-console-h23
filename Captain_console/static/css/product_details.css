@@ -1,3 +1,16 @@
+/**
+* product_details.css
+*
+* Index
+* - Breadcrumbs (move later)
+* - Image placement
+* - Product pricing styles
+* - Rating styles
+*/
+
+/**
+* Breadcrumbs (move later)
+*/
 #banner {
     margin: auto;
     word-wrap: break-word;
@@ -6,6 +19,15 @@
     padding-top: 20px;
 }
 
+/**
+* Image placement
+*/
+.product-image{
+    padding-top: 4%;
+    float: right;
+}
+
+/* Make image fall to the left when screen is under 600px*/
 @media only screen and (max-width: 600px) {
     .product-image{
         float: none !important;
@@ -26,6 +48,9 @@
 .content {
     margin: auto;
 }
+/**
+* Product pricing styles
+ */
 
 #product-price {
     font-size: 26px;
@@ -35,34 +60,28 @@
 .set-price{
     color: #2979FF;
 }
+
 .normal-price{
     color: black;
     text-decoration: line-through;
 }
 
-.details {
-    border: solid 2px;
-    background-color: white;
-    padding: 2%;
-    align-content: center;
-    margin-bottom: 100px;
-    border-radius: 8px;
-    padding-top: 5%;
-    padding-bottom: 5%;
-}
-
-h7 {
-    color: #4caf50 !important;
+.stock-text{
     font-weight: bold;
 }
 
-.responsive-img {
-    box-shadow: 10px 10px 8px #888888;
+.in-stock {
+    color: #4caf50 !important;
 }
 
-.btn-small {
-    margin-top: 1rem;
+.out-stock{
+    color: #c80007 !important;
 }
+
+
+/**
+* Ratings styles
+*/
 
 .checked {
     color: orange;
@@ -70,6 +89,7 @@ h7 {
 #stars {
     padding-top: 1rem;
 }
+
 .star {
     background: none;
     outline: none;

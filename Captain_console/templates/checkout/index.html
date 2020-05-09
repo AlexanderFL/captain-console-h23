@@ -9,8 +9,9 @@
         <script src="{% static "js/checkout.js" %}"></script>
 {%endblock%}
 
+<div class = "checkout container">
 {% block content %}
-<div class = "checkout">
+
 
 {#{% if var1 %}#}
 {#    {{ var1 }}#}
@@ -22,5 +23,6 @@
 
     {% include 'checkout/contactinfo.html' %}
 
-</div>
 {% endblock %}
+</div>
+
