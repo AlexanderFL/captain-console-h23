@@ -19,10 +19,10 @@
                 </div>
             </div>
 
-            <a class="btn waves-effect blue accent-3"  href="register">Sign in
+            <a class="btn waves-effect blue accent-3"  href="{% url "login_register" %}">Sign in
                 <i class="material-icons right">check_circle</i></a>
 
-            <a class="btn waves-effect blue accent-3"   href="../">Cancel
+            <a class="btn waves-effect blue accent-3"   href="{% url "home_index" %}">Cancel
                 <i class="material-icons right">cancel</i></a>
         </div>
     </form>
