@@ -5,13 +5,27 @@ class User(models.Model):
     username = models.CharField(max_length=64)
     password = models.CharField(max_length=512)
     email = models.CharField(max_length=128)
+
     def __str__(self):
         return self.username
+
+    @staticmethod
+    def insert(username, email, password):
+        User.objects.create(username=username, email=email, password=password)
+
+    @staticmethod
+    def email_already_exists(email):
+        data_count = User.objects.filter(email=email).count()
+        if data_count == 0:
+            return False
+        else:
+            return True
 
 
 class PaymentInfo(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
+    exp_date = models.DateField()
     card_number = models.CharField(max_length=19)
     cvc = models.CharField(max_length=3, blank=True)
 
