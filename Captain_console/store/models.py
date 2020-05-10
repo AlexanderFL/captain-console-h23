@@ -1,6 +1,8 @@
 from django.db import models
 from account.models import User
 
+class Category(models.Model):
+    name = models.CharField(max_length=64)
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
