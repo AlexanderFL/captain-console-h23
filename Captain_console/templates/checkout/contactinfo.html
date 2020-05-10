@@ -1,47 +1,4 @@
 
-{#<div class="contact-info container">#}
-{##}
-{#    <div class="row checkout-process">#}
-{#        <ul class="checkout-crumbs">#}
-{#            <li class="active"><span class="flow-text">Contact Info</span></li>#}
-{#            <li><span class="flow-text"><a href="shipping">Shipping</a></span></li>#}
-{#            <li><span class="flow-text"><a href="payment">Payment</a></span></li>#}
-{#        </ul>#}
-{#    </div>#}
-{##}
-{#    <div class="card-panel white">#}
-{#        <h3 class="card-title">Contact information</h3>#}
-{#            <form class="col s12">#}
-{#                <div class="row">#}
-{#                    <div class="input-field col s12 m6">#}
-{#                        <i class="material-icons prefix icon-blue">account_box</i>#}
-{#                        <input id="contact-info" type="text" required>#}
-{#                        <label for="contact-info">Full name</label>#}
-{#                    </div>#}
-{#                    <div class="input-field col s12 m6">#}
-{#                        <i class="material-icons prefix">email</i>#}
-{#                        <input id="email" type="email" class="validate" required>#}
-{#                        <label for="email">Email</label>#}
-{#                        <span class="helper-text" data-error="Please enter a valid email address"></span>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <button class="btn waves-effect blue accent-3" type="submit" name="action">Next Step#}
-{#                    <i class="material-icons right">send</i>#}
-{#                </button>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-
-{#        <ul class="checkout-crumbs">#}
-{#            <li class="active"><span class="flow-text">Contact Info</span></li>#}
-{#            <li class="flow-text"><a href="shipping">Shipping</a></li>#}
-{#            <li class="flow-text"><a href="payment">Payment</a></li>#}
-{#            <li class="flow-text"><a href="comfirmation">Comfirmation</a></li>#}
-{#        </ul>#}
-
-
-{#<div class="col s4 m6">#}
 <div class="card-panel white">
     <h3 class="card-title">Contact information</h3>
 <form class="col s12">
@@ -68,7 +25,7 @@
         <i class="material-icons right">cancel</i></a>
 
 
-        <a class="btn waves-effect blue accent-3"  href="shipping">Next
+        <a class="btn waves-effect blue accent-3"  href="{% url "checkout_shipping" %}">Next
             <i class="material-icons right">arrow_forward</i>
         </a>
     </div>
