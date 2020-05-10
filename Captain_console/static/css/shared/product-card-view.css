@@ -15,6 +15,7 @@
   object-fit: cover;
 }
 
+/* Displays the discount on top of the image */
 .tag {
   float: left;
   position: absolute;
