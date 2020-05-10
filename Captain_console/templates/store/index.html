@@ -52,7 +52,7 @@
             </form>
         </div>
         <div class="content col s10">  <!-- Products-->
-            <div class="row">
+            <div class="row all_products">
                 {% for product in products %}
                     {% include 'store/single_product.html' with product=product%}
                 {% endfor %}

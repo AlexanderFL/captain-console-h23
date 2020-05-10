@@ -31,20 +31,37 @@ window.onload = function() {
                 success: function (resp) {
                     console.log(resp)
                     var newHtml = resp.data.map(d => {
-                        return `<div class="col s2 m6 store-product" id="singleprod">
+                        return `<a href=/store/${d.id}">
                                     <div class="card">
                                         <div class="card-image">
-                                            <a href="/store/${d.id}"><img class="product-img" src="${d.firstPath}" alt="${d.firstAlt}" width="172rem" height="172rem"/></a>
+                                            {% if ${d.discount} > 0 %}
+                                                <div class="tag">-${d.discounted_price}%</div>
+                                            {% endif %}
+                                            <img class="product-img" src="${d.path}" alt="${d.alt_val}">
                                             <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
                                         </div>
+                                
                                         <div class="card-stacked">
                                             <div class="card-content">
-                                                <a href="/store/${d.id}"><div id="product-title"  >${d.name}</div></a>
-                                                <div id="product-price">${d.price}$</div>
+                                                <a href="href=/store/${d.id}">
+                                                    <span class="card-title activator grey-text text-darken-4">${d.name} </span>
+                                                </a>
+                                                {% if product.discount <= 0 %}
+                                                    <strong class="flow-text set-price">${d.price}</strong>
+                                                {% else %}
+                                                    <strong class="flow-text">
+                                                        <span class="set-price">
+                                                             ${d.discounted_price}
+                                                        </span>
+                                                        <span class="discount">
+                                                            <sup>${ d.price }</sup>
+                                                        </span>
+                                                    </strong>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
-                                </div>`
+                                </a>`
                     });
                     $('.all_products').html(newHtml.join(''));
                 },
@@ -59,3 +76,55 @@ window.onload = function() {
 
 
 
+
+
+/*
+
+<div class="col s2 m6 store-product" id="singleprod">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <a href="/store/${d.id}"><img class="product-img" src="${d.path}" alt="${d.productphoto}" width="172rem" height="172rem"/></a>
+                                            <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
+                                        </div>
+                                        <div class="card-stacked">
+                                            <div class="card-content">
+                                                <a href="/store/${d.id}"><div id="product-title"  >${d.name}</div></a>
+                                                <div id="product-price">${d.price}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*/
+/*
+
+
+`<a href=/store/${d.id}">
+                                    <div class="card">
+                                        <div class="card-image"> <!-- class never used -->
+                                            {% if ${d.discount} > 0 %}
+                                                <div class="tag">-${d.discounted_price}%</div>
+                                            {% endif %}
+                                            <img class="product-img" src="${d.path}" alt="${d.alt_val}">
+                                            <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
+                                        </div>
+
+                                        <div class="card-stacked">
+                                            <div class="card-content">
+                                                <a href="href=/store/${d.id}">
+                                                    <span class="card-title activator grey-text text-darken-4">${d.name} </span>
+                                                </a>
+                                                {% if product.discount <= 0 %}
+                                                    <strong class="flow-text set-price">${d.price}</strong>
+                                                {% else %}
+                                                    <strong class="flow-text">
+                                                        <span class="set-price">
+                                                             ${d.discounted_price}
+                                                        </span>
+                                                        <span class="discount">
+                                                            <sup>${ d.price }</sup>
+                                                        </span>
+                                                    </strong>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>`*/
