@@ -9,7 +9,9 @@ class Product(models.Model):
     price = models.FloatField()
     discount = models.FloatField(null=True)
     copies_sold = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     average_rating = models.FloatField(null=True)
+
 
     """
     Sets average rating of a product

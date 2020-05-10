@@ -5,11 +5,11 @@ INSERT INTO Account_User (username, password, email) VALUES ('Helga Árnadóttir
 INSERT INTO Account_User (username, password, email) VALUES ('Alexander Freyr Lúðvíksson', 'hiuÐEhiueoiðewhuwLBHWLBSbslsbudL', 'alexanderl17@ru.is');
 INSERT INTO Account_User (username, password, email) VALUES ('Eyþór Óli Borgþórsson', 'superman', 'eythorb19@ru.is');
 
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (1, 'Heiðar Sigurjónsson', '2024-03', '394488727712', '123');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (2, 'Snæbjörg Pétursdóttir', '2020-08', '789356733451', '321');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (3, 'Helga Árnadóttir', '2026-09', '394488727712', '456');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (5, 'Eyþór Óli Borgþórsson', '2022-12', '394488720000', '654');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (4, 'Alexander Freyr Lúðvíksson', '2021-01', '000088727712', '789');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (1, 'Heiðar Sigurjónsson', '2024-3-1', '394488727712', '123');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (2, 'Snæbjörg Pétursdóttir', '2020-8-1', '789356733451', '321');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (3, 'Helga Árnadóttir', '2026-9-1', '394488727712', '456');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (5, 'Eyþór Óli Borgþórsson', '2022-12-1', '394488720000', '654');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (4, 'Alexander Freyr Lúðvíksson', '2021-1-1', '000088727712', '789');
 
 INSERT INTO Account_Address (user_id_id, address, city, country, zip_code) VALUES (1, 'Beykidal 6, 204', 'Njarðvík', 'Iceland', '321');
 INSERT INTO Account_Address (user_id_id, address, city, country, zip_code) VALUES (2, 'Reynisgötu 12', 'Moskva', 'Rússland', '923817');
@@ -30,12 +30,17 @@ INSERT INTO store_category (name) VALUES ('Console')
 INSERT INTO store_category (name) VALUES ('Other')
 
 
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('Donkey Kong 64', 23.55, 50, 5);
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('Legend of Zelda', 13.98, 13.5, 2);
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('Super Mario 64', 29.99, 0, 213);
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('The Shadow of the Beast III', 9.89, 0, 0);
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('Sonic the Hedgehog 2', 12.30, 5, 2);
-INSERT INTO Store_Product (name, price, discount, copies_sold) VALUES ('Turrican', 9.30, 0, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Donkey Kong 64', 23.55, 50, 5, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Legend of Zelda', 13.98, 13.5, 2, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Super Mario 64', 29.99, 0, 213, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('The Shadow of the Beast III', 9.89, 0, 0, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Sonic the Hedgehog 2', 12.30, 5, 2, 1);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Turrican', 9.30, 0, 1, 1);
+
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Super NES Classic', 79.99, 5, 6, 2);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('SEGA Genesis / Mega Drive Mini', 19.89, 0, 0, 2);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('Atari Flashback 8 Gold Deluxe', 19.30, 10, 1, 2);
+INSERT INTO Store_Product (name, price, discount, copies_sold, category_id) VALUES ('PlayStation Classic', 99.99, 5, 2, 2);
 
 
 INSERT INTO Store_Genre (genre) VALUES ('First Person Shooter');
@@ -45,20 +50,25 @@ INSERT INTO Store_Genre (genre) VALUES ('RPG');
 INSERT INTO Store_Genre (genre) VALUES ('Platform');
 
 
-INSERT INTO Store_Developer (developer) VALUES ('Nintendo');
+INSERT INTO Store_Developer (developer) VALUES ('Nintendo PTD');
 INSERT INTO Store_Developer (developer) VALUES ('Sony');
 INSERT INTO Store_Developer (developer) VALUES ('Sega');
 INSERT INTO Store_Developer (developer) VALUES ('Amiga');
 INSERT INTO Store_Developer (developer) VALUES ('Commadore 64');
+INSERT INTO Store_Developer (developer) VALUES ('Legacy Engineering');
 
 
 INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 1, 3, 1, '1999-11-22', 'Classic');
 INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 2, 2, 1, '1986-2-21', 'Lorum ipsum description');
 INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 3, 4, 1, '1996-6-23', 'This game was very very very very popular!');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 4, 5, 4, '1992-1-1', 'Who even remembers this stuff?');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 4, 3, 4, '1992-1-1', 'Who even remembers this stuff?');
 INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 5, 4, 3, '1992-11-21', 'Fastest Hedgehog Alive!');
 INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 6, 1, 5, '1990-1-1', 'Best Commadore 64 game of no time!');
 
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 7, 5, 1, '2017-6-26', 'The best retro console you can buy');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 8, 5, 3, '1988-10-29', 'The best option for SEGA fans');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 9, 5, 6, '2004-11-21', 'The best-value retro console');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 10, 5, 2, '2018-1-1', 'The best retro console with 3D games');
 
 
 INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 1, 'https://photos.alexfreyr.com/game-covers/donkey-kong-cover.png', 'Donkey Kong 64 from Nintendo');
@@ -66,7 +76,12 @@ INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 2, 'https://p
 INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 3, 'https://photos.alexfreyr.com/game-covers/super-mario-64-cover.jpg', 'Super Mario, Nintendo 64');
 INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 4, 'https://photos.alexfreyr.com/game-covers/shadow_of_the_beast_3_amiga.jpg', 'The Shadow of the Beasr - 512k required!!1');
 INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 5, 'https://photos.alexfreyr.com/game-covers/sonic_the_hedgehog_2.jpg', 'Sonic the Hedgehof II - Best from SEGA');
-INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 5, 'https://photos.alexfreyr.com/game-covers/Turrican.jpg', 'Turrican');
+INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 6, 'https://photos.alexfreyr.com/game-covers/Turrican.jpg', 'Turrican');
+
+INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 7, 'https://photos.alexfreyr.com/game-covers/super_nes_classic.jpg', 'The best retro console you can buy');
+INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 8, 'https://photos.alexfreyr.com/game-covers/sega_genesis.jpg', 'The best option for SEGA fans');
+INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 9, 'https://photos.alexfreyr.com/game-covers/atari_flashback.jpg', 'The best option for SEGA fans');
+INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 10, 'https://photos.alexfreyr.com/game-covers/sony_playstatoin.jpg', 'The best retro console with 3D games');
 
 
 
