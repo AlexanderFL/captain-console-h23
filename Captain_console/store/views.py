@@ -17,16 +17,18 @@ def index(request):
 
         if sort_by == "price":
             #products = Product.objects.order_by('price').values()
-            products = Product.objects.order_by('price')
+            #products = Product.objects.order_by('price')
+            products = Product.objects.all().order_by('price')
 
         elif sort_by == "name":
             #products = Product.objects.order_by('name').values()
-            products = Product.objects.order_by('name')
+            #products = Product.objects.order_by('name')
+            products = Product.objects.all().order_by('name')
 
         elif sort_by == "rating":
             #products = Product.objects.order_by('-average_rating').values()
-            products = Product.objects.order_by('-average_rating')
-
+            #products = Product.objects.order_by('-average_rating')
+            products = Product.objects.all().order_by('-average_rating')
 
         product_resp = [{
             'id': x.id,
@@ -40,6 +42,8 @@ def index(request):
 
        # return JsonResponse({'data': list(products)})
         return JsonResponse({'data': product_resp})
+        #return render(request, 'store/index.html', {'products': products})
+
 
     #Order by name by default
     context = {'products': Product.objects.all().order_by('name')}

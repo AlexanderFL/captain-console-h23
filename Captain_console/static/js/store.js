@@ -30,6 +30,8 @@ window.onload = function() {
                 type: 'GET',
                 success: function (resp) {
                     console.log(resp)
+                    console.log(resp.data)
+
                     var newHtml = resp.data.map(d => {
                         return `<a href=/store/${d.id}">
                                     <div class="card">
