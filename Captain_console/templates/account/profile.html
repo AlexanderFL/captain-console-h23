@@ -48,7 +48,7 @@
 
 
     <div class="row">
-        <a class="btn waves-effect blue accent-3" href="change_profile/{{ user.id }}">Edit profile
+        <a class="btn waves-effect blue accent-3" href="{% url 'account_edit_profile'  user.id %}">Edit profile
         <i class="material-icons right">edit</i></a>
 
         <a class="btn waves-effect blue accent-3"   href="../">Back

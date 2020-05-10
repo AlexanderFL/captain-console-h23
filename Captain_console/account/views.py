@@ -7,7 +7,8 @@ from store.models import OrderProduct, Product, ProductPhoto
 
 def index(request, id):
     context = {
-        'user': User.objects.get(pk=id)
+        'user': User.objects.get(pk=id),
+        'page_account': 'profile'
     }
     return render(request, 'account/index.html', context)
 
@@ -15,8 +16,9 @@ def edit(request, id):
     context = {
         'user': User.objects.get(pk=id),
         # 'address': Address.objects.filter(user_id.id),
+        'page_account': 'edit_profile'
     }
-    return render(request, 'account/change_profile.html', context)
+    return render(request, 'account/index.html', context)
 
     #        'user': get_object_or_404(User, pk=id)
     # account = {

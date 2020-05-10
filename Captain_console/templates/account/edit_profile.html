@@ -63,8 +63,8 @@
 {#    </div>#}
 
         <div class="row">
-        <button class="btn waves-effect blue accent-3" type="submit" name="../{{ user.id }}">Save
-        <i class="material-icons right">save</i></button>
+        {# Breyta í button #} <a class="btn waves-effect blue accent-3" href="{% url 'account_index'  user.id %}">Save
+        <i class="material-icons right">save</i></a>
 
         <a class="btn waves-effect blue accent-3"   href="../">Cancel
         <i class="material-icons right">cancel</i></a>
