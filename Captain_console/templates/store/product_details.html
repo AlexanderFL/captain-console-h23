@@ -18,12 +18,12 @@
                 <div class="col s12 m6 l4">
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
-                        <div id="stars">
+                        <div id="stars" data-average="{{ product.average_rating}}" >
                             <button class="star" data-rate="1" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
                             <button class="star" data-rate="2" data-prod="{{ product.id }}" ><i class="material-icons">star</i></button>
                             <button class="star" data-rate="3" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
                             <button class="star" data-rate="4" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
-                            <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button><span id="rating-count" data-current-count="{{ product.review_set.count }}">({{ product.review_set.count }})</span>
                         </div>
                     </div>
                 </div>

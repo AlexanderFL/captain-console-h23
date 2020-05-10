@@ -79,13 +79,24 @@
     outline: none;
     cursor: pointer;
     overflow: hidden;
+    border-color: white;
+    border-style: solid;
 }
 
-.star:hover {
-    color: orange
+
+.star.fill {
+    color: orange;
 }
 
-.star:hover span {
+.rate {
+    color: black;
+}
+
+.rate:hover {
+    color: orange;
+}
+
+.rate:hover span {
     transform: translateY(0) scale(2);
 }
 
@@ -93,3 +104,10 @@
     margin-left: 0.5rem;
 }
 
+.star[disabled] {
+    pointer-events:none;
+}
+
+#rating-count {
+    padding-bottom: 2rem;
+}

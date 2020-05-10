@@ -9,8 +9,11 @@ class Product(models.Model):
     copies_sold = models.IntegerField()
     average_rating = models.FloatField(null=True)
 
+    """
+    Sets average rating of a product
+    """
     def set_rating(self, rating, prod_id):
-        Product.objects.filter(pk=prod_id).update(average_rating=rating)
+        Product.objects.filter(pk=prod_id).update(average_rating="{:.2f}".format(rating))
 
     """
     Returns average rating of a product

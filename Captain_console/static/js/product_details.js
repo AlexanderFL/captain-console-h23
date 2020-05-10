@@ -4,17 +4,42 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
+
+function update_ratings() {
+    //Updates ratings
+    $('.star').prop('disabled',true)
+    stars = document.getElementsByClassName("star")
+
+    console.log("updating")
+    for (var i = 0; i < rounded_rating; i++) {
+        star = stars[i];
+        star.classList.add("fill")
+    }
+}
+
 window.onload = function() {
     $(document).ready(function () {
+
+        console.log(location.pathname.slice(-1))
+
+        stars = document.getElementsByClassName("star")
+        rating = $('#stars').data('average')
+        rounded_rating = Math.round(rating)
+        console.log(rating)
+        console.log(rounded_rating)
+
+        update_ratings();
+
+
         //Turn stars into rating buttons
         $('#give-review').on("click", function (e) {
             e.preventDefault();
 
-            give_review_btn = document.getElementById("give-review")
-            give_review_btn.disabled = true;   //Grey out button while in review mode
-            give_review_btn.classList.add("disabled")
-
-
+            $('#give-review').prop('disabled', true)
+            $('#give-review').addClass('disabled', true)
+            $('.star').prop('disabled',false)
+            $('.star').removeClass('fill')
+            $('.star').addClass('rate')
         });
 
         //Give review
@@ -23,6 +48,9 @@ window.onload = function() {
 
             var prod_id = $(this).data('prod')
             var rating = $(this).data('rate')
+            var count = $('#rating-count').data('current-count') + 1
+
+            console.log(count)
 
             $.ajax({
                 url: "/store/" + prod_id + "?review_product=" + prod_id,
@@ -35,6 +63,10 @@ window.onload = function() {
                     console.log("ERROR: " + status.message)
                 }
             })
+            update_ratings();
+            $('#give-review').prop('disabled', false)
+            $('#give-review').removeClass('disabled')
+            $('#rating-count').html("(" + count + ")")
         });
     });
 }
