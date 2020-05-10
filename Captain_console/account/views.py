@@ -13,12 +13,17 @@ def index(request, id):
     # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
 
     query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
+    query_address = query_user.address_set.all()
+
+
     context = {
         'user': query_user,
         'page_account': 'profile',
         'orders': query_order_history,
         # 'orders': product_details,
         'test': query_test,
+        'address': query_address,
+
         # : OrderProduct.objects.get()
     }
 
