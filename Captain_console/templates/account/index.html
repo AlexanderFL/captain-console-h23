@@ -21,7 +21,10 @@
                 <span class="col s12">
                     <h5>Order history</h5>
 
-                    {% for order in orders %}
+{#                    {% for order in orders %}#}
+{#                        {% include 'account/order_history.html'%}#}
+{#                    {% endfor %}#}
+                    {% for orde in order %}
                         {% include 'account/order_history.html'%}
                     {% endfor %}
 
