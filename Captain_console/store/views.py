@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
 from account.models import User
 import json
 from django.forms.models import model_to_dict
@@ -10,24 +10,17 @@ from store.store_forms.store_form import GiveRatingForm
 
 
 def index(request):
-
     #User ordering products in store
     if 'sort_by' in request.GET:
         sort_by = request.GET['sort_by']
 
         if sort_by == "price":
-            #products = Product.objects.order_by('price').values()
-            #products = Product.objects.order_by('price')
             products = Product.objects.all().order_by('price')
 
         elif sort_by == "name":
-            #products = Product.objects.order_by('name').values()
-            #products = Product.objects.order_by('name')
             products = Product.objects.all().order_by('name')
 
         elif sort_by == "rating":
-            #products = Product.objects.order_by('-average_rating').values()
-            #products = Product.objects.order_by('-average_rating')
             products = Product.objects.all().order_by('-average_rating')
 
         product_resp = [{
@@ -40,17 +33,40 @@ def index(request):
             # 'discount': x.discount,
         } for x in products]
 
-       # return JsonResponse({'data': list(products)})
         return JsonResponse({'data': product_resp})
-        #return render(request, 'store/index.html', {'products': products})
 
+    if 'filter_by' in request.GET:
+        print("hello")
+        data = request.GET
+        filter_by = data.get("filter_by")
+        filter_var = data.get("filter_var")
 
-    #Order by name by default
+        if filter_var =="All":  #Return all objects
+            products = Product.objects.all()
+            print("Yes")
+
+        elif filter_by == "developer_filter":
+            products = Product.objects.filter(productdetails__developer_id__developer__exact=filter_var)
+            print(products)
+
+        elif filter_by == "genre_filter":
+            products = Product.objects.filter(productdetails__genre_id__genre__exact=filter_var)
+            print(products)
+
+        product_resp = [{
+            'id': x.id,
+            'name': x.name,
+        } for x in products]
+
+        return JsonResponse({'data': product_resp})
+
+    #Initial load - order by name
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/index.html', context)
 
 
 def games(request):
+    print("hello")
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/games.html', context)
 
