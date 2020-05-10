@@ -21,7 +21,7 @@ window.onload = function(){
             return
         }
         // Password is not just spaces and contains at least 6 characters
-        if (password.trim() === "" && password.length < 6) {
+        if (password.trim() === "" || password.length < 6) {
             M.toast({html: "Password needs to be at least 6 characters long", classes: "red"})
             return
         }
@@ -40,8 +40,7 @@ window.onload = function(){
                 password: password
             },
             success: function (response) {
-                // TODO: If this function fires then the email is already in use
-                console.log(response)
+                M.toast({html: "This email already exists", classes: "red"})
             }
         })
     })
