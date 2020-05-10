@@ -1,4 +1,4 @@
-
+{% load static %}
 
 <div class="card-panel white">
     <form class="col s12">
@@ -6,7 +6,7 @@
             <div class="row col s12">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
-                    <input id="id_username" type="text" class="validate" required>
+                    <input id="id_username" type="text" required>
                     <label for="id_username">Username</label>
                 </div>
             </div>
@@ -14,12 +14,12 @@
             <div class="row col s12">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password">
                     <label for="password">Password</label>
                 </div>
             </div>
 
-            <a class="btn waves-effect blue accent-3"  href="{% url "login_register" %}">Sign in
+            <a class="btn waves-effect blue accent-3" id="sign-in-button">Sign in
                 <i class="material-icons right">check_circle</i></a>
 
             <a class="btn waves-effect blue accent-3"   href="{% url "home_index" %}">Cancel
@@ -29,4 +29,7 @@
 </div>
 <span>Don't have an account?<a href="{% url "login_register" %}"> Register</a></span>
 
+{% block js %}
+    <script src="{% static "js/login.js" %}"></script>
+{% endblock %}
 

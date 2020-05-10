@@ -13,6 +13,10 @@ class User(models.Model):
     def insert(username, email, password):
         User.objects.create(username=username, email=email, password=password)
 
+    """
+        Checks if email already exists in the database
+        Returns True if email exists, False otherwise
+    """
     @staticmethod
     def email_already_exists(email):
         data_count = User.objects.filter(email=email).count()
@@ -20,6 +24,17 @@ class User(models.Model):
             return False
         else:
             return True
+
+    @staticmethod
+    def get_password(email):
+        user_obj = User.objects.filter(email=email)
+        for user in user_obj:
+            return user.password
+        return None
+
+    @staticmethod
+    def user_authentication(email, password):
+        pass
 
 
 class PaymentInfo(models.Model):
