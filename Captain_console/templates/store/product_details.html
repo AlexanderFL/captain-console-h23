@@ -31,9 +31,9 @@
                     <h4>{{ product.name }}</h4>
                     <span class="stock-text in-stock">In stock</span>
                     <h6>{{ product.productdetails_set.first.description }}</h6>
-                    <h6>Release date: {{ product.productdetails_set.first.release_date }}</h6>
-                    <h6>Developer: {{ product.productdetails_set.first.developer_id.developer }}</h6>
-                    <h6>Genre: {{ product.productdetails_set.first.genre_id.genre }} </h6>
+                    <h6><strong>Release date:</strong> {{ product.productdetails_set.first.release_date }}</h6>
+                    <h6><strong>Developer: </strong>{{ product.productdetails_set.first.developer_id.developer }}</h6>
+                    <h6><strong>Genre: </strong>{{ product.productdetails_set.first.genre_id.genre }} </h6>
                     <div>
                         <div id="product-price">
                             {% if product.discount > 0 %}
