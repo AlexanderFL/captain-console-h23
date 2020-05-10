@@ -1,15 +1,27 @@
 from django.shortcuts import render
 from account.models import User, PaymentInfo, Address, UserPhoto
-from store.models import OrderProduct, Product, ProductPhoto
+from store.models import OrderProduct, Product, ProductPhoto, Order
 
 
-
+#
+# 'SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s',[id])
 
 def index(request, id):
+    query_user = User.objects.get(pk=id)
+
+    query_order_history = Order.objects.filter(user_id=id)[:3]
+    # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
+
+    query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
     context = {
-        'user': User.objects.get(pk=id),
-        'page_account': 'profile'
+        'user': query_user,
+        'page_account': 'profile',
+        'orders': query_order_history,
+        # 'orders': product_details,
+        'test': query_test,
+        # : OrderProduct.objects.get()
     }
+
     return render(request, 'account/index.html', context)
 
 def edit(request, id):
@@ -19,26 +31,4 @@ def edit(request, id):
         'page_account': 'edit_profile'
     }
     return render(request, 'account/index.html', context)
-
-    #        'user': get_object_or_404(User, pk=id)
-    # account = {
-    #     'user': User.objects.filter(id=user_id)
-    # }
-    # order = {
-    #     'order_history': OrderProduct.objects.filter(account.id)
-    # }
-
-    # context = {
-    #     'user': User.objects.get(id=user_id)
-        # 'user': User.objects.filter(id=userid)
-        # 'payment': PaymentInfo.objects.filter(account.id),
-        # 'address': Address.objects.filter(account.id),
-        # 'user_photo': UserPhoto.objects.filter(account.id),
-        # 'order_history': OrderProduct.objects.filter(account.id),
-#        'product': Product.objects.filter(order.order_history.prouct_id_id)
-#        'product_photo': ProductPhoto.objects.filter(order)
-#     }
-#
-#
-#     return render(request, 'account/index.html', context)
 

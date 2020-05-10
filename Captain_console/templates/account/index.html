@@ -15,22 +15,17 @@
                 {% include 'account/edit_profile.html' with user=user %}
             {% endif %}
 
-
-{#                {% include 'account/profile.html' with user=user %}#}
-
         </div>
         <div class="col s4 m6">
             <div class="card-panel white">
                 <span class="col s12">
+                    <h5>Order history</h5>
 
-                    {% include 'account/order_history.html' with user=user %}
-
-{#                {% for order in order_history %}#}
-{#                    {% include 'account/order_history.html' with order=order%}#}
-{#                {% endfor %}#}
+                    {% for order in orders %}
+                        {% include 'account/order_history.html'%}
+                    {% endfor %}
 
                 </span>
-
             </div>
         </div>
     </div>
