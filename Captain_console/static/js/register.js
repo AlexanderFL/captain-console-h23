@@ -40,7 +40,7 @@ window.onload = function(){
                 password: password
             },
             success: function (response) {
-                M.toast({html: "This email already exists", classes: "red"})
+                M.toast({html: "This email is already in use", classes: "red"})
             }
         })
     })
