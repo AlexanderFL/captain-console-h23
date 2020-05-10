@@ -3,10 +3,10 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="checkout_index"), #/checkout
-    path('contactinfo', views.contactinfo, name="contactinfo_index"),
-    path('shipping', views.shipping, name="shipping_index"),
-    path('payment', views.payment, name="payment_index"),
-    path('confirmation', views.confirmation, name="confirmation_index"),
+    path('contactinfo', views.contactinfo, name="checkout_contactinfo"),
+    path('shipping', views.shipping, name="checkout_shipping"),
+    path('payment', views.payment, name="checkout_payment"),
+    path('confirmation', views.confirmation, name="checkout_confirmation"),
 ]
 
 # urlpatterns = [

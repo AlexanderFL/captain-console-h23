@@ -12,14 +12,13 @@
 
 {% block content %}
 
+
+
 <div class = "checkout container">
     <div class="checkout_inner container">
-        <ul class="crumbs crumbs-store-padding">
-            <li><a href="#">Contact Info</a></li>
-            <li><a href="shipping">Shipping</a></li>
-            <li><a href="payment">Payment</a></li>
-            <li class="active"><a href="comfirmation">Confirmation</a></li>
-        </ul>
+
+
+        {% include 'checkout/crumbs.html' %}
 
         <div class="col s4 m6">
 
