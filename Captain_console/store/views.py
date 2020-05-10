@@ -33,11 +33,11 @@ def index(request):
         product_resp = [{
             'id': x.id,
             'name': x.name,
-            'path': x.productphoto_set.first().path,
-            'alt_val': x.productphoto_set.first().alt,
-            'price': x.price,
-            'discounted_price': x.get_discounted_price(),
-            'discount': x.discount,
+            # 'path': x.productphoto_set.first().path,
+            # 'alt_val': x.productphoto_set.first().alt,
+            # 'price': x.price,
+            # 'discounted_price': x.get_discounted_price(),
+            # 'discount': x.discount,
         } for x in products]
 
        # return JsonResponse({'data': list(products)})
