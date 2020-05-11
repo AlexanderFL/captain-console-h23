@@ -8,8 +8,8 @@ window.onload = function() {
     $(document).ready(function () {
 
         /**
-        GET request for order by
-        */
+         GET request for order by
+         */
         $('#orderby').on('change', function (e) {
             e.preventDefault();
             var order_var = orderby.selectedIndex
@@ -43,8 +43,8 @@ window.onload = function() {
         });
 
         /**
-        GET request for filter by
-        */
+         GET request for filter by
+         */
         $('.filterby').on('change', function (e) {
             e.preventDefault();
 
@@ -55,9 +55,9 @@ window.onload = function() {
             my_filt = $(".filterby").find('option:selected').toArray()
 
 
-             for (i=0; i<my_filt.length; i++) {
-                 my_filt[i] = my_filt[i].innerText
-             }
+            for (i = 0; i < my_filt.length; i++) {
+                my_filt[i] = my_filt[i].innerText
+            }
 
             console.log("All filters:")
             console.log(my_filt)
@@ -70,7 +70,13 @@ window.onload = function() {
             $.ajax({
                 url: '/store?filter_by=' + filter_var,
                 type: 'GET',
-                data: {filter_by: filter_by, filter_var: filter_var, developer: developer, genre: genre, category: category},
+                data: {
+                    filter_by: filter_by,
+                    filter_var: filter_var,
+                    developer: developer,
+                    genre: genre,
+                    category: category
+                },
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
                     filter_products(products_filtered);
@@ -78,8 +84,26 @@ window.onload = function() {
                 error: function (xhr, status, error) {
                     // TODO: Show TOASTR
                     console.log(error);
-            }
+                }
+            });
         });
+
+        $('#search_product').on('keyup', function (event) {
+            // If keypress is 'Enter'
+            val = $(this).val()
+
+            $.ajax({
+                url: '/store?search_by=' + val,
+                type: 'GET',
+                success: function (resp) {
+                    products_filtered = resp.data.map(d => d.id) //Map id's into array
+                    filter_products(products_filtered);
+                },
+                error: function (xhr, status, error) {
+                    // TODO: Show TOASTR
+                    console.log(error);
+                }
+            });
         });
     });
 }
@@ -108,6 +132,7 @@ function order_products(product_order) {
 function filter_products(products_filtered) {
     product_cards = $(".product-card")
     product_cards_id = $(".product-card").map(function() { return this.id; }).toArray();
+    var empty = 1
 
     for (var i = 0; i< product_cards_id.length; i++) {
         product_cards_id[i] = parseInt(product_cards_id[i])
@@ -117,6 +142,7 @@ function filter_products(products_filtered) {
         product_instance = product_cards_id[i]
         if (products_filtered.includes(product_instance)) { //If instance is in filtered list
             product_cards[i].style.display = 'block'    //Display
+            empty = 0
         }
         else {
             product_cards[i].style.display = 'none' //Do not display

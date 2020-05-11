@@ -11,7 +11,18 @@ from store.store_forms.store_form import GiveRatingForm
 
 def index(request):
     #User ordering products in store
-    if 'sort_by' in request.GET:
+
+    if 'search_by' in request.GET:
+        search_by = request.GET['search_by']
+        products = Product.objects.filter(name__icontains=search_by)
+
+        product_resp = [{
+            'id': x.id
+        } for x in products]
+        return JsonResponse({'data': product_resp})
+
+
+    elif 'sort_by' in request.GET:
         sort_by = request.GET['sort_by']
         Product.objects.update()
 
@@ -27,16 +38,11 @@ def index(request):
         product_resp = [{
             'id': x.id,
             'name': x.name,
-            # 'path': x.productphoto_set.first().path,
-            # 'alt_val': x.productphoto_set.first().alt,
-            # 'price': x.price,
-            # 'discounted_price': x.get_discounted_price(),
-            # 'discount': x.discount,
         } for x in products]
-
         return JsonResponse({'data': product_resp})
 
-    if 'filter_by' in request.GET:
+
+    elif 'filter_by' in request.GET:
         data = request.GET
 
         developer = data.get("developer")

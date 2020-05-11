@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="search_product" type="text" class="validate" />
-                        <label for="search_product">Search</label>
+                        <label for="search_product">Search product by name</label>
                     </div>
                      <div class="input-field col s12">
                         <select id="orderby">
@@ -66,6 +66,7 @@
             </form>
         </div>
         <div class="content col s10">  <!-- Products-->
+        <div class="filter-message"></div>
             <div class="row all_products">
                 {% for product in products %}
                     {% include 'store/single_product.html' with product=product%}
