@@ -2,7 +2,7 @@
 window.onload = function(){
     $("#loader").hide()
     $('#sign-in-button').on('click', function(){
-        let email = $("#id_username").val() //TODO: Change to email
+        let email = $("#email").val() //TODO: Change to email
         let password = $("#password").val()
 
         M.Toast.dismissAll();

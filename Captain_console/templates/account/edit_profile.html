@@ -61,12 +61,12 @@
 {#        </div>#}
 {#    </div>#}
 
-        <div class="row">
+    <div class="row">
             <!-- href="{% url 'account_index'  user.id %} -->
         <a class="btn waves-effect blue accent-3" id="account-save-button">Save
         <i class="material-icons right">save</i></a>
 
-        <a class="btn waves-effect blue accent-3"   href="../">Cancel
+        <a class="btn waves-effect blue accent-3"   href="{% url 'account_index' user.id %}">Cancel
         <i class="material-icons right">cancel</i></a>
     </div>
 
