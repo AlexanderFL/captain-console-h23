@@ -13,11 +13,8 @@
 {% block content %}
 
 
-
 <div class = "checkout container">
     <div class="checkout_inner container">
-
-
         {% include 'checkout/crumbs.html' %}
 
         <div class="col s4 m6">
@@ -31,14 +28,11 @@
             {% endif %}
 
         </div>
-        <div class="col s4 m6">
-            <div class="card-panel white">
+        <div class="col s4 m6 fix-content">
+            <div class="">
                 <span class="col s12">
 
-
-{#            {% for prod in product %}#}
-                {% include 'checkout/shoppingcart.html' with hello=product %}
-{#            {% endfor %}#}
+                {% include 'checkout/shoppingcart.html' with product=product %}
 
 
 

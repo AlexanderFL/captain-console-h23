@@ -10,57 +10,26 @@ div.checkout_inner.container {
     margin: auto;
 }
 
-/* login */
-.col.s12.m6 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 10px;
+.fix-content {
+    margin-left: 15px;
     flex-grow: 1;
-    width: 60%;
-
-    padding: 15px;
-    border-radius: 25px;
-}
-
-.col.s4.m6 {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 10px;
-    flex-grow: 1;
-    width: 40%;
-
-    padding: 15px;
-    border-radius: 25px;
 }
 
 form {
     display: inline-block;
 }
 
+#quantity{
+    margin-left: 10px;
+}
+#game-title{
+    margin: 0 !important;
+}
+
 label, input {
     /* In order to define widths */
     display: inline-block;
 }
-
-/*label, button {*/
-/*      display: flex;*/
-/*      justify-content: center;*/
-/*      align-items: center;*/
-/*      height: 200px;*/
-/*      border: 3px;*/
-/*}*/
-
-/*label {*/
-/*    width: 30%;*/
-/*    !* Positions the label text beside the input *!*/
-/*    text-align: right;*/
-/*}*/
-
-/*.highlight {
-    border-collapse: collapse;
-}*/
 
 table {
     border-collapse: inherit;
@@ -100,29 +69,6 @@ card-image {
   text-align: center;
 }
 
-.checkout-crumbs{
-    width: 100%;
-    margin: auto;
-    justify-content: center;
-}
-
-.checkout-crumbs li{
-    display: inline;
-    font-size: 32px;
-    text-align: center;
-}
-.checkout-crumbs .active{
-    color: #2979ff;
-}
-.checkout-crumbs .active:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-ul.checkout-crumbs li+li:before{
-    padding: 7px;
-    color: black;
-    content: "/\00a0";
-}
 i.icon-blue{
     color: black;
 }

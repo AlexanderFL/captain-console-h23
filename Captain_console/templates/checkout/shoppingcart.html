@@ -1,30 +1,17 @@
 
-
-
-{#<div class="col s4 m6">#}
-{#    <div class="card-panel white">#}
-{#        <span class="col s12">#}
             <div class="row">
                 <div class="input-field col s12">
-                    <h5>{{ product.product.name }}231</h5>
-                    <p>{{ hello.name }}</p>
-                    <p> {{ product.name }} </p>
+                    {% for product in product %}#}
+                        {% include 'checkout/shoppingcart_element.html' with product=product %}
+                  {% endfor %}
                 </div>
             </div>
 
-
-{#            <div class="row">#}
-{#                <div class="input-field col s12">#}
-{#                    <h5>To be changed</h5>#}
-{#                    <p>hjfdkæsa</p>#}
-{#                </div>#}
-{#            </div>#}
 
 
 <!--
     A single card that contains the product title, image, price and available discount (if any)
 -->
-
 
             <div class="row">
                 <img class="product-img" src="{{ product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}">

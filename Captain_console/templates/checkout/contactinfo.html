@@ -10,7 +10,6 @@
 
     </div>
 
-
      <div class="row">
         <div class="input-field col s8">
             <i class="material-icons prefix icon-blue">account_box</i>
@@ -32,7 +31,6 @@
         <i class="material-icons right">cancel</i></a>
 
 {#{% url 'checkout_shipping'  user.id %}#}
-
 
 
         <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Next
