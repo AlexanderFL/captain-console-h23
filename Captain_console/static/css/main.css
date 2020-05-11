@@ -5,6 +5,7 @@
 * - Footer placement
 * - Container override
 * - Content background color
+* - Correct coloring on forms
 * - Navbar placements and styles
 * - Mobile navbar styles
 */
@@ -39,6 +40,27 @@ main {
 
 .content-background{
     background-color: #F6F6F6;
+}
+
+/**
+* Correct coloring on forms
+*/
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=tel]:focus + label{
+    color: #2979ff !important;
+}
+.input-field .prefix.active {
+    color: #2979ff;
+}
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus,
+.input-field input[type=tel]:focus{
+    border-bottom: 1px solid #2979ff !important;
+    box-shadow: 0 1px 0 0 #2979ff !important;
 }
 
 /**
