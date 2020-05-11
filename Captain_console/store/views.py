@@ -94,10 +94,11 @@ def get_product_by_id(request, id):
         data = request.POST
         prod_id = data.get("prod_id")
         rating = data.get("rating")
+        user_id = request.session.get('user_id')
+        user = User.objects.get(pk=user_id)
 
         #Get Product and User instances and create review
         product = get_object_or_404(Product, pk=prod_id)
-        user = get_object_or_404(User, pk=1)
         new_review = Review()
         new_review.create_review(product, user, rating)
 

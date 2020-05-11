@@ -114,3 +114,8 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 .sidenav li .input-field .prefix{
     top: 2rem;
 }
+
+#store-link {
+    font-family: 'Chelsea Market', serif;
+    font-size: 22px;
+}
