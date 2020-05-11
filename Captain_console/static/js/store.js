@@ -50,17 +50,12 @@ window.onload = function() {
 
             filter_by = $(this).attr("id")
             filter_var = $(this).find('option:selected').text();
-
-            console.log("You are ordering by " + filter_by + " and you're selection is" + filter_var)
             my_filt = $(".filterby").find('option:selected').toArray()
 
-
+            //Check values of filters
             for (i = 0; i < my_filt.length; i++) {
                 my_filt[i] = my_filt[i].innerText
             }
-
-            console.log("All filters:")
-            console.log(my_filt)
 
             developer = my_filt[0]
             genre = my_filt[1]

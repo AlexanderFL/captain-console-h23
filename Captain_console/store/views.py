@@ -43,8 +43,8 @@ def index(request):
 
 
     elif 'filter_by' in request.GET:
-        data = request.GET
 
+        data = request.GET
         developer = data.get("developer")
         genre = data.get("genre")
         category = data.get("category")
