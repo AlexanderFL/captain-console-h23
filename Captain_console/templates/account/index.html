@@ -34,3 +34,9 @@
     </div>
 </div>
 {% endblock %}
+
+{% block js %}
+    {% if page_account == 'edit_profile' %}
+        <script src="{% static "js/account_edit.js" %}"></script>
+    {% endif %}
+{% endblock %}

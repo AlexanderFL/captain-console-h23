@@ -1,4 +1,9 @@
+import json
+
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 from account.models import User, PaymentInfo, Address, UserPhoto
 from store.models import OrderProduct, Product, ProductPhoto, Order
 
@@ -34,19 +39,57 @@ def base_context(id, context):
     return context
 
 
+def validate_user(passed_id, session_id):
+    if passed_id == session_id:
+        return True
+    else:
+        return False
+
+
 def index(request, id):
-    context = {
-        'page_account': 'profile',
-    }
-    if id != None:
-        context = base_context(id, context)
-    return render(request, 'account/index.html', context)
+    if validate_user(id, request.session.get('user_id')):
+        context = {
+            'page_account': 'profile',
+        }
+        if id != None:
+            context = base_context(id, context)
+        return render(request, 'account/index.html', context)
+    else:
+        return HttpResponseForbidden()
 
+
+@csrf_exempt
 def edit(request, id):
-    context = {
-        'page_account': 'edit_profile',
-    }
-    if id != None:
-        context = base_context(id, context)
-    return render(request, 'account/index.html', context)
+    if validate_user(id, request.session.get('user_id')):
+        if request.method == "POST":
+            email = str(request.POST.get("email")).lower()
+            address = request.POST.get("address")
+            country = request.POST.get("country")
+            city = request.POST.get("city")
+            a_zip = request.POST.get("zip")
 
+            not_same_email = True
+
+            # If the email stored in database is the same as entered
+            if User.objects.get(id=id).email == email:
+                not_same_email = False
+
+            # If the email is already in use by another account
+            if User.email_already_exists(email) and not_same_email:
+                response = json.dumps({'status': 0, 'message': 'Email already in use by another account'})
+                return HttpResponse(response, content_type='application/json')
+            else:
+                if not_same_email:
+                    User.objects.filter(id=id).update(email=email)
+                Address.insert(User.objects.get(id=id), address, city, country, a_zip)
+
+                response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/' + str(id)})
+                return HttpResponse(response, content_type='application/json')
+        context = {
+            'page_account': 'edit_profile',
+        }
+        if id != None:
+            context = base_context(id, context)
+        return render(request, 'account/index.html', context)
+    else:
+        return HttpResponseForbidden()
