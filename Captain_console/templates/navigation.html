@@ -20,7 +20,11 @@
             </li>
             <li class="blue accent-2"><a id="search-bar-submit" href="#"><i class="material-icons">search</i></a></li>
             <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
-            <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
+            {% if 'user_id' in request.session %}
+                <li><a href="{% url 'account_index' request.session.user_id %}"><i class="material-icons">person</i></a></li>
+            {% else %}
+                <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>

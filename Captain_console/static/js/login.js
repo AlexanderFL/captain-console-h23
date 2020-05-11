@@ -22,7 +22,13 @@ window.onload = function(){
                 password: password
             },
             success : function(response){
-
+                if (response.status === 0){
+                    M.toast({html: response.message, classes: "red"})
+                } else if(response.status === 1){
+                    console.log(response.message)
+                    window.location.replace(response.message)
+                }
+                console.log(response)
             }
         })
     });

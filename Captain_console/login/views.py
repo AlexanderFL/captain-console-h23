@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+import json
+
 import bcrypt  # pip install bcrypt
-
-# Create your views here.
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-
 from account.models import User
+from account.views import index as account_index
 
 
 @csrf_exempt
@@ -14,13 +15,22 @@ def index(request):
         # Encode the plain password into bytes
         plain_password = request.POST.get("password").encode('utf-8')
         # Get the stored password in the database
-        hashed_pass = User.get_password(email).encode('utf-8')
+        stored_password = User.get_password(email)
 
-        # Compare the plain password to the stored hash
-        if bcrypt.checkpw(plain_password, hashed_pass):
-            print("Match")
-        else:
-            print("Not match")
+        if stored_password is not None:
+            # Encode the password stored in the database to bytes
+            hashed_pass = stored_password.encode('utf-8')
+            print(hashed_pass)
+
+            # Compare the plain password to the stored hash
+            if bcrypt.checkpw(plain_password, hashed_pass):
+                request.session['user_id'] = User.objects.get(email=email).id
+                url = 'http://localhost:8000/account/' + str(request.session['user_id'])
+                response = json.dumps({'status': 1, 'message': url})
+                return HttpResponse(response, content_type='application/json')
+
+        response = json.dumps({'status': 0, 'message': 'Email/password was incorrect'})
+        return HttpResponse(response, content_type='application/json')
     return render(request, 'login/index.html', context={'page_login': 'login_index'})
 
 
@@ -31,6 +41,7 @@ def register(request):
         # Get the user data from POST
         username = request.POST.get("username")
         email = str(request.POST.get("email")).lower()
+        # Encode the plain password into bytes
         password = str(request.POST.get("password")).encode('utf-8')
 
         # Hash the password with salt
