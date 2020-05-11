@@ -28,22 +28,31 @@
                 {% include 'checkout/shipping.html' %}
             {% elif page_checkout == 'paymentinfo' %}
                 {% include 'checkout/paymentinfo.html' %}
-            {% elif page_checkout == 'confirmation' %}
-                {% include 'checkout/confirmation.html' %}
             {% endif %}
 
         </div>
         <div class="col s4 m6">
+            <div class="card-panel white">
+                <span class="col s12">
 
-            {% include 'checkout/shoppingcart.html' with user=user %}
+
+{#            {% for prod in product %}#}
+                {% include 'checkout/shoppingcart.html' with product=product %}
+{#            {% endfor %}#}
+
+
 
 {#            {% for order in order_history %}#}
 {#                {% include 'account/order_history.html' with order=order%}#}
 {#            {% endfor %}#}
-
+            </span>
         </div>
+
     </div>
 </div>
+
+
+
 {% endblock %}
 
 

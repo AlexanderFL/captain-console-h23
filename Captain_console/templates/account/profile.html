@@ -51,9 +51,10 @@
         <a class="btn waves-effect blue accent-3" href="{% url 'account_edit_profile'  user.id %}">Edit profile
         <i class="material-icons right">edit</i></a>
 
-        <a class="btn waves-effect blue accent-3"   href="../">Back
+        <a class="btn waves-effect red accent-3" href="{% url 'home_index_logout' user.id %}">Logout
         <i class="material-icons right">keyboard_return</i></a>
     </div>
+
 </form>
 </div>
 

@@ -19,8 +19,14 @@
                 </div>
             </li>
             <li class="blue accent-2"><a id="search-bar-submit" href="#"><i class="material-icons">search</i></a></li>
-            <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
-            <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
+            <!-- If user is logged in, redirect him to his account page otherwise to login -->
+            {% if 'user_id' in request.session %}
+                <li><a href="{% url "checkout_index" request.session.user_id %}"><i class="material-icons">shopping_cart</i></a></li>
+                <li><a href="{% url 'account_index' request.session.user_id %}"><i class="material-icons">person</i></a></li>
+            {% else %}
+                <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
+                <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -40,7 +46,12 @@
     <li><a href="{% url "consoles_index" %}">Components</a></li>
     <li><a href="{% url "store_index" %}">Javascript</a></li>
     <div class="seperator"></div>
-    <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
-    <li><a href="{% url "login_index" %}">Account <i class="material-icons">person</i></a></li>
+    {% if 'user_id' in request.session %}
+        <li><a href="{% url "checkout_index" request.session.user_id %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
+        <li><a href="{% url 'account_index' request.session.user_id %}">Account <i class="material-icons">person</i></a></li>
+    {% else %}
+        <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
+        <li><a href="{% url "login_index" %}">Account <i class="material-icons">person</i></a></li>
+    {% endif %}
 
 </ul>

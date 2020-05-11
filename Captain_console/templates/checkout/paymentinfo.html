@@ -50,10 +50,25 @@
         <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Back
         <i class="material-icons right">arrow_back</i></a>
 
-        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Next
+        <a class="btn waves-effect blue accent-3 modal-trigger" href="#modal1">Submit
         <i class="material-icons right">arrow_forward</i></a>
+{#        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Next#}
+{#        <i class="material-icons right">arrow_forward</i></a>#}
 
     </div>
 
 
 </div>
+
+  <!-- Modal Structure -->
+   <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Your order has been placed</h4>
+      <p>Thank you for your purchase!<br>
+          A confirmation email will be sent to: {{ user.email }}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="/" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
+
