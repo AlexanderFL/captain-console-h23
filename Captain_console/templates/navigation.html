@@ -6,8 +6,6 @@
         <!-- Page links -->
         <a href="#" data-target="mobile-dropdown" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-store" class="hide-on-med-and-down indent-links">
-            <li><a href="{% url "games_index" %}">Games</a></li>
-            <li><a href="{% url "consoles_index" %}">Consoles</a></li>
             <li><a href="{% url "store_index" %}">Store</a></li>
         </ul>
 
@@ -53,5 +51,4 @@
         <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
         <li><a href="{% url "login_index" %}">Account <i class="material-icons">person</i></a></li>
     {% endif %}
-
 </ul>
