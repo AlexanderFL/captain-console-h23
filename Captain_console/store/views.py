@@ -13,6 +13,7 @@ def index(request):
     #User ordering products in store
     if 'sort_by' in request.GET:
         sort_by = request.GET['sort_by']
+        Product.objects.update()
 
         if sort_by == "price":
             products = Product.objects.all().order_by('price')
@@ -36,28 +37,31 @@ def index(request):
         return JsonResponse({'data': product_resp})
 
     if 'filter_by' in request.GET:
-        print("hello")
         data = request.GET
-        filter_by = data.get("filter_by")
-        filter_var = data.get("filter_var")
 
-        if filter_var =="All":  #Return all objects
-            products = Product.objects.all()
-            print("Yes")
+        developer = data.get("developer")
+        genre = data.get("genre")
+        category = data.get("category")
 
-        elif filter_by == "developer_filter":
-            products = Product.objects.filter(productdetails__developer_id__developer__exact=filter_var)
-            print(products)
+        if (developer == "All") or (developer == "Developer"):
+            dev_products = Product.objects.all()
+        else:
+            dev_products = Product.objects.filter(productdetails__developer_id__developer__exact=developer)
 
-        elif filter_by == "genre_filter":
-            products = Product.objects.filter(productdetails__genre_id__genre__exact=filter_var)
-            print(products)
+        if (genre == "All") or (genre == "Genre"):
+            genre_products = Product.objects.all()
+        else:
+            genre_products = Product.objects.filter(productdetails__genre_id__genre__exact=genre)
 
+        if (category == "All") or (category == "Category"):
+            cat_products = Product.objects.all()
+        else:
+            cat_products = Product.objects.filter(category__name__exact=category)
+
+        filtered_products = dev_products&genre_products&cat_products
         product_resp = [{
             'id': x.id,
-            'name': x.name,
-        } for x in products]
-
+        } for x in filtered_products]
         return JsonResponse({'data': product_resp})
 
     #Initial load - order by name
