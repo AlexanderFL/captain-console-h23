@@ -6,7 +6,7 @@ from store.models import OrderProduct, Product, ProductPhoto, Order
 #
 # 'SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s',[id])
 
-def index(request, id):
+def base_context(id, context):
     query_user = User.objects.get(pk=id)
 
     query_order_history = Order.objects.filter(user_id=id)[:3]
@@ -16,30 +16,37 @@ def index(request, id):
     # query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
     query_address = query_user.address_set.all()
 
-
-
     # User.objects.get()
     # user.address_set.first.address
     # query_order
+
+    context['user'] = query_user
+    context['orders'] = query_order_history
+    # context['orders'] = product_details
+    # context['test'] = query_test
+    context['address'] = query_address
+    context['order'] = query_order
+
+    # : OrderProduct.objects.get()
+
+    context['user'] = User.objects.get(pk=id)
+
+    return context
+
+
+def index(request, id):
     context = {
-        'user': query_user,
         'page_account': 'profile',
-        'orders': query_order_history,
-        # 'orders': product_details,
-        # 'test': query_test,
-        'address': query_address,
-        'order': query_order
-
-        # : OrderProduct.objects.get()
     }
-
+    if id != None:
+        context = base_context(id, context)
     return render(request, 'account/index.html', context)
 
 def edit(request, id):
     context = {
-        'user': User.objects.get(pk=id),
-        # 'address': Address.objects.filter(user_id.id),
-        'page_account': 'edit_profile'
+        'page_account': 'edit_profile',
     }
+    if id != None:
+        context = base_context(id, context)
     return render(request, 'account/index.html', context)
 
