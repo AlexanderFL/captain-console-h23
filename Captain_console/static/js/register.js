@@ -1,8 +1,7 @@
 
 window.onload = function(){
 
-    // Onclick triggers when user clicks on 'register'
-    $("#register-button").on('click', function() {
+    function registerUser(){
         let username = $("#id_username").val()
         let email_form = $("#email")
         let email = email_form.val()
@@ -47,5 +46,17 @@ window.onload = function(){
                 }
             }
         })
-    })
+    }
+
+    // Onclick triggers when user clicks on 'register'
+    $("#register-button").on('click', function() {
+        registerUser();
+    });
+
+    // Bind keyup on every form and execute when user presses enter
+    $('#id_username, #email, #email, #password, #re-password').on('keyup', function(event){
+        if (event.keyCode === 13){
+            registerUser();
+        }
+    });
 }

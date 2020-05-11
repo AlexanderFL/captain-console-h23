@@ -1,7 +1,8 @@
 
 window.onload = function(){
     $("#loader").hide()
-    $('#sign-in-button').on('click', function(){
+
+    function loginUser(){
         let email = $("#email").val() //TODO: Change to email
         let password = $("#password").val()
 
@@ -37,5 +38,17 @@ window.onload = function(){
                 console.log(response)
             }
         })
+    }
+
+    // If user clicks on login button
+    $('#sign-in-button').on('click', function(){
+        loginUser()
+    });
+
+    // If user presses enter while inside any form
+    $('#email, #password').on('keyup', function(event){
+        if(event.keyCode === 13){
+            loginUser()
+        }
     });
 }
