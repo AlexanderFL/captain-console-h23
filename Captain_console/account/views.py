@@ -14,17 +14,11 @@ def base_context(id, context):
     # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
 
     # query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
-    query_address = query_user.address_set.all()
-
-    # User.objects.get()
-    # user.address_set.first.address
-    # query_order
 
     context['user'] = query_user
     context['orders'] = query_order_history
     # context['orders'] = product_details
     # context['test'] = query_test
-    context['address'] = query_address
     context['order'] = query_order
 
     # : OrderProduct.objects.get()
