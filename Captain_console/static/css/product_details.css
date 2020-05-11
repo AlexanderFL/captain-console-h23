@@ -1,9 +1,26 @@
-#banner {
-    margin: auto;
-    word-wrap: break-word;
-    overflow: auto;
-    padding-bottom: 20px;
-    padding-top: 20px;
+/**
+* product_details.css
+*
+* Index
+* - Image placement
+* - Product pricing styles
+* - Rating styles
+*/
+
+/**
+* Image placement
+*/
+.product-image{
+    padding-top: 4%;
+    float: right;
+}
+
+/* Make image fall to the left when screen is under 600px*/
+@media only screen and (max-width: 600px) {
+    .product-image{
+        float: none !important;
+        margin: auto;
+    }
 }
 
 .store {
@@ -11,52 +28,90 @@
     padding-left: 5%;
 }
 
-.content {
-    margin: auto;
-    align-self: center;
+.product-image{
+    padding-top: 4%;
+    float: right;
 }
 
-.container {
-    justify-content: space-evenly;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: row;
+.content {
+    margin: auto;
 }
+/**
+* Product pricing styles
+ */
 
 #product-price {
     font-size: 26px;
+    font-weight: bold;
+}
+
+.normal-price{
     color: black;
+    text-decoration: line-through;
+}
+
+.stock-text{
     font-weight: bold;
 }
 
-.details {
-    border: solid 2px;
-    background-color: white;
-    padding: 2%;
-    align-content: center;
-    margin-bottom: 100px;
-    border-radius: 8px;
-    padding-top: 5%;
-    padding-bottom: 5%;
+.in-stock {
+    color: #4caf50 !important;
 }
 
-h7 {
-    color: red;
-    font-weight: bold;
+.out-stock{
+    color: #c80007 !important;
 }
 
-img {
-    box-shadow: 10px 10px 8px #888888;
+.set-price{
+    color: #2979ff;
 }
 
-.btn-small {
-    margin-top: 1rem;
-}
+
+/**
+* Ratings styles
+*/
 
 .checked {
     color: orange;
 }
-.stars {
+#stars {
     padding-top: 1rem;
+}
+
+.star {
+    background: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-color: white;
+    border-style: solid;
+}
+
+
+.star.fill {
+    color: orange;
+}
+
+.rate {
+    color: black;
+}
+
+.rate:hover {
+    color: orange;
+}
+
+.rate:hover span {
+    transform: translateY(0) scale(2);
+}
+
+#give_review {
+    margin-left: 0.5rem;
+}
+
+.star[disabled] {
+    pointer-events:none;
+}
+
+#rating-count {
+    padding-bottom: 2rem;
 }

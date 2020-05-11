@@ -1,18 +1,45 @@
-.profile {
+
+div.account.container {
+    width: 90%;
+}
+
+div.login.container {
+    width: 90%;
+}
+
+div.profile.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+div.signup {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    max-width: 450px;
+}
+
+form.col.s12 {
+    align-content: center;
+}
+
+/* login */
+.col.s12.m6 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     margin: 10px;
-}
+    flex-grow: 1;
+    width: 60%;
 
-body {
-    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 25px;
 }
-
-form.col.s12 {
-    width: 90%;
-}
-
 
 .col.s4.m6 {
     display: flex;
@@ -24,43 +51,6 @@ form.col.s12 {
 
     padding: 15px;
     border-radius: 25px;
-    border: 2px solid black;
-    background-color: #ffffff;
-
-}
-
-/* login */
-.col.s12.m10 {
-    align-content: center;
-    margin: 10px;
-    margin-left: 25%;
-    width: 50%;
-
-    padding: 15px;
-    border-radius: 25px;
-    border: 2px solid black;
-    background-color: #ffffff;
-
-    justify-content: center;
-
-}
-
-.row {
-    width: 90%;
-}
-
-div.account.container {
-    width: 90%;
-}
-
-div.login {
-    width: 100%;
-}
-
-div.login.container {
-    align-content: center;
-    width: 70%;
-    justify-content: center;
 }
 
 form {
@@ -98,7 +88,7 @@ card-image {
     text-align: start;
 }
 
-.product-img {
+.materialboxed {
     width: 145px;
     height: 145px;
     border-radius: 50%;

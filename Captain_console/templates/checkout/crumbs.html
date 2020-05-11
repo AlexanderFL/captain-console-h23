@@ -1,0 +1,15 @@
+<ul class="crumbs">
+    <li {% if page_checkout == 'contactinfo' %} {{ 'class="active"' }} {% endif %}>
+        <a href="{% if user.id %}{% url 'checkout_index' user.id %}{% else %}{% url 'checkout_index' %}{% endif %}">Contact Info</a></li>
+
+    <li {% if page_checkout == 'shipping' %} {{ 'class="active"' }} {% endif %}>
+        <a href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Shipping</a></li>
+
+    <li {% if page_checkout == 'paymentinfo' %} {{ 'class="active"' }} {% endif %}>
+        <a href="{% if user.id %}{% url 'checkout_payment' user.id %}{% else %}{% url 'checkout_payment' %}{% endif %}">Payment</a></li>
+
+    <li {% if page_checkout == 'confirmation' %} {{ 'class="active"' }} {% endif %}>
+        <a href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Confirmation</a></li>
+</ul>
+
+

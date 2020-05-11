@@ -1,10 +1,113 @@
+div.checkout.container {
+    width: 90%;
+}
+
+div.checkout_inner.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+
+
+/* login */
+.col.s12.m6 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 10px;
+    flex-grow: 1;
+    width: 60%;
+
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.col.s4.m6 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 10px;
+    flex-grow: 1;
+    width: 40%;
+
+    padding: 15px;
+    border-radius: 25px;
+}
+
+form {
+    display: inline-block;
+}
+
+label, input {
+    /* In order to define widths */
+    display: inline-block;
+}
+
+/*label, button {*/
+/*      display: flex;*/
+/*      justify-content: center;*/
+/*      align-items: center;*/
+/*      height: 200px;*/
+/*      border: 3px;*/
+/*}*/
+
+/*label {*/
+/*    width: 30%;*/
+/*    !* Positions the label text beside the input *!*/
+/*    text-align: right;*/
+/*}*/
+
+/*.highlight {
+    border-collapse: collapse;
+}*/
+
+table {
+    border-collapse: inherit;
+}
+
+card-image {
+    text-align: start;
+}
+
+.materialboxed {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+}
+
+.card-content.input[type=text] {
+    width: 40%;
+    padding: 8px 122px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+ a.btn.waves-effect.blue.accent-3, button.btn.waves-effect.blue.accent-3{
+    margin-top: 5px;
+    margin-left: 3rem;
+}
+
+.input-field {
+
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+
 .container .card-panel .card-title {
   text-align: center;
 }
+
 .checkout-crumbs{
     width: 100%;
     margin: auto;
+    justify-content: center;
 }
+
 .checkout-crumbs li{
     display: inline;
     font-size: 32px;
@@ -35,17 +138,3 @@ i.icon-blue{
     border-bottom: 1px solid #2979ff !important;
     box-shadow: 0 1px 0 0 #2979ff !important;
 }
-
-/*
-input {
-     display: block;
- }
-
-label, button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  border: 3px;
-}
-*/

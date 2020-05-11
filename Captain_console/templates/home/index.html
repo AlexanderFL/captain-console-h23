@@ -2,6 +2,7 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static "css/landing.css" %}">
+    <link rel="stylesheet" href="{% static 'css/shared/product-card-view.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -48,34 +49,7 @@
                     <div class="row">
                         {% for product in products %}
                             <div class="col s12 m6 l6 xl4">
-                                <a href="{% url "product_details" product.product_id.id %}">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            {% if product.product_id.discount > 0 %}
-                                                <div class="tag">-{{ product.product_id.get_discount }}%</div>
-                                            {% endif %}
-                                            <img src="{{ product.path }}">
-                                            <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
-                                        </div>
-                                        <div class="card-content">
-                                            <a href="{% url "product_details" product.product_id.id %}">
-                                                <span class="card-title activator grey-text text-darken-4">{{ product.product_id.name }}</span>
-                                            </a>
-                                            {% if product.product_id.discount <= 0 %}
-                                                <strong class="flow-text set-price">${{ product.product_id.price }}</strong>
-                                            {% else %}
-                                                <strong class="flow-text">
-                                                    <span class="set-price">
-                                                         ${{ product.product_id.get_discounted_price }}
-                                                    </span>
-                                                    <span class="discount">
-                                                        <sup>${{ product.product_id.price }}</sup>
-                                                    </span>
-                                                </strong>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </a>
+                                {% include 'product-card-view.html' with product=product %}
                             </div>
                         {% endfor %}
                     </div>

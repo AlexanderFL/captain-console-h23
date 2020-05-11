@@ -1,0 +1,61 @@
+/**
+* custom-breadcrumbs.css
+*
+* Index
+* - Crumbs 'container' markup
+* - Crumbs active page
+* - Crumbs links
+* - Crumbs styling
+*/
+
+/**
+* Crumbs 'container' markup
+*/
+
+.crumbs{
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    padding: 10px 20px !important;
+}
+
+.crumbs li{
+    display: inline;
+    font-size: 32px;
+    text-align: center;
+}
+
+/**
+* Crumbs active page
+ */
+
+.crumbs .active a{
+    color: black;
+}
+.crumbs .active a:hover{
+    text-decoration: none !important;
+    cursor: default;
+}
+
+/**
+* Crumbs links
+*/
+
+.crumbs a{
+    color: #2979ff;
+}
+.crumbs a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/**
+* Crumbs styling
+*/
+
+/* Appends '/' to the item before */
+ul.crumbs li+li:before{
+    padding: 7px;
+    color: black;
+    content: "/\00a0";
+}

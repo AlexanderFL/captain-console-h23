@@ -1,101 +1,74 @@
-{% comment %}
 
-{% endcomment %}
+<div class="card-panel white">
 
-<div class="row">
-    <form class="col s12">
-      <div class="row">
-
+<form class="col s12">
+    <div class="row">
         <div class="img-field col s4">
-          <img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+            <img class="circle responsive-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
         </div>
 
         <div class="input-field col s8">
-          <h3>{{ user.username }}</h3>
+            <h5>{{ user.username }}</h5>
         </div>
-      </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
         <div class="input-field col s8">
             <i class="material-icons prefix">email</i>
             <input id="email" type="email" class="validate" required value="{{ user.email }}">
             <label for="email">Email</label>
             <span class="helper-text" data-error="Please enter a valid email address"></span>
         </div>
-        </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
         <div class="input-field col s8">
-          <i class="material-icons prefix">home</i>
-          <input id="icon_prefix" type="text" class="validate" required>
-          <label for="icon_prefix">Address</label>
+            <i class="material-icons prefix">home</i>
+            <input id="icon_prefix" type="text" class="validate"  value="{{user.address_set.first.address}}">
+            <label for="icon_prefix">Address</label>
         </div>
-        </div>
+    </div>
 
-        <div class="row">
+    <div class="row">
         <div class="input-field col s8">
-          <i class="material-icons prefix">location_city</i>
-          <input id="icon_prefix" type="tel" class="validate" required>
-          <label for="icon_prefix">City</label>
+            <i class="material-icons prefix">landscape</i>
+            <input id="icon_prefix" type="tel" class="validate"  value="{{user.address_set.first.country}}">
+            <label for="icon_prefix">Country</label>
         </div>
+    </div>
 
-        </div>
-        <div class="row">
+    <div class="row">
         <div class="input-field col s6">
-          <i class="material-icons prefix">landscape</i>
-          <input id="icon_prefix" type="text" class="validate" required>
-          <label for="icon_prefix">State</label>
+            <i class="material-icons prefix">location_city</i>
+            <input id="icon_prefix" type="text" class="validate"  value="{{user.address_set.first.city}}">
+            <label for="icon_prefix">City</label>
         </div>
 
         <div class="input-field col s2">
-          <i class="material-icons prefix"></i>
-          <input id="icon_prefix" type="text" class="validate" required>
-          <label for="icon_prefix">Zip</label>
+            <input id="icon_prefix" type="text" class="validate"  value="{{user.address_set.first.zip_code}}">
+            <label for="icon_prefix">Zip</label>
         </div>
-      </div>
+    </div>
 
-
-        <div class="row">
-        <div class="input-field col s4">
-
-            <button class="btn waves-effect blue accent-3" type="submit" name="change_profile/{{ user.id }}">Save changes
-            <i class="material-icons right">save</i>
-        </div>
-
-        <div class="input-field col s4">
-
-            <a class="btn waves-effect blue accent-3"   href="../{{ user.id }}">Cancel
-            <i class="material-icons right">cancel</i></a>
-        </div>
-      </div>
-
-    </form>
-  </div>
-
-{#    <div class="card-stacked">#}
-{#        <div class="card-content">#}
-{##}
-{#          <h3><div class="card-image"><img class="product-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}" width="145rem" height="145rem"/>#}
-{#              {{ user.username }}</div></h3>#}
-{##}
-{##}
-{#            <form action="#"  method="get">#}
-{##}
-{#                Username: <input type="text" id="userfield" name="username"  value=" {{ user.username }} "><br>#}
-{#                Email address: <input type="text" id="userfield_email" name="useremail"  value=" {{ user.email }} "><br>#}
-{#                Shipping address: <input type="text" id="userfield_address" name="shipping_address"  value=""><br>#}
-{#                City: <input type="text" id="userfield_city" name="city"  value="">#}
-{#                Zip: <input type="text" id="userfield_zip" name="zip"  value="">#}
-{#                Country: <input type="text" id="userfield_country" name="country"  value=""><br>#}
-{##}
-{##}
-{#            </form>#}
-{##}
-{##}
+{#    <div class="row">#}
+{#        <div class="input-field col s4">#}
+{#            <button class="btn waves-effect blue accent-3" type="submit" name="../{{ user.id }}">Save#}
+{#            <i class="material-icons right">save</i>#}
 {#        </div>#}
-{#        <div class="card-action">#}
-{#            <a class="waves-effect waves-light btn-small blue accent-3"  href="">Save changes</a>#}
-{#            <a class="waves-effect waves-light btn-small blue accent-3"  href="">Cancel</a>#}
 {##}
+{#        <div class="input-field col s4">#}
+{#            <a class="btn waves-effect blue accent-3"   href="../../">Cancel#}
+{#            <i class="material-icons right">cancel</i></a>#}
 {#        </div>#}
 {#    </div>#}
+
+        <div class="row">
+        {# Breyta í button #} <a class="btn waves-effect blue accent-3" href="{% url 'account_index'  user.id %}">Save
+        <i class="material-icons right">save</i></a>
+
+        <a class="btn waves-effect blue accent-3"   href="../">Cancel
+        <i class="material-icons right">cancel</i></a>
+    </div>
+
+</form>
+   </div>

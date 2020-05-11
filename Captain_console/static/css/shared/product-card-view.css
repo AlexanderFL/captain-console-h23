@@ -1,0 +1,50 @@
+/**
+* product-card-view.css
+*
+* Index
+* - Image styles
+* - Pricing styles
+*/
+
+/**
+* Image styles
+*/
+
+.product-img{
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Displays the discount on top of the image */
+.tag {
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  background-color: #FFF;
+  padding: 20px 0;
+  vertical-align: middle;
+  margin: 10px;
+  color: #2979ff;
+  font-weight: bold;
+  border-radius: 100%;
+  width: 90px;
+  height: 90px;
+  border: 3px solid #2979ff;
+  font-size: 24px;
+  text-align: center;
+}
+
+/**
+* Pricing styles
+*/
+
+.set-price{
+  color: #2979ff;
+}
+
+.discount{
+  color: black !important;
+  text-decoration: line-through;
+}

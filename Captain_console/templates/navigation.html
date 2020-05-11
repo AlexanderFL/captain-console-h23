@@ -1,8 +1,8 @@
+{% load static %}
 <nav class="nav-extended">
     <div class="nav-wrapper blue accent-3">
         <!-- Logo -->
-        <a href="{% url "home_index" %}" class="brand-logo">Captain Console</a></li>
-
+        <a href="{% url "home_index" %}" class="brand-logo"><img border="0" alt = "CaptainConsole" src="{% static "images/LOGO.png" %}" width="130px" height="50px"></a>
         <!-- Page links -->
         <a href="#" data-target="mobile-dropdown" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-store" class="hide-on-med-and-down indent-links">
@@ -15,10 +15,10 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
                 <div class="input-field col s6 white-text blue accent-2">
-                    <input placeholder="Search" id="search-games" type="text" class="white-text">
+                    <input placeholder="Search" id="search-bar" type="text" class="white-text">
                 </div>
             </li>
-            <li class="blue accent-2"><a href="#"><i class="material-icons">search</i></a></li>
+            <li class="blue accent-2"><a id="search-bar-submit" href="#"><i class="material-icons">search</i></a></li>
             <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
             <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
         </ul>
@@ -31,7 +31,7 @@
     <li class="blue accent-2">
         <div class="input-field col s12 white-text">
             <i class="material-icons prefix blue accent-2">search</i>
-            <input placeholder="Search" id="search-games" type="text" class="white-text">
+            <input placeholder="Search" id="mobile-search-bar" type="text" class="white-text">
             <label for="search-games"></label>
         </div>
     </li>

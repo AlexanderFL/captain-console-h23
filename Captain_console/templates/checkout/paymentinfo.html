@@ -1,41 +1,59 @@
 
-<h3>Payment information</h3>
+
+
+<div class="card-panel white">
+    <h3 class="card-title">Payment information</h3>
     <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s4">
-          <i class="material-icons prefix">account_box</i>
-          <input id="icon_prefix" type="text" class="validate" required>
-          <label for="icon_prefix">Cardholder name</label>
+        <div class="input-field col s8">
+            <i class="material-icons prefix">account_box</i>
+            <input id="icon_prefix" type="text" class="validate" required  value="{{user.paymentinfo_set.first.name}}">
+            <label for="icon_prefix">Cardholder name</label>
         </div>
-        <div class="input-field col s4">
-          <i class="material-icons prefix">credit_card</i>
-          <input id="icon_prefix" type="number" class="validate" required>
-          <label for="icon_prefix">Card number</label>
-        </div>
-      </div>
-
-        <div class="row">
-        <div class="input-field col s4">
-          <i class="material-icons prefix"></i>
-          <input type="text" class="datepicker" required>
-          <label for="datepicker">Expiration date (MM/YY)</label>
-        </div>
-       <div class="input-field col s2">
-          <i class="material-icons prefix">security</i>
-          <input id="icon_prefix" type="text" class="validate" required>
-          <label for="icon_prefix">CVC (4 digits)</label>
-        </div>
-      </div>
-
-        <form action="#">
-    <p>
-      <label>
-        <input type="checkbox" />
-        <span>Save credit card information for later use</span>
-      </label>
-    </p>
-
-<a class="waves-effect waves-light btn-small blue accent-3">Confirm Payment</a>
-        </form>
     </div>
+
+    <div class="row">
+        <div class="input-field col s8">
+            <i class="material-icons prefix">credit_card</i>
+            <input id="icon_prefix" type="tel" class="validate" required  value="{{user.paymentinfo_set.first.card_number}}">
+            <label for="icon_prefix">Card number</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s5">
+            <i class="material-icons prefix">date_range</i>
+            <input id="icon_prefix" type="text" class="validate" required  value="">
+            <label for="icon_prefix">Exp date</label>
+        </div>
+
+        <div class="input-field col s3">
+            <i class="material-icons prefix">security</i>
+            <input id="icon_prefix" type="text" class="validate" required  value="">
+            <label for="icon_prefix">CVC</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <label>
+                <input type="checkbox" />
+                <span>Do you want us to remember your card for next time?</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <br>
+    </div>
+    <div class="row">
+
+        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Back
+        <i class="material-icons right">arrow_back</i></a>
+
+        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Next
+        <i class="material-icons right">arrow_forward</i></a>
+
+    </div>
+
+
+</div>

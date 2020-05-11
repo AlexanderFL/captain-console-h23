@@ -1,0 +1,35 @@
+<!--
+    A single card that contains the product title, image, price and available discount (if any)
+-->
+
+<a href="{% url "product_details" product.id %}">
+    <div class="card">
+        <div class="card-image"> <!-- class never used -->
+            {% if product.discount > 0 %}
+                <div class="tag">-{{ product.get_discount }}%</div>
+            {% endif %}
+            <img class="product-img" src="{{ product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}">
+            <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large" ><i class="material-icons">add_shopping_cart</i></a>
+        </div>
+
+        <div class="card-stacked">
+            <div class="card-content">
+                <a href="{% url "product_details" product.id %}">
+                    <span class="card-title activator grey-text text-darken-4">{{ product.name }}</span>
+                </a>
+                {% if product.discount <= 0 %}
+                    <strong class="flow-text set-price">${{ product.price }}</strong>
+                {% else %}
+                    <strong class="flow-text">
+                        <span class="set-price">
+                             ${{ product.get_discounted_price }}
+                        </span>
+                        <span class="discount">
+                            <sup>${{ product.price }}</sup>
+                        </span>
+                    </strong>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</a>

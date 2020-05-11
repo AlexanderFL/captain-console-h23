@@ -6,22 +6,30 @@
 
 {% block content %}
 <div class = "account container">
-    <div class="profile">
+    <div class="profile container">
         <div class="col s4 m6">
 
+            {% if page_account == 'profile' %}
                 {% include 'account/profile.html' with user=user %}
+            {% elif page_account == 'edit_profile' %}
+                {% include 'account/edit_profile.html' with user=user %}
+            {% endif %}
 
         </div>
         <div class="col s4 m6">
+            <div class="card-panel white">
+                <span class="col s12">
+                    <h5>Order history</h5>
 
+{#                    {% for order in orders %}#}
+{#                        {% include 'account/order_history.html'%}#}
+{#                    {% endfor %}#}
+                    {% for orde in order %}
+                        {% include 'account/order_history.html'%}
+                    {% endfor %}
 
-                {% include 'account/order_history.html' with user=user %}
-
-{#                {% for order in order_history %}#}
-{#                    {% include 'account/order_history.html' with order=order%}#}
-{#                {% endfor %}#}
-
-
+                </span>
+            </div>
         </div>
     </div>
 </div>

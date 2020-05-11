@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/shared/product-card-view.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <h2 class="flow-text">
+            {{ search_results|length }} Search results based on '{{ search_query }}'
+        </h2>
+        <div class="row">
+            {% for product in search_results %}
+                <div class="col s12 m6 l6 xl3">
+                    {% include 'product-card-view.html' with product=product %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
