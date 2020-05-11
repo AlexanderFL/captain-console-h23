@@ -10,8 +10,6 @@ div.checkout_inner.container {
     margin: auto;
 }
 
-
-
 /* login */
 .col.s12.m6 {
     display: flex;
@@ -127,14 +125,4 @@ ul.checkout-crumbs li+li:before{
 }
 i.icon-blue{
     color: black;
-}
-.input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label {
-    color: #2979ff !important;
-}
-.input-field .prefix.active {
-    color: #2979ff;
-}
-.input-field input[type=text]:focus, .input-field input[type=email]:focus {
-    border-bottom: 1px solid #2979ff !important;
-    box-shadow: 0 1px 0 0 #2979ff !important;
 }
