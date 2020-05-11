@@ -8,8 +8,6 @@
     <li {% if page_checkout == 'paymentinfo' %} {{ 'class="active"' }} {% endif %}>
         <a href="{% if user.id %}{% url 'checkout_payment' user.id %}{% else %}{% url 'checkout_payment' %}{% endif %}">Payment</a></li>
 
-    <li {% if page_checkout == 'confirmation' %} {{ 'class="active"' }} {% endif %}>
-        <a href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Confirmation</a></li>
 </ul>
 
 
