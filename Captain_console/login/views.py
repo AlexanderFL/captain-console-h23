@@ -52,6 +52,10 @@ def register(request):
             # Get password back into str before storing it in database
             password_hashed = password_hashed.decode('utf-8')
             User.insert(username, email, password_hashed)
-            return redirect('login_index')
 
+            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/login/'})
+            return HttpResponse(response, content_type='application/json')
+        else:
+            response = json.dumps({'status': 0, 'message': 'This email is already in use'})
+            return HttpResponse(response, content_type='application/json')
     return render(request, 'login/index.html', context={'page_login': 'login_register'})

@@ -40,7 +40,11 @@ window.onload = function(){
                 password: password
             },
             success: function (response) {
-                M.toast({html: "This email is already in use", classes: "red"})
+                if (response.status === 200){
+                    window.location.replace(response.message)
+                } else if(response.status === 0){
+                    M.toast({html: response.message, classes: "red"})
+                }
             }
         })
     })
