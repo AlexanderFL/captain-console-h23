@@ -7,7 +7,7 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
                     <input id="id_username" type="text" required>
-                    <label for="id_username">Username</label>
+                    <label for="id_username">Email</label>
                 </div>
             </div>
 
@@ -28,6 +28,9 @@
     </form>
 </div>
 <span>Don't have an account?<a href="{% url "login_register" %}"> Register</a></span>
+<div class="progress blue lighten-4" id="loader">
+      <div class="indeterminate blue"></div>
+</div>
 
 {% block js %}
     <script src="{% static "js/login.js" %}"></script>
