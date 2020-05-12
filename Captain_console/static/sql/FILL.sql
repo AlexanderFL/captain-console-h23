@@ -137,15 +137,27 @@ INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) V
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
 
 
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (1, 1);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (1, 2);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (2, 3);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (3, 4);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (4, 5);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 6);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 7);
+INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 8);
 
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (12.39, 'A0B43C01889D0119', 1,'2019-4-5');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (9.00, 'AFB03C01889D0120', 2,'2019-4-2');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (15.00, 'AFB40C01889D0121', 3,'2019-4-3');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (21.90, 'AFB43C0089D0122', 4,'2019-3-29');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (17.79, 'AFB43C01009D0123', 5,'2019-4-7');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (55.39, 'AFB43C00889D0119', 6,'2020-4-5');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (35.55, 'AFB00C01889D0120', 7,'2020-4-2');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (25.00, 'AFB43C01889D0121', 8,'2020-4-3');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (15.90, 'AFB43C01889D0122', 9,'2020-3-29');
-INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (45.79, 'AFB43C01889D0123', 10,'2020-4-7');
+
+
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (12.39, 'A0B43C01889D0119', 1,'2019-4-5');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (9.00, 'AFB03C01889D0120', 2,'2019-4-2');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (15.00, 'AFB40C01889D0121', 3,'2019-4-3');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (21.90, 'AFB43C0089D0122', 4,'2019-3-29');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (17.79, 'AFB43C01009D0123', 5,'2019-4-7');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (55.39, 'AFB43C00889D0119', 6,'2020-4-5');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (35.55, 'AFB00C01889D0120', 7,'2020-4-2');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (25.00, 'AFB43C01889D0121', 8,'2020-4-3');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (15.90, 'AFB43C01889D0122', 9,'2020-3-29');
+INSERT INTO checkout_order (total_price, tracking_nr, ordercart_id_id, date) VALUES (45.79, 'AFB43C01889D0123', 10,'2020-4-7');
+
+
 
