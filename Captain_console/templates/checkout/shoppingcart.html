@@ -1,9 +1,9 @@
 
 <div class="row">
     <div class="input-field col s12">
-        {% for order_product in order_products %}#}
+        {% for order_product in order_products %}
             {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
-      {% endfor %}
+        {% endfor %}
     </div>
 </div>
 
