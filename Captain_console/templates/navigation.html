@@ -12,11 +12,15 @@
         <!-- Search bar and account links-->
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-                <div class="input-field col s6 white-text blue accent-2">
-                    <input placeholder="Search" id="search-bar" type="text" class="white-text">
-                </div>
+                <form  autocomplete="on">
+                    <div class="input-field col s6 white-text blue accent-2">
+                        <input placeholder="Search" id="search-bar" type="text" class="white-text">
+                    </div>
+                </form>
             </li>
+
             <li class="blue accent-2"><a id="search-bar-submit" href="#"><i class="material-icons">search</i></a></li>
+
             <!-- If user is logged in, redirect him to his account page otherwise to login -->
             {% if 'user_id' in request.session %}
                 <li><a href="{% url "checkout_index" request.session.user_id %}"><i class="material-icons">shopping_cart</i></a></li>
