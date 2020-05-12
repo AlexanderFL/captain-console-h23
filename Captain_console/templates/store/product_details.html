@@ -48,7 +48,9 @@
                             {% endif %}
                         </div>
                         <a class="waves-effect waves-light btn blue accent-3 add-to-cart"><i class="material-icons left">shopping_cart</i>Add to cart</a>
-                        <a class="waves-effect waves-light btn blue accent-3" data-prod="{{ product }}" id="give-review" >Rate product</a>
+                        {% if 'user_id' in request.session %}
+                            <a class="waves-effect waves-light btn blue accent-3" data-prod="{{ product }}" id="give-review" >Rate product</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
