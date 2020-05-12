@@ -54,7 +54,7 @@ window.onload = function(){
                     if (response.status === 999){
                         console.log(response.message)
                     } else if(response.status === 200){
-                        M.toast({html: "We saved your card for next time", classes: "Lime"})
+                        M.toast({html: "We saved your card for next time", classes: "green"})
                     }
                 }
             });
