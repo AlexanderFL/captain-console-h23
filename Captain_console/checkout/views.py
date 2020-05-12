@@ -5,7 +5,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import User, PaymentInfo
-from store.models import Product, Order, OrderProduct
+from store.models import Product
+from checkout.models import Order, OrderProduct
 
 
 def base_context(id, context):
