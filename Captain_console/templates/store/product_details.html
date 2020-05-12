@@ -18,6 +18,10 @@
                 <div class="col s12 m6 l4">
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
+                        <div class="copies-sold">
+                            <span id="copies-sold-nr"></span>
+                            <span>copies sold</span>
+                        </div>
                         <div id="stars" data-average="{{ product.average_rating}}" >
                             <button class="star" data-rate="1" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
                             <button class="star" data-rate="2" data-prod="{{ product.id }}" ><i class="material-icons">star</i></button>
