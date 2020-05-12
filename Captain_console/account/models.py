@@ -36,7 +36,7 @@ class User(models.Model):
 class PaymentInfo(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
-    exp_date = models.DateField()
+    exp_date = models.CharField(max_length=6)
     card_number = models.CharField(max_length=19)
     cvc = models.CharField(max_length=3, blank=True)
 

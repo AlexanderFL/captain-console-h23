@@ -38,6 +38,7 @@ window.onload = function(){
 
         // Check if user checked remember card details
         if ($('#remember-creditcard').prop('checked')){
+            console.log("Hello?")
             $.ajax({
                 url: '',
                 type: 'POST',
@@ -54,10 +55,8 @@ window.onload = function(){
                         console.log("Saved")
                     }
                 }
-            })
+            });
         }
-
-
     }
 
     $('#confirm-payment').on('click', function(){
