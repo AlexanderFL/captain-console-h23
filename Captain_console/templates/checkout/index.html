@@ -5,10 +5,6 @@
     <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
 
-{% block js %}
-        <script src="{% static "js/checkout.js" %}"></script>
-{%endblock%}
-
 {% block content %}
 <div class = "checkout container">
     <div class="checkout_inner container">
@@ -36,5 +32,6 @@
     <script src="{% static "js/checkout.js" %}"></script>
     {% if page_checkout == 'paymentinfo' %}
         <script src="{% static "js/paymentinfo.js" %}"></script>
+        <script src="{% static "js/checkout.js" %}"></script>
     {% endif %}
 {%endblock%}
