@@ -8,8 +8,7 @@ import json
 
 
 def index(request):
-    #User ordering products in store
-
+    # Search
     if 'search_by' in request.GET:
         search_by = request.GET['search_by']
         products = Product.objects.filter(name__icontains=search_by)
@@ -19,17 +18,14 @@ def index(request):
         } for x in products]
         return JsonResponse({'data': product_resp})
 
-
+    # Sort by price, name or rating
     elif 'sort_by' in request.GET:
         sort_by = request.GET['sort_by']
-        Product.objects.update()
 
         if sort_by == "price":
             products = Product.objects.all().order_by('price')
-
         elif sort_by == "name":
             products = Product.objects.all().order_by('name')
-
         elif sort_by == "rating":
             products = Product.objects.all().order_by('-average_rating')
 
@@ -39,56 +35,52 @@ def index(request):
         } for x in products]
         return JsonResponse({'data': product_resp})
 
-
+    # Filter applications
     elif 'filter_by' in request.GET:
-
         data = request.GET
         developer = data.get("developer")
         genre = data.get("genre")
         category = data.get("category")
 
+        # Developer filter - get all products by filter
         if (developer == "All") or (developer == "Developer"):
             dev_products = Product.objects.all()
         else:
             dev_products = Product.objects.filter(productdetails__developer_id__developer__exact=developer)
 
+        # Genre filter - get all products by filter
         if (genre == "All") or (genre == "Genre"):
             genre_products = Product.objects.all()
         else:
             genre_products = Product.objects.filter(productdetails__genre_id__genre__exact=genre)
 
+        # Category filter - get all products by filter
         if (category == "All") or (category == "Category"):
             cat_products = Product.objects.all()
         else:
             cat_products = Product.objects.filter(category__name__exact=category)
 
+        # Find the union of filtered items and return
         filtered_products = dev_products & genre_products & cat_products
         product_resp = [{
             'id': x.id,
         } for x in filtered_products]
         return JsonResponse({'data': product_resp})
 
+    # Add to cart
     elif 'add_to_cart' in request.POST:
         data = request.POST
         user_id = request.session.get('user_id')
 
+        order_product = OrderProduct()
 
-    #Initial load - order by name
+
+    # Initial Store load - order by name
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/index.html', context)
 
 
-def games(request):
-    print("hello")
-    context = {'products': Product.objects.all().order_by('name')}
-    return render(request, 'store/games.html', context)
-
-
-def consoles(request):
-    context = {'products': Product.objects.all().order_by('name')}
-    return render(request, 'store/consoles.html', context)
-
-
+# Get product details
 @csrf_exempt
 def get_product_by_id(request, id):
     if 'copies_sold' in request.GET:
@@ -96,27 +88,22 @@ def get_product_by_id(request, id):
         response = json.dumps({'status': 200, 'message': copies_sold})
         return HttpResponse(response, content_type='application/json')
 
-    #Review product
+    # Review product
     if 'review_product' in request.GET:
-        #Extract data from jQuery dict
         data = request.POST
         prod_id = data.get("prod_id")
         rating = data.get("rating")
         user_id = request.session.get('user_id')
         user = User.objects.get(pk=user_id)
 
-        #Get Product and User instances and create review
+        # Get Product and User instances and create review
         product = get_object_or_404(Product, pk=prod_id)
         new_review = Review()
         new_review.create_review(product, user, rating)
 
-        print("Rating before: " + str(product.average_rating))
-
-        #Update average rating for the product
+        # Update average rating for the product
         new_rating = product.get_rating()
         product.set_rating(new_rating, prod_id)
-
-        print("Rating after: " + str(product.average_rating))
         return redirect('product_details', id=id)
 
     return render(request, 'store/product_details.html', {
@@ -124,37 +111,37 @@ def get_product_by_id(request, id):
     })
 
 
+# Dynamic search in store
 def search(request, query):
     return render(request, 'store/search.html', {
         'search_results': get_list_or_404(Product.objects.filter(name__icontains=query)),
         'search_query': query
     })
 
-
-   #
-   # print(type(products))
-   #          print(products)
-   #
-   #          products_sorted = {}
-   #          for product in products:
-   #              print(product.name)
-   #              rating = product.get_rating()
-   #              products_sorted[rating] = product
-   #              print(product.get_rating())
-   #
-   #          sort_dict = {k: products_sorted[k] for k in sorted(products_sorted, reverse=True)}
-   #
-   #          print(type(sort_dict))
-   #          print(sort_dict)
-   #          products = []
-   #          for k, v in sort_dict.items():
-   #              print(k)
-   #              print(v)
-   #              products.append(v)
-   #
-   #          print(type(products))
-   #          print(products)
-   #          for product in products:
-   #              print(product)
-   #
-   #          return JsonResponse({'data': products})
+#
+# print(type(products))
+#          print(products)
+#
+#          products_sorted = {}
+#          for product in products:
+#              print(product.name)
+#              rating = product.get_rating()
+#              products_sorted[rating] = product
+#              print(product.get_rating())
+#
+#          sort_dict = {k: products_sorted[k] for k in sorted(products_sorted, reverse=True)}
+#
+#          print(type(sort_dict))
+#          print(sort_dict)
+#          products = []
+#          for k, v in sort_dict.items():
+#              print(k)
+#              print(v)
+#              products.append(v)
+#
+#          print(type(products))
+#          print(products)
+#          for product in products:
+#              print(product)
+#
+#          return JsonResponse({'data': products})
