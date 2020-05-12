@@ -1,8 +1,9 @@
 from django.db import models
 from account.models import User
-
-
+from store.models import Product
 # Maybe these models can change locations but I'll leave it here for now
+
+
 class Order(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     total_price = models.FloatField()
