@@ -70,5 +70,33 @@ window.onload = function() {
             $('#give-review').removeClass('disabled')
             $('#rating-count').html("(" + count + ")")
         });
+
+
+              //Add to cart
+        //TODO: Implement for add to cart in product details
+        $('.add-to-cart').on('click', function (e) {
+            e.preventDefault()
+            console.log("add to cart")
+            var prod_id = $(this).data('prod')
+            console.log(prod_id)
+            var csrftoken = getCookie('csrftoken');
+
+            //No quantity set, only "add to cart"
+            var quantity = 1
+
+             $.ajax({
+                url: "/store/?add_to_cart=" + prod_id,
+                type: "POST",
+                data: {prod_id: prod_id, quantity: quantity},
+
+                success: function(status){
+                    console.log(this.url)
+                    console.log("SUCCESS: " + status)
+                },
+                error: function(status){
+                    console.log("ERROR: " + status.message)
+                }
+            })
+        });
     });
 }
