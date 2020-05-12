@@ -1,14 +1,17 @@
 {%  extends 'base.html' %}
 {% load static %}
-
 {% block style %}
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
     <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
+<<<<<<< HEAD
+{% block js %}
+        <script src="{% static "js/checkout.js" %}"></script>
+{%endblock%}
+=======
 
+>>>>>>> 525e7fd8d58c34a49599b5726a4c8cbeda3e3a75
 {% block content %}
-
-
 <div class = "checkout container">
     <div class="checkout_inner container">
         {% include 'checkout/crumbs.html' %}
@@ -24,19 +27,13 @@
         <div class="col s4 m6 fix-content">
             <div class="">
                 <span class="col s12">
-                {% include 'checkout/shoppingcart.html' with product=product %}
-
-{#            {% for order in order_history %}#}
-{#                {% include 'account/order_history.html' with order=order%}#}
-{#            {% endfor %}#}
-                </span>
+                {% include 'checkout/shoppingcart.html' with order_products=order_products %}
+            </span>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
-
 {% block js %}
     <script src="{% static "js/checkout.js" %}"></script>
     {% if page_checkout == 'paymentinfo' %}

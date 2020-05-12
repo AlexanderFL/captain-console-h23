@@ -1,11 +1,11 @@
 
-            <div class="row">
-                <div class="input-field col s12">
-                    {% for product in product %}#}
-                        {% include 'checkout/shoppingcart_element.html' with product=product %}
-                  {% endfor %}
-                </div>
-            </div>
+<div class="row">
+    <div class="input-field col s12">
+        {% for order_product in order_products %}#}
+            {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
+      {% endfor %}
+    </div>
+</div>
 
 
 
