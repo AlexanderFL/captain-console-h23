@@ -1,8 +1,10 @@
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render
-from account.models import User
+from account.models import User, PaymentInfo
 from store.models import Product
 
-# Create your views here.
 
 def base_context(id, context):
     context['user'] = User.objects.get(pk=id)
@@ -12,6 +14,7 @@ def base_context(id, context):
 
  # products = Product.objects.filter(orderproduct__order_id__user_id=id)
 
+
 def index(request, id=None):
     context = {
         'page_checkout': 'contactinfo',
@@ -19,6 +22,7 @@ def index(request, id=None):
     if id != None:
         context = base_context(id, context)
     return render(request, 'checkout/index.html', context)
+
 
 def shipping(request, id=None):
     context = {
@@ -28,13 +32,32 @@ def shipping(request, id=None):
         context = base_context(id, context)
     return render(request, 'checkout/index.html', context)
 
+
 def payment(request, id=None):
+    if request.method == "POST":
+        # Make sure user is logged in
+        if request.session.get('user_id') is None:
+            response = json.dumps({'status': 999, 'message': 'User not logged in'})
+            return HttpResponse(response, content_type='application/json')
+
+        cardHolder = request.POST.get('cardHolder')
+        cardNumber = request.POST.get('cardNumber')
+        expireDate = request.POST.get('expireDate')
+        cvc = request.POST.get('cvc')
+
+        PaymentInfo.insert(request.session.get('user_id'), cardHolder, cardNumber, expireDate, cvc)
+
+        response = json.dumps({'status': 200, 'message': 'Yes'})
+        return HttpResponse(response, content_type='application/json')
+
     context = {
         'page_checkout': 'paymentinfo',
     }
+
     if id != None:
         context = base_context(id, context)
     return render(request, 'checkout/index.html', context)
+
 
 def confirmation(request, id=None):
     context = {
