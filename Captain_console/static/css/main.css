@@ -2,6 +2,7 @@
 * main.css
 *
 * Index
+* - Font
 * - Footer placement
 * - Container override
 * - Content background color
@@ -9,6 +10,14 @@
 * - Navbar placements and styles
 * - Mobile navbar styles
 */
+
+/**
+* Font
+ */
+#store-link {
+    font-family: 'Chelsea Market', serif;
+    font-size: 22px;
+}
 
 /**
 * Footer placement
@@ -113,9 +122,4 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 /* Lowers the search icon inline with the search bar */
 .sidenav li .input-field .prefix{
     top: 2rem;
-}
-
-#store-link {
-    font-family: 'Chelsea Market', serif;
-    font-size: 22px;
 }

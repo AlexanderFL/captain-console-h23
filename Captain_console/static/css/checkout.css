@@ -1,7 +1,18 @@
+/**
+* checkout.css
+*
+* Index
+* - Cards placement
+* - Shopping cart elements
+* - Card information placement
+*/
+
+/**
+    Cards placement
+*/
 div.checkout.container {
     width: 90%;
 }
-
 div.checkout_inner.container {
     display: flex;
     flex-wrap: wrap;
@@ -9,54 +20,27 @@ div.checkout_inner.container {
     justify-content: center;
     margin: auto;
 }
-
 .fix-content {
     margin-left: 15px;
     flex-grow: 1;
 }
 
-form {
-    display: inline-block;
-}
+/**
+    Shopping cart elements
+*/
 
 #quantity{
     margin-left: 10px;
 }
-#game-title{
-    margin: 0 !important;
-}
 
-label, input {
-    /* In order to define widths */
-    display: inline-block;
-}
-
-table {
-    border-collapse: inherit;
-}
-
-card-image {
-    text-align: start;
-}
-
-.materialboxed {
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-}
-
-.card-content.input[type=text] {
-    width: 40%;
-    padding: 8px 122px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
+/**
+    Card information placement
+*/
 
 .move-buttons{
     margin-top: 5px;
     margin-left: 3rem;
 }
-
-i.icon-blue{
-    color: black;
+#game-title{
+    margin: 0 !important;
 }
