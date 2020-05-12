@@ -1,32 +1,27 @@
 
-
-
 <div class="card-panel white">
     <h3 class="card-title">Payment information</h3>
+
     <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
             <i class="material-icons prefix">account_box</i>
             <input id="card_nameholder" type="text" class="validate" required  value="{{user.paymentinfo_set.first.name}}">
             <label for="card_nameholder">Cardholder name</label>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
             <i class="material-icons prefix">credit_card</i>
             <input id="card_number" type="tel" class="validate" required  value="{{user.paymentinfo_set.first.card_number}}">
             <label for="card_number">Card number</label>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="input-field col s5">
+        <div class="input-field col s12 m6">
             <i class="material-icons prefix">date_range</i>
             <input id="exp_date" type="text" class="validate" required  value="">
-            <label for="exp_date">Exp date</label>
+            <label for="exp_date">Expire date (01/21)</label>
         </div>
 
-        <div class="input-field col s3">
+        <div class="input-field col s12 m6">
             <i class="material-icons prefix">security</i>
             <input id="cvc_number" type="text" class="validate" required  value="">
             <label for="cvc_number">CVC</label>
@@ -41,34 +36,32 @@
             </label>
         </div>
     </div>
-
     <div class="row">
         <br>
     </div>
     <div class="row">
-
-        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Back
+        <a class="btn waves-effect blue accent-3 move-buttons"
+           href="   {% if user.id %}
+                        {% url 'checkout_shipping' user.id %}
+                    {% else %}
+                        {% url 'checkout_shipping' %}
+                    {% endif %}">Back
         <i class="material-icons right">arrow_back</i></a>
 
-        <a class="btn waves-effect blue accent-3 modal-trigger" href="#modal1">Submit
+        <a class="btn waves-effect blue accent-3 modal-trigger move-buttons" href="#modal1">Submit
         <i class="material-icons right">arrow_forward</i></a>
-{#        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_confirmation' user.id %}{% else %}{% url 'checkout_confirmation' %}{% endif %}">Next#}
-{#        <i class="material-icons right">arrow_forward</i></a>#}
-
     </div>
-
-
 </div>
 
-  <!-- Modal Structure -->
-   <div id="modal1" class="modal">
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Your order has been placed</h4>
-      <p>Thank you for your purchase!<br>
-          A confirmation email will be sent to: {{ user.email }}</p>
+        <h4>Your order has been placed</h4>
+            <p>Thank you for your purchase!<br>
+            A confirmation email will be sent to: {{ user.email }}</p>
+            </div>
+            <div class="modal-footer">
+        <a href="/" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
-    <div class="modal-footer">
-      <a href="/" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
-    </div>
-  </div>
+</div>
 

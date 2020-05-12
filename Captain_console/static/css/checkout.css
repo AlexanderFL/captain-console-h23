@@ -52,21 +52,9 @@ card-image {
     box-sizing: border-box;
 }
 
-
- a.btn.waves-effect.blue.accent-3, button.btn.waves-effect.blue.accent-3{
+.move-buttons{
     margin-top: 5px;
     margin-left: 3rem;
-}
-
-.input-field {
-
-    margin-top: 0rem;
-    margin-bottom: 0rem;
-}
-
-
-.container .card-panel .card-title {
-  text-align: center;
 }
 
 i.icon-blue{
