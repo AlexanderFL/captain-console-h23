@@ -1,12 +1,10 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, OrderProduct
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
+from checkout.models import OrderProduct
 from account.models import User
 import json
-from django.forms.models import model_to_dict
-from collections import OrderedDict
-from store.store_forms.store_form import GiveRatingForm
 
 
 def index(request):
@@ -64,11 +62,16 @@ def index(request):
         else:
             cat_products = Product.objects.filter(category__name__exact=category)
 
-        filtered_products = dev_products&genre_products&cat_products
+        filtered_products = dev_products & genre_products & cat_products
         product_resp = [{
             'id': x.id,
         } for x in filtered_products]
         return JsonResponse({'data': product_resp})
+
+    elif 'add_to_cart' in request.POST:
+        data = request.POST
+        user_id = request.session.get('user_id')
+
 
     #Initial load - order by name
     context = {'products': Product.objects.all().order_by('name')}
