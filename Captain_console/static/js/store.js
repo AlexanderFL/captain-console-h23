@@ -26,7 +26,7 @@ window.onload = function() {
 
             //GET request with product ID's in new order
             $.ajax({
-                url: '/store?sort_by=' + order_name,
+                url: '/store?sort_by=' + order_name + "/",
                 type: 'GET',
 
                 success: function (resp) {
@@ -48,6 +48,8 @@ window.onload = function() {
         $('.filterby').on('change', function (e) {
             e.preventDefault();
 
+           // const csrf_token = document.getElementsByName("csrfmiddlewaretoken")[0].value
+
             filter_by = $(this).attr("id")
             filter_var = $(this).find('option:selected').text();
             my_filt = $(".filterby").find('option:selected').toArray()
@@ -63,6 +65,7 @@ window.onload = function() {
 
             //GET request with product ID's in new order
             $.ajax({
+               // headers: {"X-CSRFToken": csrf_token},
                 url: '/store?filter_by=' + filter_var,
                 type: 'GET',
                 data: {
@@ -101,18 +104,25 @@ window.onload = function() {
             });
         });
 
-                //Add to cart
+        //Add to cart
         //TODO: Implement for add to cart in product details
-        $('.add-to-cart').on('click', function (event) {
+        $('.add-to-cart').on('click', function (e) {
+            e.preventDefault()
             console.log("add to cart")
             var prod_id = $(this).data('prod')
             console.log(prod_id)
+            var csrftoken = getCookie('csrftoken');
+
+            //No quantity set, only "add to cart"
+            var quantity = 1
 
              $.ajax({
-                url: "/store?add_to_cart=" + prod_id,
-                type: "POST",
-                data: {prod_id: prod_id},
+                url: "/store/?add_to_cart=" + prod_id,
+                 type: "POST",
+                data: {prod_id: prod_id, quantity: quantity},
+
                 success: function(status){
+                    console.log(this.url)
                     console.log("SUCCESS: " + status)
                 },
                 error: function(status){
@@ -163,4 +173,20 @@ function filter_products(products_filtered) {
             product_cards[i].style.display = 'none' //Do not display
         }
     }
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }

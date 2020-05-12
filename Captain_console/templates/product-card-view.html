@@ -9,6 +9,7 @@
                 <div class="tag">-{{ product.get_discount }}%</div>
             {% endif %}
             <img class="product-img" src="{{ product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}">
+            {% csrf_token %}
             <a class="btn-floating halfway-fab waves-effect waves-light blue btn-large add-to-cart" data-prod="{{ product.id }}"><i class="material-icons">add_shopping_cart</i></a>
         </div>
 

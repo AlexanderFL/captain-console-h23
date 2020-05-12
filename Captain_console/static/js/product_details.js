@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems);
 });
 
-
 function update_ratings() {
     //Updates ratings
     $('.star').prop('disabled',true)
@@ -12,7 +11,6 @@ function update_ratings() {
     rating = $('#stars').data('average')
     rounded_rating = Math.round(rating)
 
-    console.log("updating")
     for (var i = 0; i < rounded_rating; i++) {
         star = stars[i];
         star.classList.add("fill")
