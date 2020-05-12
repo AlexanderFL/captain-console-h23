@@ -4,9 +4,11 @@
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
     <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
+
 {% block js %}
         <script src="{% static "js/checkout.js" %}"></script>
 {%endblock%}
+
 {% block content %}
 <div class = "checkout container">
     <div class="checkout_inner container">
@@ -23,8 +25,8 @@
         <div class="col s4 m6 fix-content">
             <div class="">
                 <span class="col s12">
-                {% include 'checkout/shoppingcart.html' with order_products=order_products %}
-            </span>
+                    {% include 'checkout/shoppingcart.html' with order_products=order_products %}
+                </span>
             </div>
         </div>
     </div>

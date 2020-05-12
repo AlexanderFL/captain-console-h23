@@ -47,7 +47,7 @@ def payment(request, id=None):
         expireDate = request.POST.get('expireDate')
         cvc = request.POST.get('cvc')
 
-        PaymentInfo.insert(request.session.get('user_id'), cardHolder, cardNumber, expireDate, cvc)
+        PaymentInfo.insert(User.objects.get(pk=request.session.get('user_id')), cardHolder, cardNumber, expireDate, cvc)
 
         response = json.dumps({'status': 200, 'message': 'Yes'})
         return HttpResponse(response, content_type='application/json')
