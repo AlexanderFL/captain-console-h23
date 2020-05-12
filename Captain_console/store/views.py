@@ -1,8 +1,9 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, OrderProduct
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
 from account.models import User
+from checkout.models import OrderProduct
 import json
 from django.forms.models import model_to_dict
 from collections import OrderedDict
