@@ -71,9 +71,7 @@ def index(request):
     elif 'add_to_cart' in request.POST:
         data = request.POST
         user_id = request.session.get('user_id')
-
         order_product = OrderProduct()
-
 
     # Initial Store load - order by name
     context = {'products': Product.objects.all().order_by('name')}
@@ -117,31 +115,3 @@ def search(request, query):
         'search_results': get_list_or_404(Product.objects.filter(name__icontains=query)),
         'search_query': query
     })
-
-#
-# print(type(products))
-#          print(products)
-#
-#          products_sorted = {}
-#          for product in products:
-#              print(product.name)
-#              rating = product.get_rating()
-#              products_sorted[rating] = product
-#              print(product.get_rating())
-#
-#          sort_dict = {k: products_sorted[k] for k in sorted(products_sorted, reverse=True)}
-#
-#          print(type(sort_dict))
-#          print(sort_dict)
-#          products = []
-#          for k, v in sort_dict.items():
-#              print(k)
-#              print(v)
-#              products.append(v)
-#
-#          print(type(products))
-#          print(products)
-#          for product in products:
-#              print(product)
-#
-#          return JsonResponse({'data': products})
