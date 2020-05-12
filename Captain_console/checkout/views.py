@@ -11,14 +11,18 @@ from store.models import Product
 def base_context(id, context):
     context['user'] = User.objects.get(pk=id)
     context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
+
+    print(context)
     return context
 
  # products = Product.objects.filter(orderproduct__order_id__user_id=id)
 
 
 def index(request, id=None):
+    print("hello")
     context = {
         'page_checkout': 'contactinfo',
+        'order_products': 'order_products',
     }
     if id != None:
         context = base_context(id, context)
