@@ -5,7 +5,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import User, PaymentInfo, Address, UserPhoto
-from store.models import OrderProduct, Product, ProductPhoto, Order
+from store.models import Product, ProductPhoto
+from checkout.models import OrderProduct, Order
 
 
 #

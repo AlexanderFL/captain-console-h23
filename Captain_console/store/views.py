@@ -2,8 +2,9 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
-from checkout.models import OrderProduct
+
 from account.models import User
+from checkout.models import OrderProduct
 import json
 
 

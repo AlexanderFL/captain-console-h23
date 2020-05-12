@@ -5,11 +5,13 @@ INSERT INTO Account_User (username, password, email) VALUES ('Helga Árnadóttir
 INSERT INTO Account_User (username, password, email) VALUES ('Alexander Freyr Lúðvíksson', 'hiuÐEhiueoiðewhuwLBHWLBSbslsbudL', 'alexanderl17@ru.is');
 INSERT INTO Account_User (username, password, email) VALUES ('Eyþór Óli Borgþórsson', 'superman', 'eythorb19@ru.is');
 
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (1, 'Heiðar Sigurjónsson', '2024-3-1', '394488727712', '123');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (2, 'Snæbjörg Pétursdóttir', '2020-8-1', '789356733451', '321');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (3, 'Helga Árnadóttir', '2026-9-1', '394488727712', '456');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (5, 'Eyþór Óli Borgþórsson', '2022-12-1', '394488720000', '654');
-INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (4, 'Alexander Freyr Lúðvíksson', '2021-1-1', '000088727712', '789');
+
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (1, 'Heiðar Sigurjónsson', '24-03', '394488727712', '123');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (2, 'Snæbjörg Pétursdóttir', '20-08', '789356733451', '321');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (3, 'Helga Árnadóttir', '26-09', '394488727712', '456');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (5, 'Eyþór Óli Borgþórsson', '22-12', '394488720000', '654');
+INSERT INTO Account_PaymentInfo (user_id_id, name, exp_date, card_number, cvc) VALUES (4, 'Alexander Freyr Lúðvíksson', '21-01', '000088727712', '789');
+
 
 INSERT INTO Account_Address (user_id_id, address, city, country, zip_code) VALUES (1, 'Beykidal 6, 204', 'Njarðvík', 'Iceland', '321');
 INSERT INTO Account_Address (user_id_id, address, city, country, zip_code) VALUES (2, 'Reynisgötu 12', 'Moskva', 'Rússland', '923817');
@@ -118,21 +120,32 @@ INSERT INTO Store_Review (product_id_id, user_id_id, rating, comment) VALUES (6,
 
 
 
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (1, 12.39, 'A0B43C01889D0119','2019-4-5');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (2, 9.00, 'AFB03C01889D0120','2019-4-2');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (4, 15.00, 'AFB40C01889D0121','2019-4-3');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (5, 21.90, 'AFB43C0089D0122','2019-3-29');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (2, 17.79, 'AFB43C01009D0123','2019-4-7');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (1, 55.39, 'AFB43C00889D0119','2020-4-5');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (2, 35.55, 'AFB00C01889D0120','2020-4-2');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (4, 25.00, 'AFB43C01889D0121','2020-4-3');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (5, 15.90, 'AFB43C01889D0122','2020-3-29');
-INSERT INTO Store_Order (user_id_id, total_price, tracking_nr, date) VALUES (2, 45.79, 'AFB43C01889D0123','2020-4-7');
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 3, 3, 68.43);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 5, 1, 9.89);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 7, 1, 12.99);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 6, 3, 68.43);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 4, 1, 9.89);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 2, 1, 12.99);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 6, 3, 68.43);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 4, 1, 9.89);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 2, 1, 12.99);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
 
 
-INSERT INTO Store_OrderProduct (order_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
-INSERT INTO Store_OrderProduct (order_id_id, product_id_id, quantity, price) VALUES (2, 3, 3, 68.43);
-INSERT INTO Store_OrderProduct (order_id_id, product_id_id, quantity, price) VALUES (3, 5, 1, 9.89);
-INSERT INTO Store_OrderProduct (order_id_id, product_id_id, quantity, price) VALUES (4, 2, 1, 12.99);
-INSERT INTO Store_OrderProduct (order_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
+
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (12.39, 'A0B43C01889D0119', 1,'2019-4-5');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (9.00, 'AFB03C01889D0120', 2,'2019-4-2');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (15.00, 'AFB40C01889D0121', 3,'2019-4-3');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (21.90, 'AFB43C0089D0122', 4,'2019-3-29');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (17.79, 'AFB43C01009D0123', 5,'2019-4-7');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (55.39, 'AFB43C00889D0119', 6,'2020-4-5');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (35.55, 'AFB00C01889D0120', 7,'2020-4-2');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (25.00, 'AFB43C01889D0121', 8,'2020-4-3');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (15.90, 'AFB43C01889D0122', 9,'2020-3-29');
+INSERT INTO checkout_order (total_price, tracking_nr, orderproduct_id_id, date) VALUES (45.79, 'AFB43C01889D0123', 10,'2020-4-7');
 
