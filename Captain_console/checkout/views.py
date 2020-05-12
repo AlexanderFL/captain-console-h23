@@ -11,14 +11,14 @@ from checkout.models import Order, OrderProduct
 
 def base_context(id, context):
     context['user'] = User.objects.get(pk=id)
-    context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
+    # context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
 
-    print(context)
+    # print(context)
     # context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
 
     # Þetta er vitlaust, þarf að pulla order_id úr order_product og matcha við þetta
     # Eins og er, er þetta allavega einhver data fyrir shoppingcart
-    context['order_products'] = Order.objects.filter(user_id_id=id)
+    context['order_products'] = OrderProduct.objects.filter(user_id_id=id)
 
     # if len(context['order_products']) > 1 :
     #     for order in context['order_products'] :
