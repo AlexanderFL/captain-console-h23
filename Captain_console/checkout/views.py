@@ -2,6 +2,8 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 from account.models import User, PaymentInfo
 from store.models import Product
 
@@ -33,8 +35,9 @@ def shipping(request, id=None):
     return render(request, 'checkout/index.html', context)
 
 
+@csrf_exempt
 def payment(request, id=None):
-    if request.method == "POST":
+    if request.method == 'POST':
         # Make sure user is logged in
         if request.session.get('user_id') is None:
             response = json.dumps({'status': 999, 'message': 'User not logged in'})
@@ -66,4 +69,3 @@ def confirmation(request, id=None):
     if id != None:
         context = base_context(id, context)
     return render(request, 'checkout/index.html', context)
-

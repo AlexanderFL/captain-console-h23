@@ -12,7 +12,23 @@ window.onload = function(){
 
         // Check if user checked remember card details
         if ($('#remember-creditcard').prop('checked')){
-            //Save card into database
+            $.ajax({
+                url: '',
+                type: 'POST',
+                data: {
+                    cardHolder: cardHolder,
+                    cardNumber: cardNumber,
+                    expireDate: expireDate,
+                    cvc: cvc
+                },
+                success : function(response){
+                    if (response.status === 999){
+                        console.log(response.message)
+                    } else if(response.status === 200){
+                        console.log("Saved")
+                    }
+                }
+            })
         }
 
 
