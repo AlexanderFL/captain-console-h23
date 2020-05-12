@@ -2,11 +2,15 @@
     <div class="row">
         <div class="col s2">
             <a class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_up</i></a>
-            <p><span id="quantity">4</span></p>
+            <p><span id="quantity">{{ order_product.quantity }}</span></p>
             <a class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_down</i></a>
         </div>
         <div class="col s10">
+<<<<<<< HEAD
             <h5 id="game-title">{% order_product %}</h5>
+=======
+            <h5 id="game-title">{{ order_product.id }}</h5>
+>>>>>>> aff4ce5ccbf05528393897a77a66ce5cf93d305d
         </div>
     </div>
 </div>

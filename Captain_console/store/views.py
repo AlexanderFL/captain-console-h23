@@ -1,7 +1,7 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, OrderProduct
 from account.models import User
 import json
 from django.forms.models import model_to_dict
@@ -88,6 +88,11 @@ def consoles(request):
 
 @csrf_exempt
 def get_product_by_id(request, id):
+    if 'copies_sold' in request.GET:
+        copies_sold = OrderProduct.objects.filter(product_id=id).count()
+        response = json.dumps({'status': 200, 'message': copies_sold})
+        return HttpResponse(response, content_type='application/json')
+
     #Review product
     if 'review_product' in request.GET:
         #Extract data from jQuery dict
@@ -110,7 +115,6 @@ def get_product_by_id(request, id):
 
         print("Rating after: " + str(product.average_rating))
         return redirect('product_details', id=id)
-
 
     return render(request, 'store/product_details.html', {
         'product': get_object_or_404(Product, pk=id)

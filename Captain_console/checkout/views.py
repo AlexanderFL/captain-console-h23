@@ -1,11 +1,11 @@
 import json
-
+from itertools import chain
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import User, PaymentInfo
-from store.models import Product
+from store.models import Product, Order, OrderProduct
 
 
 def base_context(id, context):
@@ -13,6 +13,24 @@ def base_context(id, context):
     context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
 
     print(context)
+    # context['order_products'] = Product.objects.raw('SELECT * FROM store_product, store_orderproduct, store_order WHERE store_product.id = store_orderproduct.product_id_id  AND store_orderproduct.order_id_id = store_order.id  AND store_order.user_id_id = s%;', [id])
+
+    # Þetta er vitlaust, þarf að pulla order_id úr order_product og matcha við þetta
+    # Eins og er, er þetta allavega einhver data fyrir shoppingcart
+    context['order_products'] = Order.objects.filter(user_id_id=id)
+
+    # if len(context['order_products']) > 1 :
+    #     for order in context['order_products'] :
+    #         p = Product.objects.get(pk=order.product_id)
+
+    # u = User.objects.get(pk=id)
+    # p = Order.objects.get('user_id_id'=id)
+    # d = Product.objects.all()
+    # o = Order.objects.all(user_id=1)
+
+    # o = Order.objects.filter(user_id_id=1)
+    # op = OrderProduct.objects.exclude(o.order_id_id)
+
     return context
 
  # products = Product.objects.filter(orderproduct__order_id__user_id=id)
