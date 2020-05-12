@@ -12,18 +12,22 @@
         <!-- Search bar and account links-->
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-                <div class="input-field col s6 white-text blue accent-2">
-                    <input placeholder="Search" id="search-bar" type="text" class="white-text">
-                </div>
+                <form  autocomplete="on">
+                    <div class="input-field col s6 white-text blue accent-2">
+                        <input placeholder="Search" id="search-bar" type="text" class="white-text">
+                    </div>
+                </form>
             </li>
+
             <li class="blue accent-2"><a id="search-bar-submit" href="#"><i class="material-icons">search</i></a></li>
+
             <!-- If user is logged in, redirect him to his account page otherwise to login -->
             {% if 'user_id' in request.session %}
                 <li><a href="{% url "checkout_index" request.session.user_id %}"><i class="material-icons">shopping_cart</i></a></li>
                 <li><a href="{% url 'account_index' request.session.user_id %}"><i class="material-icons">person</i></a></li>
             {% else %}
                 <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
-                <li><a href="{% url "login_index" %}"><i class="material-icons">person</i></a></li>
+                <li><a href="{% url "account_index" %}"><i class="material-icons">person</i></a></li>
             {% endif %}
         </ul>
     </div>
@@ -42,11 +46,11 @@
     <div class="seperator"></div>
     <li><a href="{% url "games_index" %}">Store</a></li>
     <div class="seperator"></div>
-    {% if 'user_id' in request.session %}
-        <li><a href="{% url "checkout_index" request.session.user_id %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
-        <li><a href="{% url 'account_index' request.session.user_id %}">Account <i class="material-icons">person</i></a></li>
-    {% else %}
+{#    {% if 'user_id' in request.session %}#}
+{#        <li><a href="{% url "checkout_index" request.session.user_id %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>#}
+{#        <li><a href="{% url 'account_index' request.session.user_id %}">Account <i class="material-icons">person</i></a></li>#}
+{#    {% else %}#}
         <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
         <li><a href="{% url "login_index" %}">Account <i class="material-icons">person</i></a></li>
-    {% endif %}
+{#    {% endif %}#}
 </ul>

@@ -32,10 +32,6 @@ class User(models.Model):
             return user.password
         return None
 
-    @staticmethod
-    def user_authentication(email, password):
-        pass
-
 
 class PaymentInfo(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -43,6 +39,10 @@ class PaymentInfo(models.Model):
     exp_date = models.DateField()
     card_number = models.CharField(max_length=19)
     cvc = models.CharField(max_length=3, blank=True)
+
+    @staticmethod
+    def insert(user_id, name, number, exp, cvc):
+        PaymentInfo.objects.create(user_id=user_id, name=name, card_number=number, exp_date=exp, cvc=cvc)
 
 
 class Address(models.Model):

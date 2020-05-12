@@ -1,43 +1,36 @@
 
 <div class="card-panel white">
+    <h3 class="card-title">Contact information</h3>
 
-<form class="col s12">
-
-    <div class="row"><h3 class="card-title">Contact information</h3>
-        <div class="img-field col s4 offset4">
-            <img class="circle responsive-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+    <form >
+        <div class="row">
+            <div class="img-field col s4 offset4">
+                <img class="circle responsive-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+            </div>
         </div>
 
-    </div>
+         <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix icon-blue">account_box</i>
+                <input id="contact-info" type="text" required value="{{ user.username }}">
+                <label for="contact-info">Full name</label>
+            </div>
 
-     <div class="row">
-        <div class="input-field col s8">
-            <i class="material-icons prefix icon-blue">account_box</i>
-            <input id="contact-info" type="text" required value="{{ user.username }}">
-            <label for="contact-info">Full name</label>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate" required value="{{ user.email }}">
+                <label for="email">Email</label>
+                <span class="helper-text" data-error="Please enter a valid email address"></span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s8">
-            <i class="material-icons prefix">email</i>
-            <input id="email" type="email" class="validate" required value="{{ user.email }}">
-            <label for="email">Email</label>
-            <span class="helper-text" data-error="Please enter a valid email address"></span>
+
+        <div class="row">
+            <a class="btn waves-effect blue accent-3 move-buttons"  href="../">Cancel
+            <i class="material-icons right">cancel</i></a>
+
+            <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Next
+                <i class="material-icons right">arrow_forward</i>
+            </a>
         </div>
-    </div>
-
-    <div class="row">
-        <a class="btn waves-effect blue accent-3"  href="../">Cancel
-        <i class="material-icons right">cancel</i></a>
-
-{#{% url 'checkout_shipping'  user.id %}#}
-
-
-        <a class="btn waves-effect blue accent-3"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% else %}{% url 'checkout_shipping' %}{% endif %}">Next
-            <i class="material-icons right">arrow_forward</i>
-        </a>
-    </div>
-</form>
+    </form>
 </div>
-
-{#</div>#}

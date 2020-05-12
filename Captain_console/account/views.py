@@ -49,7 +49,7 @@ def index(request, id):
             context = base_context(id, context)
         return render(request, 'account/index.html', context)
     else:
-        return HttpResponseForbidden()
+        return render(request, 'login/index.html', context={'page_login': 'login_index'})
 
 
 @csrf_exempt
@@ -86,4 +86,4 @@ def edit(request, id):
             context = base_context(id, context)
         return render(request, 'account/index.html', context)
     else:
-        return HttpResponseForbidden()
+        return render(request, 'login/index.html', context={'page_login': 'login_index'})
