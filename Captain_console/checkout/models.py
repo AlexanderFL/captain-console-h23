@@ -20,16 +20,22 @@ class OrderProduct(models.Model):
     # Creates new order product in DB
     def add_product_to_cart(self, product_id, quantity, user_id=None):
 
-        orders = Order.objects.get(pk=user_id)
-
-        for order in orders:
-            status = order.confirmed
-
-            if status == False:
-                shopping_cart = order
-
-            else:
-                Order.objects.create()
+        # orders = Order.objects.get(pk=user_id)
+        #
+        # orders = Order.objects.get(pk=user_id)
+        # print(orders)
+        #
+        # for order in orders:
+        #     if order.order_id != 10:
+        #         order.delete(confirmed=True)
+        #
+        # for order in orders:
+        #     status = order.confirmed
+        #     if status == False:
+        #          shopping_cart = order
+        #
+        #     else:
+        #          Order.objects.create()
 
 
         product = Product.objects.get(pk=product_id)

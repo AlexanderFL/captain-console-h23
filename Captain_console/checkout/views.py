@@ -11,7 +11,8 @@ from checkout.models import Order, OrderProduct
 
 def base_context(user_id):
     user = User.objects.get(pk=user_id)
-    order_products = OrderProduct.objects.filter(user_id=user_id)
+    print("hello")
+    order_products = OrderProduct.objects.filter(order_id__user_id=user_id)
 
     context = {
         'user': user,
@@ -25,6 +26,7 @@ def index(request):
     #If user is not logged in - render login page
     user_id = request.session.get("user_id")
     print(user_id)
+    print(type(user_id))
     if user_id is None:
         return render(request, 'login/index.html')
 
@@ -92,12 +94,17 @@ def payment(request, id=None):
     return render(request, 'checkout/index.html', context)
 
 
-def confirmation(request, id=None):
+def confirmation(request):
+
+    user_id = request.session.get("user_id")
+    if user_id is None:
+        return render(request, 'login/index.html')
+
     context = {
         'page_checkout': 'confirmation',
     }
-    if id != None:
-        context = base_context(id, context)
+
+    context = base_context(user_id, context)
     return render(request, 'checkout/index.html', context)
 
 
