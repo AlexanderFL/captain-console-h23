@@ -34,16 +34,22 @@ class OrderProduct(models.Model):
                 print("Creating new order with id: " + str(shopping_cart.id))
         return shopping_cart
 
+    '''
+    Price calculated
+    '''
     def calculate_price(self, quantity, product):
         total_price = product.price * quantity * (100 - product.discount) / 100
         print("Total price is:" + str(total_price))
         return total_price
 
+    '''
+    Checks if product is already in cart
+    '''
     def check_if_already_in_cart(self, user_id, product):
         order_products = OrderProduct.objects.filter(user_id=user_id)
         for order_product in order_products:
-            if order_product == product:
-                return True
+            if order_product.product_id.id == product.id:
+                return order_product
         return False
 
     '''
@@ -51,13 +57,19 @@ class OrderProduct(models.Model):
     '''
     def create_product_in_cart(self, product, quantity, user, shopping_cart):
         total_price = self.calculate_price(quantity, product)
-        OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user, order_id=shopping_cart)
+        OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user,
+                                    order_id=shopping_cart)
         print("New item added to cart")
 
-
-    def update_product_in_cart(self, product, quantity, user, shopping_cart):
-        pass
-
+    '''
+    Updates product in cart
+    '''
+    def update_product_in_cart(self, order_product, quantity, user, shopping_cart):
+        new_quantity = order_product.quantity + quantity
+        total_price = self.calculate_price(new_quantity, order_product.product_id)
+        print(order_product)
+        OrderProduct.objects.filter(pk=order_product.id).update(quantity=new_quantity, price=total_price)
+        print("Item updated in cart")
 
     '''
     Adds product to cart or updates quantity if already in cart
@@ -69,14 +81,17 @@ class OrderProduct(models.Model):
         # Get order id for active non-confirmed order
         shopping_cart = self.check_active_order(user_id)
 
-        #Check if item is in cart
+        # Check if item is in cart
         in_cart = self.check_if_already_in_cart(user_id, product)
+        print(product.name)
+        print(product.id)
         print(in_cart)
-        #if in_cart:
-           # self.update_product_in_cart(product, quantity, user, shopping_cart)
-      #  else:
-            #self.create_product_in_cart(product, quantity, user, shopping_cart)
 
+
+        if in_cart != False:
+            self.update_product_in_cart(in_cart, quantity, user, shopping_cart)
+        else:
+            self.create_product_in_cart(product, quantity, user, shopping_cart)
 
     # Increase quantity of item in cart
     def add_item(self, prod_id):
