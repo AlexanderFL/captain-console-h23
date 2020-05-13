@@ -13,13 +13,13 @@
 div.checkout.container {
     width: 90%;
 }
-div.checkout_inner.container {
+/*div.checkout_inner.container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     margin: auto;
-}
+}*/
 .fix-content {
     margin-left: 15px;
     flex-grow: 1;
@@ -43,4 +43,18 @@ div.checkout_inner.container {
 }
 #game-title{
     margin: 0 !important;
+}
+
+.cart-header{
+    border-radius: 2px;
+    border-color: white;
+}
+
+#shopping-cart-title {
+    color: white;
+    margin-left: 15px;
+}
+
+#sub-total {
+    margin-left: 30px;
 }

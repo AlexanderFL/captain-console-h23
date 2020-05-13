@@ -4,14 +4,17 @@
         <div class="col s2">
             <a id="add-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_up</i></a>
             <p><span id="quantity">{{ order_product.quantity }}</span></p>
-            <a id="remove-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_down</i></a>
+            <a id="subtract-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_down</i></a>
         </div>
         <div class="col s4">
             <img class="product-img" src="{{ order_product.product_id.productphoto_set.first.path}}" alt="{{ order_product.product_id.productphoto_set.first.alt }}" height="150px" width="150px">
         </div>
-        <div class="col s6">
+        <div class="col s5">
             <h5 id="game-title">{{ order_product.product_id.name }}</h5>
-            <h5 id="price">{{ order_product.product_id.price }}$</h5>
+            <h5 id="price">${{ order_product.product_id.price }}</h5>
+        </div>
+        <div class="col s1">
+            <a id="remove-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">close</i></a>
         </div>
     </div>
 </div>
