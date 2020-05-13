@@ -15,21 +15,21 @@ from checkout.models import OrderProduct, Order
 def base_context(id, context):
     query_user = User.objects.get(pk=id)
 
-    query_order_history = OrderProduct.objects.filter(user_id=id)[:3]
-    query_order = query_user.orderproduct_set.all().order_by('-id')[:3]
+    #query_order_history = OrderProduct.objects.filter(user_id=id)[:3]
+    query_order = query_user.order_set.all().order_by('-id')[:3]
     # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
 
     # query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
 
     context['user'] = query_user
-    context['orders'] = query_order_history
+    #context['orders'] = query_order_history
     # context['orders'] = product_details
     # context['test'] = query_test
     context['order'] = query_order
 
     # : OrderProduct.objects.get()
 
-    context['user'] = User.objects.get(pk=id)
+    # context['user'] = User.objects.get(pk=id)
 
     return context
 
@@ -62,6 +62,7 @@ def edit(request, id):
             country = request.POST.get("country")
             city = request.POST.get("city")
             a_zip = request.POST.get("zip")
+            photo_url = request.POST.get('picture')
 
             not_same_email = True
 
@@ -77,6 +78,9 @@ def edit(request, id):
                 if not_same_email:
                     User.objects.filter(id=id).update(email=email)
                 Address.insert(User.objects.get(id=id), address, city, country, a_zip)
+
+                if photo_url != "":
+                    UserPhoto.update_photo(id, photo_url)
 
                 response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/' + str(id)})
                 return HttpResponse(response, content_type='application/json')

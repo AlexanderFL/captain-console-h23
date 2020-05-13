@@ -65,6 +65,9 @@ class UserPhoto(models.Model):
 
     @staticmethod
     def insert(user_id, path, alt):
-        UserPhoto.objects.create(user_id=user_id, path=path, alt=alt)
+        UserPhoto.objects.update_or_create(user_id=user_id, path=path, alt=alt)
 
 
+    @staticmethod
+    def update_photo(user_id, path):
+        UserPhoto.objects.filter(user_id=user_id).update(path=path)
