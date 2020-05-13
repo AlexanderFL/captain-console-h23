@@ -40,15 +40,13 @@ def index(request):
     data = request.POST
     if "add_item" in request.GET:
         prod_id = data.get("prod")
-        print(prod_id)
         order_product = OrderProduct()
         order_product.add_item(prod_id)
-
-    print(context)
     return render(request, 'checkout/index.html', context)
 
 
 def shipping(request, id=None):
+    #If user is not logged in - render login page
     user_id = request.session.get("user_id")
     if user_id is None:
         return render(request, 'login/index.html')
@@ -64,6 +62,8 @@ def shipping(request, id=None):
 
 @csrf_exempt
 def payment(request, id=None):
+
+    #If user is not logged in - render login page
     user_id = request.session.get("user_id")
     if user_id is None:
         return render(request, 'login/index.html')
@@ -95,7 +95,6 @@ def payment(request, id=None):
 
 
 def confirmation(request):
-
     user_id = request.session.get("user_id")
     if user_id is None:
         return render(request, 'login/index.html')
@@ -107,19 +106,3 @@ def confirmation(request):
     context = base_context(user_id, context)
     return render(request, 'checkout/index.html', context)
 
-
-
-    # Þetta er vitlaust, þarf að pulla order_id úr order_product og matcha við þetta
-    # Eins og er, er þetta allavega einhver data fyrir shoppingcart
-
-  # if len(context['order_products']) > 1 :
-    #     for order in context['order_products'] :
-    #         p = Product.objects.get(pk=order.product_id)
-
-    # u = User.objects.get(pk=id)
-    # p = Order.objects.get('user_id_id'=id)
-    # d = Product.objects.all()
-    # o = Order.objects.all(user_id=1)
-
-    # o = Order.objects.filter(user_id_id=1)
-    # op = OrderProduct.objects.exclude(o.order_id_id)

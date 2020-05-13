@@ -18,30 +18,24 @@ class OrderProduct(models.Model):
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     # Creates new order product in DB
-    def add_product_to_cart(self, product_id, quantity, user_id=None):
+    def add_product_to_cart(self, product_id, quantity, user_id):
 
-        # orders = Order.objects.get(pk=user_id)
-        #
-        # orders = Order.objects.get(pk=user_id)
-        # print(orders)
-        #
-        # for order in orders:
-        #     if order.order_id != 10:
-        #         order.delete(confirmed=True)
-        #
-        # for order in orders:
-        #     status = order.confirmed
-        #     if status == False:
-        #          shopping_cart = order
-        #
-        #     else:
-        #          Order.objects.create()
+        #Check if there is a non-confirmed order for this user
+        orders = Order.objects.filter(pk=user_id)
+        for order in orders:
+            status = order.confirmed
+            if status == False:     #Shopping cart
+                shopping_cart = order.id
+                shopping_cart_id = shopping_cart.id
+            else:   #No items in shopping cart, create non-confirmed order
+                shopping_cart_id = Order.objects.create(user_id=user_id).id
 
-
+        #Calculate total cost for order_product
         product = Product.objects.get(pk=product_id)
-        user = User.objects.get(pk=user_id)
         total_price = product.price * quantity * (100 - product.discount) / 100
-        OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user)
+
+        #Create order product
+        self.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user_id, order_id = shopping_cart_id)
 
     # Increase quantity of item in cart
     def add_item(self, prod_id):
@@ -50,3 +44,5 @@ class OrderProduct(models.Model):
         print(order_product.id)
         new_quantity = order_product.quantity +1
         order_product.update(quantity=new_quantity)
+
+

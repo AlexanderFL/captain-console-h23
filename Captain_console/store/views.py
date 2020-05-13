@@ -21,15 +21,13 @@ def index(request):
             return HttpResponse(response, content_type='application/json')
 
         else:
-            order_product = OrderProduct()  # Create instance of order product
+            #Get data from post request
             data = request.POST
             prod_id = data.get("prod_id")
             quantity = int(data.get("quantity"))
-            user_id = request.session.get('user_id')
-            print("user id" + str(user_id))
             print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
-
-            user_id = request.session.get('user_id')
+            #Create a new instance of order product and add to cart
+            order_product = OrderProduct()
             order_product.add_product_to_cart(prod_id, quantity, user_id)
 
     # Search
