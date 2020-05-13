@@ -12,6 +12,7 @@ class User(models.Model):
     @staticmethod
     def insert(username, email, password):
         User.objects.create(username=username, email=email, password=password)
+        return User.objects.get(email=email)
 
     """
         Checks if email already exists in the database
@@ -62,5 +63,8 @@ class UserPhoto(models.Model):
     path = models.CharField(max_length=200)
     alt = models.CharField(max_length=128, blank=True)
 
+    @staticmethod
+    def insert(user_id, path, alt):
+        UserPhoto.objects.create(user_id=user_id, path=path, alt=alt)
 
 

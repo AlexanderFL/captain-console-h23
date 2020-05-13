@@ -4,7 +4,7 @@ import bcrypt  # pip install bcrypt
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from account.models import User
+from account.models import User, UserPhoto
 from account.views import index as account_index
 
 
@@ -51,9 +51,15 @@ def register(request):
         if not User.email_already_exists(email):
             # Get password back into str before storing it in database
             password_hashed = password_hashed.decode('utf-8')
-            User.insert(username, email, password_hashed)
+            user_inserted = User.insert(username, email, password_hashed)
+            # Insert a default picture that the user sees
+            link = "https://photos.alexfreyr.com/profile/default-profile.png"
+            alt = "Default profile picture for user"
+            UserPhoto.insert(user_inserted, link, alt)
 
-            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/login/'})
+            # Create the session for the user and redirect him to his account page
+            request.session['user_id'] = user_inserted.id
+            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/' + str(user_inserted.id)})
             return HttpResponse(response, content_type='application/json')
         else:
             response = json.dumps({'status': 0, 'message': 'This email is already in use'})
