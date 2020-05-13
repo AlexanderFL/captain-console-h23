@@ -122,6 +122,9 @@ window.onload = function() {
                 data: {prod_id: prod_id, quantity: quantity},
 
                 success: function(resp, status){
+                    if (resp.status === 999){
+                        window.location.replace(resp.message)
+                    }
                     console.log(this.url)
                     console.log("SUCCESS: " + status)
                 },

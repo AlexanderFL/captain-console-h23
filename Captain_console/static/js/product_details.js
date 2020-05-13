@@ -89,9 +89,12 @@ window.onload = function() {
                 type: "POST",
                 data: {prod_id: prod_id, quantity: quantity},
 
-                success: function(status){
+                success: function(response){
+                    if (response.status === 999){
+                        window.location.replace(response.message)
+                    }
                     console.log(this.url)
-                    console.log("SUCCESS: " + status)
+                    console.log("SUCCESS: " + response)
                 },
                 error: function(status){
                     console.log("ERROR: " + status.message)

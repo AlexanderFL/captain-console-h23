@@ -16,10 +16,9 @@ def index(request):
     if "add_to_cart" in request.GET:
         user_id = request.session.get('user_id')
 
-        if user_id == None:
-            print("no account")
-            #TODO: Redirect á register
-            return redirect("http://127.0.0.1:8000/login/register")
+        if user_id is None:
+            response = json.dumps({'status': 999, 'message': '/login/register'})
+            return HttpResponse(response, content_type='application/json')
 
         else:
             order_product = OrderProduct()  # Create instance of order product

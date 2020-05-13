@@ -3,19 +3,18 @@ window.onload = function(){
     $("#loader").hide()
 
     function loginUser(){
-        let email = $("#email").val() //TODO: Change to email
+        let email = $("#email").val()
         let password = $("#password").val()
 
         M.Toast.dismissAll();
-        // If email is empty or contains only spaces
-        if(email.trim().length === 0){
-            M.toast({html: "Please enter your email", classes: "red"})
-            return
-        }
         // If password is empty or contains only spaces
+        if (email.trim().length === 0){
+            $("#email").addClass('invalid')
+            return;
+        }
         if(password.trim().length === 0){
-            M.toast({html: "Please enter your password", classes: "red"})
-            return
+            $('#password').addClass('invalid')
+            return;
         }
 
         $("#loader").show()
@@ -32,7 +31,6 @@ window.onload = function(){
                 if (response.status === 0){
                     M.toast({html: response.message, classes: "red"})
                 } else if(response.status === 1){
-                    console.log(response.message)
                     window.location.replace(response.message)
                 }
                 console.log(response)
