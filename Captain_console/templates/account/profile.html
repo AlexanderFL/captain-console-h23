@@ -1,46 +1,40 @@
 
 <div class="card-panel white">
-<form class="col s12">
+<form class="">
     <div class="row">
-        <div class="img-field col s4">
-            <img class="circle responsive-img"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+        <div class="col s12 m7 l5 xl4">
+            <img class="circle account-image"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
         </div>
-        <div class="input-field col s8">
+        <div class="col s12 m5 l6 xl7">
             <h5>{{ user.username }}</h5>
         </div>
     </div>
 
     <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
             <i class="material-icons prefix">email</i>
             <input id="email" type="email" class="validate" disabled value="{{ user.email }}">
             <label for="email">Email</label>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
             <i class="material-icons prefix">home</i>
             <input id="icon_prefix" type="text" class="validate" disabled value="{{user.address_set.first.address}}">
             <label for="icon_prefix">Address</label>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
             <i class="material-icons prefix">landscape</i>
             <input id="icon_prefix" type="tel" class="validate" disabled value="{{user.address_set.first.country}}">
             <label for="icon_prefix">Country</label>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m9">
             <i class="material-icons prefix">location_city</i>
             <input id="icon_prefix" type="text" class="validate" disabled value="{{user.address_set.first.city}}">
             <label for="icon_prefix">City</label>
         </div>
-        <div class="input-field col s2">
+        <div class="input-field col s12 m3">
             <input id="icon_prefix" type="text" class="validate" disabled value="{{user.address_set.first.zip_code}}">
             <label for="icon_prefix">Zip</label>
         </div>
@@ -48,10 +42,10 @@
 
 
     <div class="row">
-        <a class="btn waves-effect blue accent-3" href="{% url 'account_edit_profile'  user.id %}">Edit profile
+        <a class="btn waves-effect blue accent-3 move-buttons" href="{% url 'account_edit_profile'  user.id %}">Edit profile
         <i class="material-icons right">edit</i></a>
 
-        <a class="btn waves-effect red accent-3" href="{% url 'home_index_logout' user.id %}">Logout
+        <a class="btn waves-effect red accent-3 move-buttons" href="{% url 'home_index_logout' user.id %}">Logout
         <i class="material-icons right">keyboard_return</i></a>
     </div>
 
