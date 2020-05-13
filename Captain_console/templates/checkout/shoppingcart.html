@@ -6,7 +6,7 @@
         {% endfor %}
     </div>
 </div>
-
+{% comment %}
 
 
 <!--
@@ -24,7 +24,7 @@
                             {% else %}
                                 <strong class="flow-text">
                                     <span class="discount">
-                                        <sup>${{ product.price }}</sup>
+                                        <sup>{{ product.price }}</sup>
                                     </span>
                                 </strong>
                             {% endif %}
@@ -33,4 +33,4 @@
             </div>
 {#        </span>#}
 {#    </div>#}
-{#</div>#}
+{#</div>#}{% endcomment %}

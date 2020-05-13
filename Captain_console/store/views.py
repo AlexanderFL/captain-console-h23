@@ -2,13 +2,37 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
-
 from account.models import User
 from checkout.models import OrderProduct
 import json
 
 
+@csrf_exempt
 def index(request):
+    print("hello1")
+    print(request.POST)
+    # Add to cart
+
+    if "add_to_cart" in request.GET:
+        user_id = request.session.get('user_id')
+
+        if user_id == None:
+            print("no account")
+            #TODO: Redirect á register
+            return redirect("http://127.0.0.1:8000/login/register")
+
+        else:
+            order_product = OrderProduct()  # Create instance of order product
+            data = request.POST
+            prod_id = data.get("prod_id")
+            quantity = int(data.get("quantity"))
+            user_id = request.session.get('user_id')
+            print("user id" + str(user_id))
+            print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
+
+            user_id = request.session.get('user_id')
+            order_product.add_product_to_cart(prod_id, quantity, user_id)
+
     # Search
     if 'search_by' in request.GET:
         search_by = request.GET['search_by']
@@ -68,19 +92,14 @@ def index(request):
         } for x in filtered_products]
         return JsonResponse({'data': product_resp})
 
-    # Add to cart
-    elif 'add_to_cart' in request.POST:
-        data = request.POST
-        user_id = request.session.get('user_id')
-        order_product = OrderProduct()
-
     # Initial Store load - order by name
+    print("hello3")
     context = {'products': Product.objects.all().order_by('name')}
     return render(request, 'store/index.html', context)
 
 
-# Get product details
 @csrf_exempt
+# Get product details
 def get_product_by_id(request, id):
     if 'copies_sold' in request.GET:
         copies_sold = OrderProduct.objects.filter(product_id=id).count()
@@ -89,16 +108,19 @@ def get_product_by_id(request, id):
 
     # Review product
     if 'review_product' in request.GET:
+        new_review = Review()
         data = request.POST
         prod_id = data.get("prod_id")
-        rating = data.get("rating")
-        user_id = request.session.get('user_id')
-        user = User.objects.get(pk=user_id)
-
-        # Get Product and User instances and create review
         product = get_object_or_404(Product, pk=prod_id)
-        new_review = Review()
-        new_review.create_review(product, user, rating)
+        rating = data.get("rating")
+
+        if request.session.__contains__('user_id'):
+            user_id = request.session.get('user_id')
+            user = User.objects.get(pk=user_id)
+            new_review.create_review(product, rating, user_id)
+
+        else:
+            new_review.create_review(product, rating, 1)
 
         # Update average rating for the product
         new_rating = product.get_rating()
