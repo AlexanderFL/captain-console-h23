@@ -7,7 +7,7 @@ def index(request):
     return render(request, 'home/index.html', context)
 
 
-def index_logout(request, id):
+def logout(request):
     if request.session.__contains__('user_id'):
         request.session.pop('user_id')
     context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}

@@ -3,7 +3,7 @@
 <form class="">
     <div class="row">
         <div class="col s12 m7 l5 xl4">
-            <img class="circle account-image"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+            <img class="circle account-image"  src="{{ user.userphoto_set.first.path }}" alt="{{ user.userphoto_set.first.alt }}"/>
             <a href="#modal1" class="modal-trigger">Upload picture</a>
         </div>
 
@@ -46,11 +46,11 @@
     </div>
 
     <div class="row">
-            <!-- href="{% url 'account_index'  user.id %} -->
+            <!-- href="{% url 'account_index' %} -->
         <a class="btn waves-effect blue accent-3 move-buttons" id="account-save-button">Save
         <i class="material-icons right">save</i></a>
 
-        <a class="btn waves-effect blue accent-3 move-buttons"   href="{% url 'account_index' user.id %}">Cancel
+        <a class="btn waves-effect blue accent-3 move-buttons"   href="{% url 'account_index' %}">Cancel
         <i class="material-icons right">cancel</i></a>
     </div>
 
