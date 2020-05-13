@@ -16,7 +16,7 @@ def base_context(id, context):
     query_user = User.objects.get(pk=id)
 
     #query_order_history = OrderProduct.objects.filter(user_id=id)[:3]
-    #query_order = query_user.orderproduct_set.all().order_by('-id')[:3]
+    query_order = query_user.order_set.all().order_by('-id')[:3]
     # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
 
     # query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
@@ -25,11 +25,11 @@ def base_context(id, context):
     #context['orders'] = query_order_history
     # context['orders'] = product_details
     # context['test'] = query_test
-    #context['order'] = query_order
+    context['order'] = query_order
 
     # : OrderProduct.objects.get()
 
-    context['user'] = User.objects.get(pk=id)
+    # context['user'] = User.objects.get(pk=id)
 
     return context
 
