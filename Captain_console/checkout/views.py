@@ -18,8 +18,17 @@ def base_context(id, context):
         print(order_product.product_id.price)
     return context
 
-
+@csrf_exempt
 def index(request, id=None):
+
+    data = request.POST
+    if "add_item" in request.GET:
+        prod_id = data.get("prod")
+        print(prod_id)
+
+        order_product = OrderProduct()
+        order_product.add_item(prod_id)
+
     context = {
         'page_checkout': 'contactinfo',
         'order_products': 'order_products',

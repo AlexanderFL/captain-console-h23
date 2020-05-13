@@ -16,6 +16,14 @@ class OrderProduct(models.Model):
         total_price = product.price * quantity * (100 - product.discount) / 100
         OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user)
 
+    # Increase quantity of item in cart
+    def add_item(self, prod_id):
+        print(prod_id)
+        order_product = Product.objects.get(pk=prod_id)
+        print(order_product.id)
+        new_quantity = order_product.quantity +1
+
+        order_product.update(quantity=new_quantity)
 
 class Order(models.Model):
     total_price = models.FloatField()

@@ -121,7 +121,7 @@ window.onload = function() {
                  type: "POST",
                 data: {prod_id: prod_id, quantity: quantity},
 
-                success: function(status){
+                success: function(resp, status){
                     console.log(this.url)
                     console.log("SUCCESS: " + status)
                 },

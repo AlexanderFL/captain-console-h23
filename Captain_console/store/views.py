@@ -18,6 +18,7 @@ def index(request):
 
         if user_id == None:
             print("no account")
+            #TODO: Redirect á register
             return redirect("http://127.0.0.1:8000/login/register")
 
         else:
