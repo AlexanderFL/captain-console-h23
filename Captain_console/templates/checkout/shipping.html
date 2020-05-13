@@ -27,10 +27,10 @@
     </div>
 
     <div class="row">
-        <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_index' user.id %}{% else %}{% url 'checkout_index' %}{% endif %}">Back
+        <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_index' %}{% endif %}">Back
         <i class="material-icons right">arrow_back</i></a>
 
-        <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_payment' user.id %}{% else %}{% url 'checkout_payment' %}{% endif %}">Next
+        <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_payment' %}{% endif %}">Next
             <i class="material-icons right">arrow_forward</i>
         </a>
     </div>

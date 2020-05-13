@@ -23,7 +23,7 @@
 
             <!-- If user is logged in, redirect him to his account page otherwise to login -->
             {% if 'user_id' in request.session %}
-                <li><a href="{% url "checkout_index" request.session.user_id %}"><i class="material-icons">shopping_cart</i></a></li>
+                <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>
                 <li><a href="{% url 'account_index' request.session.user_id %}"><i class="material-icons">person</i></a></li>
             {% else %}
                 <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>

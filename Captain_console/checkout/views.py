@@ -19,13 +19,17 @@ def base_context(id, context):
     return context
 
 @csrf_exempt
-def index(request, id=None):
+def index(request):
+
+    user_id = request.session.get("user_id")
+
+    if user_id is None:
+        return render(request, 'login/index.html')
 
     data = request.POST
     if "add_item" in request.GET:
         prod_id = data.get("prod")
         print(prod_id)
-
         order_product = OrderProduct()
         order_product.add_item(prod_id)
 
@@ -33,8 +37,7 @@ def index(request, id=None):
         'page_checkout': 'contactinfo',
         'order_products': 'order_products',
     }
-    if id != None:
-        context = base_context(id, context)
+
     return render(request, 'checkout/index.html', context)
 
 

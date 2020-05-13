@@ -11,7 +11,7 @@
         {% include 'checkout/crumbs.html' %}
         <div class="col s4 m6">
             {% if page_checkout == 'contactinfo' %}
-                {% include 'checkout/contactinfo.html' %}
+                {% include 'checkout/contactinfo.html' with user=contactinfo%}
             {% elif page_checkout == 'shipping' %}
                 {% include 'checkout/shipping.html' %}
             {% elif page_checkout == 'paymentinfo' %}
