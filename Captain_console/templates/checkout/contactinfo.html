@@ -22,7 +22,7 @@
         <div class="row">
             <a class="btn waves-effect blue accent-3 move-buttons"  href="../">Cancel
             <i class="material-icons right">cancel</i></a>
-            <a class="btn waves-effect blue accent-3 move-buttons"  href="{% if user.id %}{% url 'checkout_shipping' user.id %}{% endif %}">Next
+            <a class="btn waves-effect blue accent-3 move-buttons"  href="{% url 'checkout_shipping'%}">Next
                 <i class="material-icons right">arrow_forward</i>
             </a>
         </div>

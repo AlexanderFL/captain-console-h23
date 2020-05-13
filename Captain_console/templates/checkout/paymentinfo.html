@@ -41,11 +41,7 @@
     </div>
     <div class="row">
         <a class="btn waves-effect blue accent-3 move-buttons"
-           href="   {% if user.id %}
-                        {% url 'checkout_shipping' user.id %}
-                    {% else %}
-                        {% url 'checkout_shipping' %}
-                    {% endif %}">Back
+           href="{% url 'checkout_shipping' %}">Back
         <i class="material-icons right">arrow_back</i></a>
 
         <a class="btn waves-effect blue accent-3 modal-trigger move-buttons" href="#modal1" id="confirm-payment">Submit

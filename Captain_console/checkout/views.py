@@ -9,23 +9,32 @@ from store.models import Product
 from checkout.models import Order, OrderProduct
 
 
-def base_context(id, context):
-    context['user'] = User.objects.filter(pk=id)
-    context['order_products'] = OrderProduct.objects.filter(user_id=id)
+def base_context(user_id):
+    user = User.objects.get(pk=user_id)
+    order_products = OrderProduct.objects.filter(user_id=user_id)
 
-    order_products = OrderProduct.objects.filter(user_id=id)
-    for order_product in order_products:
-        print(order_product.product_id.price)
+    context = {
+        'user': user,
+        'order_products': order_products,
+    }
     return context
 
 @csrf_exempt
 def index(request):
 
+    #If user is not logged in - render login page
     user_id = request.session.get("user_id")
-
+    print(user_id)
     if user_id is None:
         return render(request, 'login/index.html')
 
+    #Base context
+    context = base_context(user_id)
+
+    #Specific context
+    context['page_checkout'] ='contactinfo'
+
+    #Add item to cart
     data = request.POST
     if "add_item" in request.GET:
         prod_id = data.get("prod")
@@ -33,25 +42,37 @@ def index(request):
         order_product = OrderProduct()
         order_product.add_item(prod_id)
 
-    context = {
-        'page_checkout': 'contactinfo',
-        'order_products': 'order_products',
-    }
-
+    print(context)
     return render(request, 'checkout/index.html', context)
 
 
 def shipping(request, id=None):
-    context = {
-        'page_checkout': 'shipping',
-    }
-    if id != None:
-        context = base_context(id, context)
+    user_id = request.session.get("user_id")
+    if user_id is None:
+        return render(request, 'login/index.html')
+
+    #Base context
+    context = base_context(user_id)
+
+    #Specific context
+    context['page_checkout'] = "shipping"
+
     return render(request, 'checkout/index.html', context)
 
 
 @csrf_exempt
 def payment(request, id=None):
+    user_id = request.session.get("user_id")
+    if user_id is None:
+        return render(request, 'login/index.html')
+
+    # Base context
+    context = base_context(user_id)
+
+    #Specific context
+    context['page_checkout'] = "paymentinfo"
+
+
     if request.method == 'POST':
         # Make sure user is logged in
         if request.session.get('user_id') is None:
@@ -68,12 +89,6 @@ def payment(request, id=None):
         response = json.dumps({'status': 200, 'message': 'Yes'})
         return HttpResponse(response, content_type='application/json')
 
-    context = {
-        'page_checkout': 'paymentinfo',
-    }
-
-    if id != None:
-        context = base_context(id, context)
     return render(request, 'checkout/index.html', context)
 
 
