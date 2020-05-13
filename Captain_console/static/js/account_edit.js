@@ -3,6 +3,9 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+$(document).ready(function(){
+    $('.modal').modal();
+});
 
 $('#account-save-button').on('click', function(){
     let email = $('#email').val()
@@ -10,6 +13,7 @@ $('#account-save-button').on('click', function(){
     let country = $('#country').val()
     let city = $('#city').val()
     let zip = $('#zip').val()
+    let picture_url = $('#picture-url').val().trim()
 
     // Email needs to be in a valid format
     if (!validateEmail(email)) {
@@ -25,7 +29,8 @@ $('#account-save-button').on('click', function(){
             address: address,
             country: country,
             city: city,
-            zip: zip
+            zip: zip,
+            picture: picture_url
         },
         success: function(response){
             if (response.status === 0){
