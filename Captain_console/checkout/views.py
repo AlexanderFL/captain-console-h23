@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from account.models import User, PaymentInfo
 from store.models import Product
-from checkout.models import Order, OrderProduct
+from checkout.models import Order, OrderProduct, remove_product_from_cart
 
 
 # Base functions for all checkout views
@@ -24,10 +24,9 @@ def base_context(user_id):
 def base_remove_from_cart(request):
     print(request.GET)
     order_prod_id = request.GET['remove_from_cart']
-
     print("this is prod-id" + str(order_prod_id))
     order_product = OrderProduct()
-    order_product.remove_product_from_cart(order_prod_id)
+    remove_product_from_cart(order_prod_id)
 
     product_resp = [{
         'order_prod_id': order_prod_id
