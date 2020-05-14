@@ -13,6 +13,7 @@ from checkout.models import OrderProduct, Order
 # 'SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s',[id])
 
 def base_context(id, context):
+    print(id)
     query_user = User.objects.get(pk=id)
 
     #query_order_history = OrderProduct.objects.filter(user_id=id)[:3]
@@ -29,33 +30,29 @@ def base_context(id, context):
 
     # : OrderProduct.objects.get()
 
-    # context['user'] = User.objects.get(pk=id)
+    context['user'] = User.objects.get(pk=id)
 
     return context
 
 
-def validate_user(passed_id, session_id):
-    if passed_id == session_id:
-        return True
-    else:
-        return False
-
-
-def index(request, id):
-    if validate_user(id, request.session.get('user_id')):
+@csrf_exempt
+def index(request):
+    user_id = request.session.get('user_id')
+    if user_id is not None:
         context = {
             'page_account': 'profile',
         }
-        if id != None:
-            context = base_context(id, context)
+        context = base_context(user_id, context)
         return render(request, 'account/index.html', context)
     else:
+        print("account/views.py: I'm exectued")
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
 
 
 @csrf_exempt
-def edit(request, id):
-    if validate_user(id, request.session.get('user_id')):
+def edit(request):
+    user_id = request.session.get('user_id')
+    if user_id is not None:
         if request.method == "POST":
             email = str(request.POST.get("email")).lower()
             address = request.POST.get("address")
@@ -67,7 +64,7 @@ def edit(request, id):
             not_same_email = True
 
             # If the email stored in database is the same as entered
-            if User.objects.get(id=id).email == email:
+            if User.objects.get(id=user_id).email == email:
                 not_same_email = False
 
             # If the email is already in use by another account
@@ -76,19 +73,19 @@ def edit(request, id):
                 return HttpResponse(response, content_type='application/json')
             else:
                 if not_same_email:
-                    User.objects.filter(id=id).update(email=email)
-                Address.insert(User.objects.get(id=id), address, city, country, a_zip)
+                    User.objects.filter(id=user_id).update(email=email)
+                Address.insert(User.objects.get(id=user_id), address, city, country, a_zip)
 
                 if photo_url != "":
-                    UserPhoto.update_photo(id, photo_url)
+                    UserPhoto.update_photo(user_id, photo_url)
 
-                response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/' + str(id)})
+                response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/'})
                 return HttpResponse(response, content_type='application/json')
-        context = {
-            'page_account': 'edit_profile',
-        }
-        if id != None:
-            context = base_context(id, context)
-        return render(request, 'account/index.html', context)
+        else:
+            context = {
+                'page_account': 'edit_profile',
+            }
+            context = base_context(user_id, context)
+            return render(request, 'account/index.html', context)
     else:
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
