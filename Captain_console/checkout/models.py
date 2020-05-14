@@ -52,7 +52,7 @@ class OrderProduct(models.Model):
         return total_price
 
     '''
-    Checks if product is already in cart
+    Checks if product is already in cart. Returns order_product object if product is in cart. Else returns False.
     '''
 
     def check_if_already_in_cart(self, user_id, product):
@@ -76,8 +76,7 @@ class OrderProduct(models.Model):
     Updates product in cart
     '''
 
-    def update_product_in_cart(self, order_product, quantity, user, shopping_cart):
-        new_quantity = order_product.quantity + quantity
+    def update_product_in_cart(self, order_product, new_quantity):
         total_price = self.calculate_price(new_quantity, order_product.product_id)
         print(order_product)
         OrderProduct.objects.filter(pk=order_product.id).update(quantity=new_quantity, price=total_price)
@@ -91,6 +90,8 @@ class OrderProduct(models.Model):
         user = User.objects.get(pk=user_id)
         product = Product.objects.get(pk=product_id)
 
+
+
         # Get order id for active non-confirmed order
         shopping_cart = self.check_active_order(user_id)
 
@@ -100,22 +101,29 @@ class OrderProduct(models.Model):
         if not in_cart:
             self.create_product_in_cart(product, quantity, user, shopping_cart)
         else:
-            self.update_product_in_cart(in_cart, quantity, user, shopping_cart)
+            new_quantity = in_cart.quantity + quantity
+            self.update_product_in_cart(in_cart, new_quantity, user, shopping_cart)
 
     '''
     Removes item from cart
     '''
+
     def remove_product_from_cart(self, orderprod_id):
-        print("deletetetete")
-        print(orderprod_id)
         OrderProduct.objects.filter(pk=orderprod_id).delete()
 
+    '''
+    Add to or subtract item in cart
+    '''
 
+    def change_qty(self, orderprod_id, change_type):
+        print("I'm changing item: " + str(orderprod_id))
 
-    # # Increase quantity of item in cart
-    # def add_item(self, prod_id):
-    #     print(prod_id)
-    #     order_product = Product.objects.get(pk=prod_id)
-    #     print(order_product.id)
-    #     new_quantity = order_product.quantity + 1
-    #     order_product.update(quantity=new_quantity)
+        order_product = OrderProduct.objects.get(pk=orderprod_id)
+        print(order_product.quantity)
+
+        if change_type == "add":
+            new_quantity = order_product.quantity + 1
+        else:
+            new_quantity = order_product.quantity - 1
+        self.update_product_in_cart(order_product, new_quantity)
+        return new_quantity

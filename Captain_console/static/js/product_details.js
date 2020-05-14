@@ -72,7 +72,7 @@ window.onload = function() {
         });
 
 
-              //Add to cart
+        //Add to cart
         //TODO: Implement for add to cart in product details
         $('.add-to-cart').on('click', function (e) {
             e.preventDefault()

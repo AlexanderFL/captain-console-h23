@@ -22,7 +22,7 @@ div.checkout.container {
     Shopping cart elements
 */
 
-#quantity{
+.quantity{
     margin-left: 10px;
 }
 

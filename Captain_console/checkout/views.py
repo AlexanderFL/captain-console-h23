@@ -11,7 +11,6 @@ from checkout.models import Order, OrderProduct
 
 def base_context(user_id):
     user = User.objects.get(pk=user_id)
-    print("hello")
     order_products = OrderProduct.objects.filter(order_id__user_id=user_id)
 
     context = {
@@ -26,8 +25,6 @@ def index(request):
 
     # If user is not logged in - render login page
     user_id = request.session.get("user_id")
-    print(user_id)
-    print(type(user_id))
     if user_id is None:
         return render(request, 'login/index.html')
 
@@ -37,13 +34,23 @@ def index(request):
     # Specific context
     context['page_checkout'] = 'contactinfo'
 
-    # Add item to cart
+    #Change qty of item in cart
     data = request.POST
-    "hello2"
-    if "add_item" in request.GET:
-        prod_id = data.get("order_prod_id")
+    if 'change_qty' in request.GET:
+        print("changing quantity")
+        order_prod_id = request.GET['order_prod_id']
+        change_type = request.GET['change_type']
         order_product = OrderProduct()
-        order_product.add_item(prod_id)
+        new_quantity = order_product.change_qty(order_prod_id, change_type)
+
+        print(new_quantity)
+
+        product_resp = [{
+            'new_qty': new_quantity
+        }]
+
+        return JsonResponse({'new_quantity': product_resp})
+
 
     # Remove item from cart
     if 'remove_from_cart' in request.GET:

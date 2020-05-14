@@ -7,20 +7,27 @@
 
 window.onload = function() {
     $(document).ready(function () {
-        $('#add-item').on('click', function (e) {
+        $('.change-qty').on('click', function (e) {
             e.preventDefault();
-            var order_prod_id = $(this).data('prod')
 
-            console.log("hello")
-            //GET request with product ID's in new order
+            const path = window.location.pathname
+
+            //Get product id and type of change - add/subtract
+            var order_prod_id = $(this).data('orderprod')
+            change_type = $(this).attr('id')
+
+            console.log(order_prod_id)
+            console.log(change_type)
+
             $.ajax({
-
-                url: '/?add_item=prod' + order_prod_id,
+                url: path + '?change_qty=' + order_prod_id,
                 type: 'GET',
                 data: {
                     order_prod_id: order_prod_id,
+                    change_type: change_type,
                 },
-                success: function (status) {
+                success: function (status, resp) {
+                    change_quantity_in_cart(change_type, order_prod_id)
                     console.log("SUCCESS: " + status)
                 }
                 ,
@@ -34,12 +41,7 @@ window.onload = function() {
             e.preventDefault();
             var order_prod_id = $(this).data('orderprod')
             const path = window.location.pathname
-            console.log("The product that's not going to be visible is:")
-            var order_prod_id = $(this).data('orderprod')
-            console.log(order_prod_id)
 
-            console.log("Deleting product")
-            console.log(window.location.pathname)
                $.ajax({
                 url: path + '?remove_from_cart=' + order_prod_id,
                 type: 'GET',
@@ -61,6 +63,7 @@ window.onload = function() {
     });
 }
 
+//Remove item from shopping cart interface
 function remove_shopping_cart_item(order_prod_id) {
     // order_products = document.getElementsByClassName("order-product-card")
 
@@ -79,3 +82,17 @@ function remove_shopping_cart_item(order_prod_id) {
     }
 }
 
+//Change qty in shopping cart interface
+function change_quantity_in_cart(change_type, order_prod_id) {
+    qty_id = order_prod_id + "-quantity"
+    qty_element = document.getElementById(qty_id)
+
+    if (change_type === "add") {
+        new_qty = parseInt(qty_element.innerHTML) + 1
+    }
+    else {
+        new_qty = parseInt(qty_element.innerHTML) - 1
+    }
+
+    qty_element.innerHTML = "" + new_qty + ""
+}
