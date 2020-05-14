@@ -34,7 +34,7 @@ def number_of_items_in_cart(owner):
 
 
 '''
-Deletes activer order
+Deletes active order
 '''
 
 
@@ -91,6 +91,58 @@ def update_product_in_cart(order_product, new_quantity):
     OrderProduct.objects.filter(pk=order_product.id).update(quantity=new_quantity, price=total_price)
 
 
+'''
+Creates a new order_product in cart
+'''
+
+
+def create_product_in_cart(self, product, quantity, user, shopping_cart):
+    total_price = calculate_price(quantity, product)
+    OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user,
+                                order_id=shopping_cart)
+
+
+'''
+Adds product to cart or updates quantity if already in cart
+'''
+
+
+def add_product_to_cart(self, product_id, quantity, user_id):
+    user = User.objects.get(pk=user_id)
+    product = Product.objects.get(pk=product_id)
+
+    # Get order id for active non-confirmed order
+    shopping_cart = active_order(user, product, quantity)
+
+    # Check if item is in cart
+    in_cart = check_if_already_in_cart(user_id, product)
+
+    if not in_cart:
+        create_product_in_cart(product, quantity, user, shopping_cart)
+    else:
+        new_quantity = in_cart.quantity + quantity
+        update_product_in_cart(in_cart, new_quantity)
+
+
+'''
+Add to or subtract item in cart
+'''
+
+
+def change_qty(self, orderprod_id, change_type):
+    order_product = OrderProduct.objects.get(pk=orderprod_id)
+    order_product_quantity = order_product.quantity
+
+    if change_type == "add":
+        new_quantity = order_product.quantity + 1
+    else:
+        if order_product_quantity == 1:
+            return
+        new_quantity = order_product.quantity - 1
+    update_product_in_cart(order_product, new_quantity)
+    return new_quantity
+
+
 class Order(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     total_price = models.FloatField()
@@ -105,49 +157,3 @@ class OrderProduct(models.Model):
     price = models.FloatField()
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-
-    '''
-    Creates a new order_product in cart
-    '''
-
-    def create_product_in_cart(self, product, quantity, user, shopping_cart):
-        total_price = calculate_price(quantity, product)
-        OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user,
-                                    order_id=shopping_cart)
-
-    '''
-    Adds product to cart or updates quantity if already in cart
-    '''
-
-    def add_product_to_cart(self, product_id, quantity, user_id):
-        user = User.objects.get(pk=user_id)
-        product = Product.objects.get(pk=product_id)
-
-        # Get order id for active non-confirmed order
-        shopping_cart = active_order(user, product, quantity)
-
-        # Check if item is in cart
-        in_cart = check_if_already_in_cart(user_id, product)
-
-        if not in_cart:
-            self.create_product_in_cart(product, quantity, user, shopping_cart)
-        else:
-            new_quantity = in_cart.quantity + quantity
-            update_product_in_cart(in_cart, new_quantity)
-
-    '''
-    Add to or subtract item in cart
-    '''
-
-    def change_qty(self, orderprod_id, change_type):
-        order_product = OrderProduct.objects.get(pk=orderprod_id)
-        order_product_quantity = order_product.quantity
-
-        if change_type == "add":
-            new_quantity = order_product.quantity + 1
-        else:
-            if order_product_quantity == 1:
-                return
-            new_quantity = order_product.quantity - 1
-        update_product_in_cart(order_product, new_quantity)
-        return new_quantity

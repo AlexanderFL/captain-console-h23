@@ -3,16 +3,15 @@ from itertools import chain
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-
 from account.models import User, PaymentInfo
 from store.models import Product
-from checkout.models import Order, OrderProduct, remove_product_from_cart
+from checkout.models import OrderProduct, remove_product_from_cart, change_qty
 
 
 # Base functions for all checkout views
 def base_context(user_id):
     user = User.objects.get(pk=user_id)
-    order_products = OrderProduct.objects.filter(order_id__user_id=user_id)
+    order_products = OrderProduct.objects.filter(order_id__user_id=user_id, order_id__confirmed=False)
 
     context = {
         'user': user,
@@ -25,7 +24,6 @@ def base_remove_from_cart(request):
     print(request.GET)
     order_prod_id = request.GET['remove_from_cart']
     print("this is prod-id" + str(order_prod_id))
-    order_product = OrderProduct()
     remove_product_from_cart(order_prod_id)
 
     product_resp = [{
@@ -37,8 +35,7 @@ def base_remove_from_cart(request):
 def base_change_qty_of_prod(request):
     order_prod_id = request.GET['order_prod_id']
     change_type = request.GET['change_type']
-    order_product = OrderProduct()
-    new_quantity = order_product.change_qty(order_prod_id, change_type)
+    new_quantity = change_qty(order_prod_id, change_type)
 
     product_resp = [{
         'new_qty': new_quantity
