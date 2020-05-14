@@ -73,21 +73,38 @@ class Review(models.Model):
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
 
-class OrderProduct(models.Model):
+class Order(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    total_price = models.FloatField()
+    tracking_nr = models.CharField(max_length=128)
+    date = models.DateField(auto_now_add=True)
+    confirmed = models.BooleanField(default=False)
+
+
+class OrderProduct(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.FloatField()
-
-
-class Order(models.Model):
-    total_price = models.FloatField()
-    tracking_nr = models.CharField(max_length=128)
-    OrderCart_id = models.ForeignKey(OrderCart, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
-
-
-class OrderCart(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
-    orderproduct_id = models.ForeignKey(OrderProduct, on_delete=models.CASCADE)
 
+
+--
+-- class OrderProduct(models.Model):
+--     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+--     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+--     quantity = models.IntegerField()
+--     price = models.FloatField()
+--
+--
+-- class Order(models.Model):
+--     total_price = models.FloatField()
+--     tracking_nr = models.CharField(max_length=128)
+--     OrderCart_id = models.ForeignKey(OrderCart, on_delete=models.CASCADE)
+--     date = models.DateField(auto_now_add=True)
+--
+--
+-- class OrderCart(models.Model):
+--     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+--     orderproduct_id = models.ForeignKey(OrderProduct, on_delete=models.CASCADE)
+--
