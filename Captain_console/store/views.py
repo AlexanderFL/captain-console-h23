@@ -156,10 +156,3 @@ def get_product_by_id(request, id):
         'product': get_object_or_404(Product, pk=id)
     })
 
-
-# Dynamic search in store
-def search(request, query):
-    return render(request, 'store/search.html', {
-        'search_results': get_list_or_404(Product.objects.filter(name__icontains=query)),
-        'search_query': query
-    })

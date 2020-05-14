@@ -87,7 +87,7 @@ def edit(request):
                 if photo_url != "":
                     UserPhoto.update_photo(user_id, photo_url)
 
-                response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/'})
+                response = json.dumps({'status': 200, 'message': '/account/'})
                 return HttpResponse(response, content_type='application/json')
         else:
             context = {
