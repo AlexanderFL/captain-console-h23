@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from account.models import User
 from store.models import Product
@@ -145,12 +146,21 @@ def change_qty(orderprod_id, change_type):
 
 
 '''
+Get shipping address
+'''
+
+def get_track_number():
+    return str(random.randrange(1000000000, 9999999999))
+
+
+'''
 Mark order confirmed
 '''
 
 
 def mark_order_confirmed(user):
-    Order.objects.filter(user_id=user, confirmed=False).update(confirmed=True)
+    track_number = get_track_number()
+    Order.objects.filter(user_id=user, confirmed=False).update(confirmed=True, tracking_nr=track_number)
 
 
 class Order(models.Model):
