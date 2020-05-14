@@ -6,13 +6,14 @@
                 <h5>{{ order.name }}</h5>
 
                 <div class="col s4">
-                    Img: {{ order.path }}
+                    <img class="product-img" src="{{ order.path }}" alt="{{ order.path }}" height="150px" width="150px">
                 </div>
                 <div class="col s8">
                     <p>Game rating: {{ order.rating }}<br>
                     Tracking number: {{ order.tracking_nr }}<br>
                     Date of purchase: {{ order.date }}<br>
-                    Total price (including shipping): {{ order.total_price }}</p>
+                    Total price (including shipping): {{ order.total_price }}<br>
+                    Quantity: {{ order.quantity }}</p>
                 </div>
             </div>
         </div>
