@@ -23,7 +23,7 @@
                         <select id="orderby">
                             <option value="" disabled="disabled" selected="selected">Order by</option>
                             <option value="1">Price</option>
-                            <option value="3">Name</option>
+                            <option value="2">Name</option>
                             <option value="3">Rating</option>
                         </select>
                     </div>
@@ -31,12 +31,16 @@
                         <select class="filterby" id="developer_filter" >
                             <option value="" disabled="disabled" selected="selected">Developer</option>
                             <option value="0">All</option>
-                            <option value="1">Nintendo PTD</option>
-                            <option value="2">Sony</option>
-                            <option value="3">Sega</option>
-                            <option value="4">Amiga</option>
-                            <option value="5">Commadore 64</option>
-                            <option value="6">Legacy Engineering</option>
+                            {% for developer in developers %}
+                                <option value="{{ forloop.counter }}">{{ developer.developer }}</option>
+                            {% endfor %}
+{##}
+{#                            <option value="1">Nintendo PTD</option>#}
+{#                            <option value="2">Sony</option>#}
+{#                            <option value="3">Sega</option>#}
+{#                            <option value="4">Amiga</option>#}
+{#                            <option value="5">Commadore 64</option>#}
+{#                            <option value="6">Legacy Engineering</option>#}
 
                         </select>
                     </div>
@@ -44,20 +48,29 @@
                         <select class="filterby" id="genre_filter">
                             <option value="" disabled="disabled" selected="selected">Genre</option>
                             <option value="0">All</option>
-                            <option value="1">First Person Shooter</option>
-                            <option value="2">Adventure</option>
-                            <option value="3">Arcade</option>
-                            <option value="4">RPG</option>
-                            <option value="5">Platform</option>
+                            {% for genre in genres %}
+                                <option value="{{ forloop.counter }}">{{ genre.genre }}</option>
+                            {% endfor %}
+
+{#                            <option value="1">First Person Shooter</option>#}
+{#                            <option value="2">Adventure</option>#}
+{#                            <option value="3">Arcade</option>#}
+{#                            <option value="4">RPG</option>#}
+{#                            <option value="5">Platform</option>#}
                         </select>
                     </div>
                  <div class="input-field col s12">
                         <select class="filterby" id="category_filter">
                             <option value="" disabled="disabled" selected="selected">Category</option>
                             <option value="0">All</option>
-                            <option value="1">Games</option>
-                            <option value="2">Console</option>
-                            <option value="2">Other</option>
+                            {% for category in categories %}
+                                <option value="{{ forloop.counter }}">{{ category.name }}</option>
+                            {% endfor %}
+
+
+{#                            <option value="1">Games</option>#}
+{#                            <option value="2">Console</option>#}
+{#                            <option value="2">Other</option>#}
                         </select>
                     </div>
                 </div>

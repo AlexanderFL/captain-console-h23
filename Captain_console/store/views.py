@@ -1,7 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category
 from account.models import User
 from checkout.models import OrderProduct
 import json
@@ -9,6 +9,11 @@ import json
 
 @csrf_exempt
 def index(request):
+    context = {}
+    context['developers'] = Developer.objects.all()
+    context['genres'] =  Genre.objects.all()
+    context['categories'] = Category.objects.all()
+
     print("hello1")
     print(request.POST)
     # Add to cart
@@ -91,7 +96,10 @@ def index(request):
 
     # Initial Store load - order by name
     print("hello3")
-    context = {'products': Product.objects.all().order_by('name')}
+
+
+
+    context['products'] = Product.objects.all().order_by('name')
     return render(request, 'store/index.html', context)
 
 
