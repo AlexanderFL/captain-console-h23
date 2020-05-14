@@ -123,3 +123,29 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 .sidenav li .input-field .prefix{
     top: 2rem;
 }
+
+.shoppingcart {
+    text-anchor: start;
+    style=font-size:15px;
+    margin-top:-50px;
+    margin-left: 10px;
+    color: black;
+    background: #cceb34;
+    border-radius: 50%;
+    height: 20px;
+    /*display:block;*/
+    /*top:-25px;*/
+    /*bottom:0;*/
+    /*margin:auto;*/
+    /*vertical-align:top;*/
+    /*display:inline-block;*/
+    /*line-height:1.6em;*/
+/*    position:absolute;!*need to be absolute position*!*/
+/*    top:0;*/
+/*    bottom:0;*/
+/*    !*margin:auto;*!*/
+/*    border-top:solid 10px lightblue;*/
+/*    width:20px;*/
+/*    height:20px;*/
+/*    background:darkgray;*/
+/*}*/
