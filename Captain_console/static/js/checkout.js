@@ -97,6 +97,5 @@ function change_quantity_in_cart(change_type, order_prod_id) {
         }
         new_qty = current_qty - 1
     }
-
     qty_element.innerHTML = "" + new_qty + ""
 }
