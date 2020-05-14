@@ -139,7 +139,7 @@ INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, o
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 3, 3, 68.43, 2);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 5, 1, 9.89, 3);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 7, 1, 12.99, 4);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 5, 3, 33.33, 5);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 9, 1, 12.25, 5);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 6, 1, 68.43, 5);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 6);
@@ -147,8 +147,8 @@ INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, o
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 1, 33.33, 8);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 4, 1, 12.25, 9);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 6, 3, 68.43, 10);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 11);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 2, 1, 12.99, 12);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 13);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 7, 1, 9.89, 11);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 5, 1, 12.99, 12);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 2, 3, 33.33, 13);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 2, 1, 12.25, 1);
 
