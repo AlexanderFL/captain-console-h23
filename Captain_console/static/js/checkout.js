@@ -59,14 +59,15 @@ window.onload = function() {
                     M.toast({html: "Something went wrong on our end", classes: "red"})
                 }
             });
+
         })
+
+
     });
 }
 
 //Remove item from shopping cart interface
 function remove_shopping_cart_item(order_prod_id) {
-    // order_products = document.getElementsByClassName("order-product-card")
-
     order_product_cards = $(".order-product-card")
     order_product_cards_id = $(".order-product-card").map(function () {
         return this.id

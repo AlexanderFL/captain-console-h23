@@ -62,6 +62,7 @@ Price calculated
 
 def calculate_price(quantity, product):
     total_price = product.price * quantity * (100 - product.discount) / 100
+    format(total_price, '.2f')
     return total_price
 
 

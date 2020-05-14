@@ -59,9 +59,11 @@ window.onload = function() {
                 type: "POST",
                 data: {prod_id: prod_id, rating: rating},
                 success: function(status){
+                    M.toast({html: "Rating was submitted, thank you.", classes: "green"})
                     console.log("SUCCESS: " + status)
                 },
                 error: function(status){
+                    M.toast({html: "Something went wrong on our end", classes: "red"})
                     console.log("ERROR: " + status.message)
                 }
             })
@@ -95,9 +97,13 @@ window.onload = function() {
                     }
                     console.log(this.url)
                     console.log("SUCCESS: " + response)
+                    M.toast({html: "Product was added to cart", classes: "green"})
+
                 },
                 error: function(status){
                     console.log("ERROR: " + status.message)
+                    M.toast({html: "Something went wrong on our end", classes: "red"})
+
                 }
             })
         });
