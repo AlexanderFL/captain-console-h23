@@ -13,13 +13,6 @@
 div.checkout.container {
     width: 90%;
 }
-/*div.checkout_inner.container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    margin: auto;
-}*/
 .fix-content {
     margin-left: 15px;
     flex-grow: 1;
@@ -59,3 +52,8 @@ div.checkout.container {
     margin-left: 30px;
 }
 
+.account-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
