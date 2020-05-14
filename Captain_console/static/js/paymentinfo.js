@@ -62,6 +62,7 @@ window.onload = function(){
     }
 
     $('#confirm-payment').on('click', function(){
+        console.log("hello")
        makeOrder()
     });
 }
