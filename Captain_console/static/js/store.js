@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
+function fill_search_bar(){
+    let params = window.location.search.substr(1);
+    let params_s = params.split("=")
+    if(params_s[0] === "search"){
+        $("#search_product").val(params_s[1])
+        $("#search_product").keyup()
+    }
+    M.updateTextFields();
+}
+
 window.onload = function() {
     $(document).ready(function () {
 
@@ -126,12 +136,15 @@ window.onload = function() {
                     }
                     console.log(this.url)
                     console.log("SUCCESS: " + status)
+                    M.toast({html: "Product was added to cart", classes: "green"})
                 },
                 error: function(status){
+                    M.toast({html: "Something went wrong on our end", classes: "red"})
                     console.log("ERROR: " + status.message)
                 }
             })
         });
+        fill_search_bar();
     });
 }
 

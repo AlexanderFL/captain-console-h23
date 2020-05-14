@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function locationReplace(val){
-    window.location.replace('http://localhost:8000/store/search/' + val)
+    window.location.replace('/store?search=' + val)
 }
 
 /* These functions are kind whack, but they work*/
@@ -32,6 +32,7 @@ $('#mobile-search-bar').on('keyup', function(event){
         locationReplace($('#mobile-search-bar')[0].value)
     }
 });
+
 
 $('.filterby').on('change', function (e) {
             e.preventDefault();
