@@ -39,11 +39,17 @@ def index(request):
     if 'search_by' in request.GET:
         search_by = request.GET['search_by']
         products = Product.objects.filter(name__icontains=search_by)
+        print("Search by: {}".format(search_by))
 
-        product_resp = [{
-            'id': x.id
-        } for x in products]
-        return JsonResponse({'data': product_resp})
+        prod_list = []
+        for x in products :
+            prod_list.append({'id': x.id})
+        return JsonResponse({'data': prod_list})
+
+        # product_resp = [{
+        #     'id': x.id
+        # } for x in products]
+        # return JsonResponse({'data': product_resp})
 
     # Sort by price, name or rating
     elif 'sort_by' in request.GET:
@@ -56,11 +62,18 @@ def index(request):
         elif sort_by == "rating":
             products = Product.objects.all().order_by('-average_rating')
 
-        product_resp = [{
-            'id': x.id,
-            'name': x.name,
-        } for x in products]
-        return JsonResponse({'data': product_resp})
+
+        prod_list = []
+        for x in products :
+            prod_list.append({'id': x.id, 'name': x.name})
+        return JsonResponse({'data': prod_list})
+
+        #
+        # product_resp = [{
+        #     'id': x.id,
+        #     'name': x.name,
+        # } for x in products]
+        # return JsonResponse({'data': product_resp})
 
     # Filter applications
     elif 'filter_by' in request.GET:
@@ -89,10 +102,17 @@ def index(request):
 
         # Find the union of filtered items and return
         filtered_products = dev_products & genre_products & cat_products
-        product_resp = [{
-            'id': x.id,
-        } for x in filtered_products]
-        return JsonResponse({'data': product_resp})
+
+        prod_list = []
+        for x in filtered_products :
+            prod_list.append({'id': x.id})
+        return JsonResponse({'data': prod_list})
+
+        #
+        # product_resp = [{
+        #     'id': x.id,
+        # } for x in filtered_products]
+        # return JsonResponse({'data': product_resp})
 
     # Initial Store load - order by name
     print("hello3")

@@ -36,7 +36,7 @@ window.onload = function() {
 
             //GET request with product ID's in new order
             $.ajax({
-                url: '/store?sort_by=' + order_name + "/",
+                url: '/store?sort_by=' + order_name,
                 type: 'GET',
 
                 success: function (resp) {
