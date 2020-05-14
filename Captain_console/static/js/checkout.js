@@ -87,11 +87,15 @@ function change_quantity_in_cart(change_type, order_prod_id) {
     qty_id = order_prod_id + "-quantity"
     qty_element = document.getElementById(qty_id)
 
+    current_qty = parseInt(qty_element.innerHTML)
     if (change_type === "add") {
-        new_qty = parseInt(qty_element.innerHTML) + 1
+        new_qty = current_qty+ 1
     }
     else {
-        new_qty = parseInt(qty_element.innerHTML) - 1
+        if (current_qty == 1) {
+            return
+        }
+        new_qty = current_qty - 1
     }
 
     qty_element.innerHTML = "" + new_qty + ""

@@ -119,11 +119,14 @@ class OrderProduct(models.Model):
         print("I'm changing item: " + str(orderprod_id))
 
         order_product = OrderProduct.objects.get(pk=orderprod_id)
-        print(order_product.quantity)
+        order_product_quantity = order_product.quantity
+
 
         if change_type == "add":
             new_quantity = order_product.quantity + 1
         else:
+            if order_product_quantity == 1:
+                return
             new_quantity = order_product.quantity - 1
         self.update_product_in_cart(order_product, new_quantity)
         return new_quantity
