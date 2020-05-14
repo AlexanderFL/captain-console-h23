@@ -53,7 +53,11 @@ def index(request):
         print("this is prod-id" + str(order_prod_id))
         order_product = OrderProduct()
         order_product.remove_product_from_cart(order_prod_id)
-        return JsonResponse({'data': order_prod_id})
+
+        product_resp = [{
+            'order_prod_id': order_prod_id
+        }]
+        return JsonResponse({'data': product_resp})
 
     return render(request, 'checkout/index.html', context)
 

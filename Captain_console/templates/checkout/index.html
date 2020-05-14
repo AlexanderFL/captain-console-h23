@@ -28,7 +28,7 @@
             </div>
             <div class="col s12">
                 {% for order_product in order_products %}
-                    <div class="row card-panel white order-product-card" data-orderprod = {{ order_product.id }}>
+                    <div class="row card-panel white order-product-card" id = {{ order_product.id }}>
                         {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
                     </div>
                 {% endfor %}

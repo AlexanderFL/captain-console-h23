@@ -13,5 +13,5 @@
         </div>
         <div class="col s1">
             {% csrf_token %}
-            <a id="remove-item" data-orderprod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">close</i></a>
+            <a class="remove-item btn-floating btn-small waves-effect waves-light blue accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">close</i></a>
         </div>
