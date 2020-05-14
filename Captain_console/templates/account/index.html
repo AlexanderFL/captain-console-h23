@@ -20,11 +20,13 @@
         <div class="col s12 m6">
             <div class="card-panel white">
                 <h5>Order history</h5>
-                {% if not order %}
+                {% if not orders %}
                     <p>You have no orders </p>
                 {% else %}
-                    {% for orde in order %}
+                    {% for order in orders %}
+
                         {% include 'account/order_history.html'%}
+
                     {% endfor %}
                 {% endif %}
             </div>

@@ -119,44 +119,37 @@ INSERT INTO Store_Review (product_id_id, user_id_id, rating, comment) VALUES (5,
 INSERT INTO Store_Review (product_id_id, user_id_id, rating, comment) VALUES (6, 5, 2, 'Turrican is a game almost solely created by one guy. The fact it stand up to and in some regards best Metroid I/II is very impressive stuff.');
 
 
-
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 3, 3, 68.43);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 5, 1, 9.89);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 7, 1, 12.99);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 6, 3, 68.43);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 4, 1, 9.89);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 2, 1, 12.99);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (1, 1, 1, 12.25);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (2, 6, 3, 68.43);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (3, 4, 1, 9.89);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (4, 2, 1, 12.99);
-INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price) VALUES (5, 1, 3, 33.33);
-
-
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (12.39, 'A0B43C01889D0119','2019-4-5');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (9.00, 'AFB03C01889D0120','2019-4-2');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (15.00, 'AFB40C01889D0121','2019-4-3');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (21.90, 'AFB43C0089D0122','2019-3-29');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (17.79, 'AFB43C01009D0123','2019-4-7');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (55.39, 'AFB43C00889D0119','2020-4-5');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (35.55, 'AFB00C01889D0120','2020-4-2');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (25.00, 'AFB43C01889D0121','2020-4-3');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (15.90, 'AFB43C01889D0122','2020-3-29');
-INSERT INTO checkout_order (total_price, tracking_nr, date) VALUES (45.79, 'AFB43C01889D0123','2020-4-7');
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 1, 1, 12.25, 1);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 3, 3, 68.43, 2);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 5, 1, 9.89, 3);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 7, 1, 12.99, 4);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 9, 1, 12.25, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 6, 3, 68.43, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 6);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 2, 1, 12.99, 7);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 8);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 1, 1, 12.25, 9);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 6, 3, 68.43, 10);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 11);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 2, 1, 12.99, 12);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 13);
 
 
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (1, 1);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (1, 2);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (2, 3);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (3, 4);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (4, 5);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 6);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 7);
-INSERT INTO checkout_ordercart (order_id_id, orderproduct_id_id) VALUES (5, 8);
-
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 1, 1, 12.25, 1);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 3, 3, 68.43, 2);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 5, 1, 9.89, 3);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 7, 1, 12.99, 4);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 9, 1, 12.25, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 6, 3, 68.43, 5);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 6);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 2, 1, 12.99, 7);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 8);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 1, 1, 12.25, 9);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (2, 6, 3, 68.43, 10);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (3, 4, 1, 9.89, 11);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (4, 2, 1, 12.99, 12);
+INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 1, 3, 33.33, 13);
 
 

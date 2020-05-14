@@ -1,10 +1,20 @@
 
 <div class="row">
     <div class="input-field col s12">
-        <h6>Order id: {{ orde.id }}</h6>
-        <p>Trakcing number: {{ orde.tracking_nr }}<br>
-        Date of purchase: {{ orde.date }}<br>
-        Total price (including shipping): {{ orde.total_price }}</p>
+        <div class="card-panel white">
+            <div class="row">
+                <h5>{{ order.name }}</h5>
 
+                <div class="col s4">
+                    Img: {{ order.path }}
+                </div>
+                <div class="col s8">
+                    <p>Game rating: {{ order.rating }}<br>
+                    Tracking number: {{ order.tracking_nr }}<br>
+                    Date of purchase: {{ order.date }}<br>
+                    Total price (including shipping): {{ order.total_price }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
