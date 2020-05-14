@@ -26,18 +26,19 @@
              <div class="col s12">
                 <h5 id="sub-total">Sub-total:</h5>
             </div>
-                <span class="col s12">
-                    {% include 'checkout/shoppingcart.html' with order_products=order_products %}
-                </span>
-
+            <div class="col s12">
+                {% for order_product in order_products %}
+                    <div class="row card-panel white order-product-card" data-orderprod = {{ order_product.id }}>
+                        {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+    </div>
 </div>
-{% endblock %}
 {% block js %}
     <script src="{% static "js/checkout.js" %}"></script>
-    {% if page_checkout == 'paymentinfo' %}
-        <script src="{% static "js/paymentinfo.js" %}"></script>
-        <script src="{% static "js/checkout.js" %}"></script>
-    {% endif %}
-{%endblock%}
+{% endblock %}
+
+{% endblock %}

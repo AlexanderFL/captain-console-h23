@@ -57,3 +57,7 @@ div.checkout.container {
     height: 150px;
     object-fit: cover;
 }
+#remove-item {
+    width: 30px;
+    height: 30px;
+}
