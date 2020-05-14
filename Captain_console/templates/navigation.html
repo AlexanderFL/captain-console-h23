@@ -46,11 +46,11 @@
     <div class="seperator"></div>
     <li><a href="{% url "store_index" %}">Store</a></li>
     <div class="seperator"></div>
-{#    {% if 'user_id' in request.session %}#}
-{#        <li><a href="{% url "checkout_index" request.session.user_id %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>#}
-{#        <li><a href="{% url 'account_index' request.session.user_id %}">Account <i class="material-icons">person</i></a></li>#}
-{#    {% else %}#}
+    {% if 'user_id' in request.session %}
+        <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
+        <li><a href="{% url 'account_index' %}">Account <i class="material-icons">person</i></a></li>
+    {% else %}
         <li><a href="{% url "checkout_index" %}">Shopping cart <i class="material-icons">shopping_cart</i></a></li>
         <li><a href="{% url "login_index" %}">Account <i class="material-icons">person</i></a></li>
-{#    {% endif %}#}
+    {% endif %}
 </ul>
