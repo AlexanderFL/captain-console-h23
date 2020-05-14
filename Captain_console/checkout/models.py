@@ -28,7 +28,7 @@ Checks how many items user has in cart. Deletes oreder if empty
 
 
 def number_of_items_in_cart(owner):
-    order_products = OrderProduct.objects.filter(user_id=owner)
+    order_products = OrderProduct.objects.filter(user_id=owner, order_id__confirmed=False)
     items_in_cart = len(order_products)
     return items_in_cart
 

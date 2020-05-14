@@ -140,9 +140,10 @@ def payment(request, id=None):
         response = json.dumps({'status': 200, 'message': 'Yes'})
         return HttpResponse(response, content_type='application/json')
 
-    if 'confirmed' in request.POST:
-        print("yes")
+    if 'confirmed' in request.GET:
+        print("confirming")
         user = request.session.get('user_id')
+        print(user)
         mark_order_confirmed(user)
         print("order confirmed")
 
