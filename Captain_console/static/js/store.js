@@ -8,7 +8,7 @@ function fill_search_bar(){
     let params = window.location.search.substr(1);
     let params_s = params.split("=")
     if(params_s[0] === "search"){
-        $("#search_product").val(params_s[1])
+        $("#search_product").val(decodeURI(params_s[1]))
         $("#search_product").keyup()
     }
     M.updateTextFields();
