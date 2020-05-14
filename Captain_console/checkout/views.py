@@ -1,7 +1,7 @@
 import json
 from itertools import chain
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from account.models import User, PaymentInfo
@@ -20,50 +20,46 @@ def base_context(user_id):
     }
     return context
 
+
 @csrf_exempt
 def index(request):
 
-    #If user is not logged in - render login page
+    # If user is not logged in - render login page
     user_id = request.session.get("user_id")
     print(user_id)
     print(type(user_id))
     if user_id is None:
         return render(request, 'login/index.html')
 
-    #Base context
+    # Base context
     context = base_context(user_id)
 
-    #Specific context
-    context['page_checkout'] ='contactinfo'
+    # Specific context
+    context['page_checkout'] = 'contactinfo'
 
-    #Add item to cart
+    # Add item to cart
     data = request.POST
+    "hello2"
     if "add_item" in request.GET:
-        prod_id = data.get("prod")
+        prod_id = data.get("order_prod_id")
         order_product = OrderProduct()
         order_product.add_item(prod_id)
+
+    # Remove item from cart
+    if 'remove_from_cart' in request.GET:
+        print(request.GET)
+        order_prod_id = request.GET['remove_from_cart']
+
+        print("this is prod-id" + str(order_prod_id))
+        order_product = OrderProduct()
+        order_product.remove_product_from_cart(order_prod_id)
+        return JsonResponse({'data': order_prod_id})
+
     return render(request, 'checkout/index.html', context)
 
 
 def shipping(request, id=None):
-    #If user is not logged in - render login page
-    user_id = request.session.get("user_id")
-    if user_id is None:
-        return render(request, 'login/index.html')
-
-    #Base context
-    context = base_context(user_id)
-
-    #Specific context
-    context['page_checkout'] = "shipping"
-
-    return render(request, 'checkout/index.html', context)
-
-
-@csrf_exempt
-def payment(request, id=None):
-
-    #If user is not logged in - render login page
+    # If user is not logged in - render login page
     user_id = request.session.get("user_id")
     if user_id is None:
         return render(request, 'login/index.html')
@@ -71,9 +67,24 @@ def payment(request, id=None):
     # Base context
     context = base_context(user_id)
 
-    #Specific context
-    context['page_checkout'] = "paymentinfo"
+    # Specific context
+    context['page_checkout'] = "shipping"
 
+    return render(request, 'checkout/index.html', context)
+
+
+@csrf_exempt
+def payment(request, id=None):
+    # If user is not logged in - render login page
+    user_id = request.session.get("user_id")
+    if user_id is None:
+        return render(request, 'login/index.html')
+
+    # Base context
+    context = base_context(user_id)
+
+    # Specific context
+    context['page_checkout'] = "paymentinfo"
 
     if request.method == 'POST':
         # Make sure user is logged in
@@ -105,4 +116,3 @@ def confirmation(request):
 
     context = base_context(user_id, context)
     return render(request, 'checkout/index.html', context)
-

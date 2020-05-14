@@ -24,17 +24,22 @@ class OrderProduct(models.Model):
 
     def check_active_order(self, user_id):
         empty_order = False
-        orders = Order.objects.filter(pk=user_id)
+        orders = Order.objects.filter(user_id=user_id)
+        print(orders)
+        print("going in")
         for order in orders:
+            print("order" + str(order.confirmed))
+
             if order.confirmed == False:  # Shopping cart
+                print("hello")
                 shopping_cart = order
                 print("Emtpy order with id: " + str(shopping_cart.id))
                 empty_order = True
 
-            if empty_order == False:  # No items in shopping cart, create non-confirmed order
-                new_order = Order.objects.create(user_id=user_id)
-                shopping_cart = new_order
-                print("Creating new order with id: " + str(shopping_cart.id))
+        if empty_order == False:  # No items in shopping cart, create non-confirmed order
+            new_order = Order.objects.create(user_id=user_id)
+            shopping_cart = new_order
+            print("Creating new order with id: " + str(shopping_cart.id))
         return shopping_cart
 
     '''
@@ -96,6 +101,16 @@ class OrderProduct(models.Model):
             self.create_product_in_cart(product, quantity, user, shopping_cart)
         else:
             self.update_product_in_cart(in_cart, quantity, user, shopping_cart)
+
+    '''
+    Removes item from cart
+    '''
+    def remove_product_from_cart(self, orderprod_id):
+        print("deletetetete")
+        print(orderprod_id)
+        OrderProduct.objects.filter(pk=orderprod_id).delete()
+
+
 
     # # Increase quantity of item in cart
     # def add_item(self, prod_id):

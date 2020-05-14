@@ -6,9 +6,8 @@
 
 
 window.onload = function() {
- $(document).ready(function () {
-
-   $('#add-item').on('click', function (e) {
+    $(document).ready(function () {
+        $('#add-item').on('click', function (e) {
             e.preventDefault();
             var order_prod_id = $(this).data('prod')
 
@@ -16,10 +15,10 @@ window.onload = function() {
             //GET request with product ID's in new order
             $.ajax({
 
-                url: '/?add_item=prod_id/',
-                type: 'POST',
+                url: '/?add_item=prod' + order_prod_id,
+                type: 'GET',
                 data: {
-                    prod_id: order_prod_id,
+                    order_prod_id: order_prod_id,
                 },
                 success: function (status) {
                     console.log("SUCCESS: " + status)
@@ -31,6 +30,43 @@ window.onload = function() {
             });
         });
 
+        $('#remove-item').on('click', function (e) {
+            e.preventDefault();
+            var order_prod_id = $(this).data('orderprod')
+            const path = window.location.pathname
 
- });
+            console.log("Deleting product")
+            console.log(window.location.pathname)
+               $.ajax({
+                url: path + '?remove_from_cart=' + order_prod_id,
+                type: 'GET',
+                data: {
+                    order_prod_id: order_prod_id,
+                },
+                success: function (status) {
+                    console.log("SUCCESS: " + status)
+                    var order_prod_id = $(this).data('orderprod')
+                    remove_shopping_cart_item(order_prod_id)
+                }
+                ,
+                error: function (xhr, status, error) {
+                    console.log("ERROR: " + status.message)
+                }
+            });
+        })
+    });
+}
+
+function remove_shopping_cart_item(order_prod_id) {
+    order_products = document.getElementsByClassName("order-product-card")
+
+    for (i = 0; i < order_products.length; i++) {
+        order_product = order_products[i]
+        card_id = order_product.data('orderprod')
+
+        if (card_id == order_prod_id) {
+            order_products()[i].style.display = 'none' //Do not display
+            console.log("I'm removing shopping cart item from view")
+        }
+    }
 }
