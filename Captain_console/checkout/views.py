@@ -103,6 +103,18 @@ def payment(request, id=None):
     # Specific context
     context['page_checkout'] = "paymentinfo"
 
+    if 'check_cart' in request.GET:
+        order_products = OrderProduct.objects.filter(user_id=user_id, order_id__confirmed=False)
+
+        if len(order_products) == 0:
+            response = json.dumps({'status': 999, 'message': 'empty'})
+            print("no items in cart")
+        else:
+            response = json.dumps({'status': 200, 'message': 'not_empty'})
+            print("items in cart")
+        return HttpResponse(response, content_type='application/json')
+
+
     # Change qty of item in cart
     if 'change_qty' in request.GET:
         return base_change_qty_of_prod(request)

@@ -38,7 +38,6 @@ window.onload = function() {
             $.ajax({
                 url: '/store?sort_by=' + order_name,
                 type: 'GET',
-
                 success: function (resp) {
                     console.log(resp)
                     console.log(resp.data[0])
@@ -46,7 +45,6 @@ window.onload = function() {
                     order_products(product_order);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
@@ -90,7 +88,6 @@ window.onload = function() {
                     filter_products(products_filtered);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
@@ -105,10 +102,13 @@ window.onload = function() {
                 type: 'GET',
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
+
+                    if (products_filtered.length == 0) {
+                        M.toast({html: "No products found", classes: "red"})
+                    }
                     filter_products(products_filtered);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
@@ -129,7 +129,7 @@ window.onload = function() {
 
              $.ajax({
                // url: "/store/?add_to_cart=" + prod_id,
-                url: path + "/?add_to_cart=" + prod_id,
+                url: "?add_to_cart=" + prod_id,
                 type: "POST",
                 data: {prod_id: prod_id, quantity: quantity},
 

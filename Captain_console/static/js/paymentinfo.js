@@ -1,22 +1,24 @@
 
 window.onload = function(){
+    $('.modal').modal();
 
     function markOrderConfirmed() {
-
         const path = window.location.pathname
 
         $.ajax({
                 url: path + '?confirmed',
                 type: 'POST',
                 success : function(response){
-                    if (response.status === 999){
+                    if (response.status === 200){
                         console.log(response.message)
-                    } else if(response.status === 200){
-                        M.toast({html: "We saved your card for next time", classes: "green"})
+                    } else if(response.status === 900){
                     }
                 }
             });
-        $('.modal').modal();
+
+        if ($('#remember_creditcard').is(':checked')){
+             M.toast({html: "We saved your card for next time", classes: "green"})
+        }
     }
 
     function validDate(date){
@@ -29,17 +31,13 @@ window.onload = function(){
         return re.test(String(cvc))
     }
 
-
-    function makeOrder(){
+    function validateOrder(){
         let cardHolder = $('#card_nameholder').val()
         let cardNumber = $('#card_number').val()
         let expireDate = $('#exp_date').val()
         let cvc = $('#cvc_number').val()
+        const path = window.location.pathname
 
-        console.log(cardHolder)
-        console.log(cardNumber)
-        console.log(expireDate)
-        console.log(cvc)
         // If card holder name is less than 4 characters
         if (cardHolder.trim().length < 4){
             M.toast({html: "Cardholder name can't be shorter than 4 letters", classes: "red"})
@@ -61,17 +59,12 @@ window.onload = function(){
             return;
         }
 
-        // Check if user checked remember card details
+         // Check if user checked remember card details
         if ($('#remember_creditcard').is(':checked')){
             let cardHolder = $('#card_nameholder').val()
             let cardNumber = $('#card_number').val()
             let expireDate = $('#exp_date').val()
             let cvc = $('#cvc_number').val()
-
-            console.log(cardHolder)
-            console.log(cardNumber)
-            console.log(expireDate)
-            console.log(cvc)
             const path = window.location.pathname
 
             $.ajax({
@@ -87,19 +80,36 @@ window.onload = function(){
                     if (response.status === 999){
                         console.log(response.message)
                     } else if(response.status === 200){
-                        M.toast({html: "We saved your card for next time", classes: "green"})
+                        console.log(response.message)
                     }
                 }
             });
         }
-
         markOrderConfirmed()
     }
 
-
     $('#confirm-payment').on('click', function(){
-
         //Þarf að tékka hér hvort það sé örugglega eitthvað í körfu
-        makeOrder()
+        const path = window.location.pathname
+
+         $.ajax({
+        url: path + '?check_cart',
+        type: 'GET',
+        success: function(resp){
+            console.log("checking if there are products in cart")
+                console.log(resp.status)
+                console.log(resp.message)
+
+            if (resp.message == "empty") {
+                M.toast({html: "Your shopping cart is empty", classes: "red"})
+            }
+            else {
+                validateOrder()
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(error)
+        }
+        });
     });
 }

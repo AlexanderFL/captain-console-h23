@@ -18,7 +18,8 @@ def index(request):
     print(request.POST)
     # Add to cart
 
-    if "add_to_cart" in request.GET:
+    if 'add_to_cart' in request.GET:
+        print("In add_to_cart")
         user_id = request.session.get('user_id')
 
         if user_id is None:
@@ -31,6 +32,7 @@ def index(request):
             prod_id = data.get("prod_id")
             quantity = int(data.get("quantity"))
             print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
+
             #Create a new instance of order product and add to cart
             add_product_to_cart(prod_id, quantity, user_id)
 
@@ -62,12 +64,6 @@ def index(request):
             prod_list.append({'id': x.id, 'name': x.name})
         return JsonResponse({'data': prod_list})
 
-        #
-        # product_resp = [{
-        #     'id': x.id,
-        #     'name': x.name,
-        # } for x in products]
-        # return JsonResponse({'data': product_resp})
 
     # Filter applications
     elif 'filter_by' in request.GET:
@@ -110,9 +106,6 @@ def index(request):
 
     # Initial Store load - order by name
     print("hello3")
-
-
-
     context['products'] = Product.objects.all().order_by('name')
     return render(request, 'store/index.html', context)
 
