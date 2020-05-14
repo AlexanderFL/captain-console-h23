@@ -141,6 +141,8 @@ def payment(request, id=None):
         print(user)
         mark_order_confirmed(user)
         print("order confirmed")
+        response = json.dumps({'status': 200, 'message': '/checkout/confirmation'})
+        return HttpResponse(response, content_type='application/json')
 
     return render(request, 'checkout/index.html', context)
 
@@ -152,5 +154,5 @@ def confirmation(request):
         'page_checkout': 'confirmation',
     }
 
-    context = base_context(user_id, context)
+    context = base_context(user_id)
     return render(request, 'checkout/index.html', context)

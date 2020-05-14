@@ -124,11 +124,8 @@ window.onload = function() {
 
             //No quantity set, only "add to cart"
             var quantity = 1
-            const path = window.location.pathname
-            console.log(path)
 
              $.ajax({
-               // url: "/store/?add_to_cart=" + prod_id,
                 url: "?add_to_cart=" + prod_id,
                 type: "POST",
                 data: {prod_id: prod_id, quantity: quantity},

@@ -17,6 +17,8 @@
                 {% include 'checkout/shipping.html'%}
             {% elif page_checkout == 'paymentinfo' %}
                 {% include 'checkout/paymentinfo.html' %}
+            {% elif page_checkout == 'confirmation' %}
+                {% include 'checkout/confirmation.html' %}
             {% endif %}
         </div>
         <div class="col s12 m12 l6 fix-content card-panel white">
