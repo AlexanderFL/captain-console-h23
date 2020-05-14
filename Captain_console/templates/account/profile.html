@@ -3,7 +3,7 @@
 <form class="">
     <div class="row">
         <div class="col s12 m7 l5 xl4">
-            <img class="circle account-image"  src="{{user.userphoto_set.first.path}}" alt="{{ user.userphoto_set.first.alt }}"/>
+            <img class="circle account-image" src="{{ user.userphoto_set.first.path }}" alt="{{ user.userphoto_set.first.alt }}"/>
         </div>
         <div class="col s12 m5 l6 xl7">
             <h5>{{ user.username }}</h5>
@@ -42,10 +42,10 @@
 
 
     <div class="row">
-        <a class="btn waves-effect blue accent-3 move-buttons" href="{% url 'account_edit_profile'  user.id %}">Edit profile
+        <a class="btn waves-effect blue accent-3 move-buttons" href="{% url 'account_edit_profile'  %}">Edit profile
         <i class="material-icons right">edit</i></a>
 
-        <a class="btn waves-effect red accent-3 move-buttons" href="{% url 'home_index_logout' user.id %}">Logout
+        <a class="btn waves-effect red accent-3 move-buttons" href="{% url 'home_index_logout' %}">Logout
         <i class="material-icons right">keyboard_return</i></a>
     </div>
 

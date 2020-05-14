@@ -54,3 +54,8 @@ div.checkout.container {
     color: white;
     margin-left: 15px;
 }
+
+#sub-total {
+    margin-left: 30px;
+}
+

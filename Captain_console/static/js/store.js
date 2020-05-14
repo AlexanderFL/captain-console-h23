@@ -105,7 +105,6 @@ window.onload = function() {
         });
 
         //Add to cart
-        //TODO: Implement for add to cart in product details
         $('.add-to-cart').on('click', function (e) {
             e.preventDefault()
             console.log("add to cart")

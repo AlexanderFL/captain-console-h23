@@ -55,7 +55,10 @@ class Address(models.Model):
 
     @staticmethod
     def insert(user_id, address, city, country, zip_code):
-        Address.objects.create(user_id=user_id, address=address, city=city, country=country, zip_code=zip_code)
+        try:
+            Address.objects.filter(user_id=user_id).update(address=address, city=city, country=country, zip_code=zip_code)
+        except Exception:
+            Address.objects.create(user_id=user_id, address=address, city=city, country=country, zip_code=zip_code)
 
 
 class UserPhoto(models.Model):

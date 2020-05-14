@@ -20,7 +20,7 @@ window.onload = function(){
         $("#loader").show()
 
         $.ajax({
-            url: "",
+            url: "/login/",
             type: "POST",
             data: {
                 email: email,

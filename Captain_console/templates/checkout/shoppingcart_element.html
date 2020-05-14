@@ -1,8 +1,8 @@
 {% load static %}
-<div class="card-panel white">
+<div class="card-panel white order-product-card" data-orderprod=" {{ order_product.id }}">
     <div class="row">
         <div class="col s2">
-            <a id="add-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_up</i></a>
+            <a id="add-item" data-orderprod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_up</i></a>
             <p><span id="quantity">{{ order_product.quantity }}</span></p>
             <a id="subtract-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">arrow_drop_down</i></a>
         </div>
@@ -14,11 +14,8 @@
             <h5 id="price">${{ order_product.product_id.price }}</h5>
         </div>
         <div class="col s1">
-            <a id="remove-item" data-prod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">close</i></a>
+            {% csrf_token %}
+            <a id="remove-item" data-orderprod="{{ order_product.id }}" class="btn-floating btn-small waves-effect waves-light blue accent-3"><i class="material-icons">close</i></a>
         </div>
     </div>
 </div>
-
-{% block js %}
- <script src="{% static "js/checkout.js" %}"></script>
-{%  endblock %}

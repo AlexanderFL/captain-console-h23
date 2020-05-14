@@ -10,7 +10,9 @@ from account.views import index as account_index
 
 @csrf_exempt
 def index(request):
+    print("login/view/index: I'm executed")
     if request.method == "POST":
+        print("login/view/index: Post method")
         email = request.POST.get("email").lower()
         # Encode the plain password into bytes
         plain_password = request.POST.get("password").encode('utf-8')
@@ -20,12 +22,11 @@ def index(request):
         if stored_password is not None:
             # Encode the password stored in the database to bytes
             hashed_pass = stored_password.encode('utf-8')
-            print(hashed_pass)
 
             # Compare the plain password to the stored hash
             if bcrypt.checkpw(plain_password, hashed_pass):
                 request.session['user_id'] = User.objects.get(email=email).id
-                url = 'http://localhost:8000/account/' + str(request.session['user_id'])
+                url = 'http://localhost:8000/account/'
                 response = json.dumps({'status': 1, 'message': url})
                 return HttpResponse(response, content_type='application/json')
 
@@ -59,7 +60,7 @@ def register(request):
 
             # Create the session for the user and redirect him to his account page
             request.session['user_id'] = user_inserted.id
-            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/' + str(user_inserted.id)})
+            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/'})
             return HttpResponse(response, content_type='application/json')
         else:
             response = json.dumps({'status': 0, 'message': 'This email is already in use'})
