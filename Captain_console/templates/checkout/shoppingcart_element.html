@@ -1,19 +1,23 @@
 {% load static %}
 <div class="row">
-    <div class="col s2">
-        <a id="add" class="change-qty btn-floating btn-small waves-effect waves-light blue accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">arrow_drop_up</i></a>
-        <p><span class="quantity" id="{{ order_product.id }}-quantity" data-qty="{{order_product.quantity}}">{{ order_product.quantity }}</span></p>
-        <a id="subtract" class="change-qty btn-floating btn-small waves-effect waves-light blue accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">arrow_drop_down</i></a>
+    <div class="col s10"> <!-- Content -->
+        <div class="col s2">
+            <a id="add" class="change-qty btn-floating btn-small waves-effect waves-light blue accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">arrow_drop_up</i></a>
+            <p><span class="quantity" id="{{ order_product.id }}-quantity" data-qty="{{order_product.quantity}}">{{ order_product.quantity }}</span></p>
+            <a id="subtract" class="change-qty btn-floating btn-small waves-effect waves-light blue accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">arrow_drop_down</i></a>
+        </div>
+        <div class="col s10 m10 l6">
+            <img class="product-img" src="{{ order_product.product_id.productphoto_set.first.path}}" alt="{{ order_product.product_id.productphoto_set.first.alt }}" height="120px" width="120">
+        </div>
+        <div class="col s12 m12 l4 fall-beneath">
+            <h6 id="game-title">{{ order_product.product_id.name }}</h6>
+            <h5 id="price">${{ order_product.product_id.price }}</h5>
+        </div>
     </div>
-    <div class="col s8">
-        <img class="product-img" src="{{ order_product.product_id.productphoto_set.first.path}}" alt="{{ order_product.product_id.productphoto_set.first.alt }}" height="120px" width="120">
-    </div>
-    <div class="col s2">
-        {% csrf_token %}
-        <a class="remove-item btn-floating btn-small waves-effect waves-light red accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">close</i></a>
-    </div>
-    <div class="col s12">
-        <h6 id="game-title">{{ order_product.product_id.name }}</h6>
-        <h5 id="price">${{ order_product.product_id.price }}</h5>
+    <div class="col s2"> <!-- Red button-->
+        <div class="col s12">
+            {% csrf_token %}
+            <a class="remove-item btn-floating btn-small waves-effect waves-light red accent-3" data-orderprod="{{ order_product.id }}"><i class="material-icons">close</i></a>
+        </div>
     </div>
 </div>
