@@ -3,8 +3,23 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+function validateUrl(url){
+    var re = /^(https|http):\/\/.*(jpg|png|jpeg|gif)/g
+    return re.test(String(url))
+}
+
 $(document).ready(function(){
     $('.modal').modal();
+});
+
+$('#accept-image').on('click', function () {
+    let picture_url = $('#picture-url').val().trim()
+    if (validateUrl(picture_url)){
+        $('#user-image').attr('src', picture_url + "?rand=" + Math.random())
+    } else {
+        $('#picture-url').val("")
+        M.toast({html: "Not a valid URL", classes: "red"})
+    }
 });
 
 $('#account-save-button').on('click', function(){

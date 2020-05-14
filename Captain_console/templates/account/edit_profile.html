@@ -3,14 +3,13 @@
 <form class="">
     <div class="row">
         <div class="col s12 m7 l5 xl4">
-            <img class="circle account-image"  src="{{ user.userphoto_set.first.path }}" alt="{{ user.userphoto_set.first.alt }}"/>
+            <img id="user-image" class="circle account-image" src="{{ user.userphoto_set.first.path }}" alt="{{ user.userphoto_set.first.alt }}"/>
             <a href="#modal1" class="modal-trigger">Upload picture</a>
         </div>
 
         <div class="col s12 m5 l6 xl7">
             <h4>{{ user.username }}</h4>
         </div>
-
     </div>
 
     <div class="row push-down">
@@ -64,6 +63,6 @@
         <input id="picture-url" type="text" placeholder="URL Here"/>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn green">Accept</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn green" id="accept-image">Accept</a>
     </div>
 </div>
