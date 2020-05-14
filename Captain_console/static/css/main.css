@@ -125,13 +125,11 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 }
 
 .shoppingcart {
-    text-anchor: start;
-    style=font-size:15px;
-    margin-top:-50px;
-    margin-left: 10px;
-    color: black;
-    background: #cceb34;
-    border-radius: 50%;
+    font-size: 15px;
+    margin-top: -45px;
+    margin-left: 8px;
+    color: white;
+    background: transparent;
     height: 20px;
     /*display:block;*/
     /*top:-25px;*/
@@ -148,4 +146,4 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
 /*    width:20px;*/
 /*    height:20px;*/
 /*    background:darkgray;*/
-/*}*/
+}
