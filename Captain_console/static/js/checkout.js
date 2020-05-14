@@ -46,6 +46,7 @@ window.onload = function() {
                 success: function (status) {
                     console.log("SUCCESS: " + status)
                     var order_prod_id = $(this).data('orderprod')
+                    console.log($(this).outerHTML)
                     remove_shopping_cart_item(order_prod_id)
                 }
                 ,
@@ -62,10 +63,13 @@ function remove_shopping_cart_item(order_prod_id) {
 
     for (i = 0; i < order_products.length; i++) {
         order_product = order_products[i]
-        card_id = order_product.data('orderprod')
+        console.log(order_product)
+        card_id = order_product.data('product')
+
+        console.log(order_product)
 
         if (card_id == order_prod_id) {
-            order_products()[i].style.display = 'none' //Do not display
+            order_products[i].style.display = 'none' //Do not display
             console.log("I'm removing shopping cart item from view")
         }
     }
