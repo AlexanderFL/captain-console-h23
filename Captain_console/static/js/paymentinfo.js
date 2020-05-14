@@ -1,6 +1,23 @@
 
 window.onload = function(){
-    $('.modal').modal();
+
+    function markOrderConfirmed() {
+
+        const path = window.location.pathname
+
+        $.ajax({
+                url: path + '?confirmed',
+                type: 'POST',
+                success : function(response){
+                    if (response.status === 999){
+                        console.log(response.message)
+                    } else if(response.status === 200){
+                        M.toast({html: "We saved your card for next time", classes: "green"})
+                    }
+                }
+            });
+        $('.modal').modal();
+    }
 
     function validDate(date){
         var re = /(0[1-9]|1[0-2])\/2[0-9]/g
@@ -12,12 +29,17 @@ window.onload = function(){
         return re.test(String(cvc))
     }
 
+
     function makeOrder(){
         let cardHolder = $('#card_nameholder').val()
         let cardNumber = $('#card_number').val()
         let expireDate = $('#exp_date').val()
         let cvc = $('#cvc_number').val()
 
+        console.log(cardHolder)
+        console.log(cardNumber)
+        console.log(expireDate)
+        console.log(cvc)
         // If card holder name is less than 4 characters
         if (cardHolder.trim().length < 4){
             M.toast({html: "Cardholder name can't be shorter than 4 letters", classes: "red"})
@@ -41,8 +63,19 @@ window.onload = function(){
 
         // Check if user checked remember card details
         if ($('#remember_creditcard').is(':checked')){
+            let cardHolder = $('#card_nameholder').val()
+            let cardNumber = $('#card_number').val()
+            let expireDate = $('#exp_date').val()
+            let cvc = $('#cvc_number').val()
+
+            console.log(cardHolder)
+            console.log(cardNumber)
+            console.log(expireDate)
+            console.log(cvc)
+            const path = window.location.pathname
+
             $.ajax({
-                url: '',
+                url: path + '?save_card',
                 type: 'POST',
                 data: {
                     cardHolder: cardHolder,
@@ -59,10 +92,14 @@ window.onload = function(){
                 }
             });
         }
+
+        markOrderConfirmed()
     }
 
+
     $('#confirm-payment').on('click', function(){
-        console.log("hello")
-       makeOrder()
+
+        //Þarf að tékka hér hvort það sé örugglega eitthvað í körfu
+        makeOrder()
     });
 }
