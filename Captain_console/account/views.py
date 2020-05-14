@@ -14,22 +14,39 @@ from checkout.models import OrderProduct, Order
 
 def base_context(id, context):
     query_user = User.objects.get(pk=id)
-
-    #query_order_history = OrderProduct.objects.filter(user_id=id)[:3]
-    query_order = query_user.order_set.all().order_by('-id')[:3]
-    # query_order_history = Order.objects.raw('SELECT * FROM store_order WHERE user_id_id = %s LIMIT 3', [id])
-
-    # query_test = OrderProduct.objects.raw('SELECT product_id_id FROM store_orderproduct WHERE order_id_id in (SELECT id FROM store_order WHERE user_id_id = %s)',[id])
-
     context['user'] = query_user
-    #context['orders'] = query_order_history
-    # context['orders'] = product_details
-    # context['test'] = query_test
-    context['order'] = query_order
 
-    # : OrderProduct.objects.get()
+    query_order = Order.objects.filter(user_id=id, confirmed=True).order_by('-id')[:3]
+    query_list = []
+    if len(query_order) > 0 :
+        for order in query_order:
+            if order != None:
+                query_list.append(order.id)
+        context['orders'] = query_order
 
-    # context['user'] = User.objects.get(pk=id)
+        query_products = Product.objects.filter(orderproduct__order_id_id__in=query_list)
+        print(query_products)
+        if len(query_products) > 0 :
+            for product in query_products:
+                if product != None:
+                    print(product.name)
+
+        for i, value in enumerate(query_products) :
+            print("i is: {}, and value is: {}".format(i, value))
+            print("query_products[i] is: {}".format(query_products[i]))
+            query_order[i].name = value.name
+            query_order[i].photo = value.productphoto_set.name
+            query_order[i].rating = value.average_rating
+
+                # context['orders'].update(product)
+        context['products'] = query_products
+
+    #
+    # print(product.orderproduct_set.order)
+    # order.orderproduct_set.product_id_id
+
+
+
 
     return context
 
