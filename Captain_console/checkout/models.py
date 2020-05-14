@@ -7,7 +7,7 @@ Checks if user has a non-confirmed order ("shopping cart")
 '''
 
 
-def active_order(user_id, product, quantity):
+def active_order(user_id, product=None, quantity=None):
     empty_order = False
     orders = Order.objects.filter(user_id=user_id)
 
@@ -142,6 +142,15 @@ def change_qty(orderprod_id, change_type):
         new_quantity = order_product.quantity - 1
     update_product_in_cart(order_product, new_quantity)
     return new_quantity
+
+
+'''
+Mark order confirmed
+'''
+
+
+def mark_order_confirmed(user):
+    Order.objects.filter(user_id=user, confirmed=False).update(confirmed=True)
 
 
 class Order(models.Model):
