@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 from django.views.decorators.csrf import csrf_exempt
 from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category
 from account.models import User
-from checkout.models import OrderProduct
+from checkout.models import OrderProduct, add_product_to_cart
 import json
 
 
@@ -32,8 +32,7 @@ def index(request):
             quantity = int(data.get("quantity"))
             print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
             #Create a new instance of order product and add to cart
-            order_product = OrderProduct()
-            order_product.add_product_to_cart(prod_id, quantity, user_id)
+            add_product_to_cart(prod_id, quantity, user_id)
 
     # Search
     if 'search_by' in request.GET:
@@ -45,11 +44,6 @@ def index(request):
         for x in products :
             prod_list.append({'id': x.id})
         return JsonResponse({'data': prod_list})
-
-        # product_resp = [{
-        #     'id': x.id
-        # } for x in products]
-        # return JsonResponse({'data': product_resp})
 
     # Sort by price, name or rating
     elif 'sort_by' in request.GET:

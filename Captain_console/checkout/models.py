@@ -96,7 +96,7 @@ Creates a new order_product in cart
 '''
 
 
-def create_product_in_cart(self, product, quantity, user, shopping_cart):
+def create_product_in_cart(product, quantity, user, shopping_cart):
     total_price = calculate_price(quantity, product)
     OrderProduct.objects.create(product_id=product, quantity=quantity, price=total_price, user_id=user,
                                 order_id=shopping_cart)
@@ -107,7 +107,7 @@ Adds product to cart or updates quantity if already in cart
 '''
 
 
-def add_product_to_cart(self, product_id, quantity, user_id):
+def add_product_to_cart(product_id, quantity, user_id):
     user = User.objects.get(pk=user_id)
     product = Product.objects.get(pk=product_id)
 
@@ -129,7 +129,7 @@ Add to or subtract item in cart
 '''
 
 
-def change_qty(self, orderprod_id, change_type):
+def change_qty(orderprod_id, change_type):
     order_product = OrderProduct.objects.get(pk=orderprod_id)
     order_product_quantity = order_product.quantity
 
