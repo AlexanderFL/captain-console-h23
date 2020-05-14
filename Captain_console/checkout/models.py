@@ -22,25 +22,36 @@ class OrderProduct(models.Model):
     Checks if user has a non-confirmed order ("shopping cart")
     '''
 
-    def check_active_order(self, user_id):
+    def active_order(self, user_id):
         empty_order = False
         orders = Order.objects.filter(user_id=user_id)
-        print(orders)
-        print("going in")
-        for order in orders:
-            print("order" + str(order.confirmed))
 
-            if order.confirmed == False:  # Shopping cart
+        for order in orders:
+            if not order.confirmed:  # Shopping cart
                 print("hello")
                 shopping_cart = order
                 print("Emtpy order with id: " + str(shopping_cart.id))
                 empty_order = True
 
-        if empty_order == False:  # No items in shopping cart, create non-confirmed order
+        if not empty_order:  # No items in shopping cart, create non-confirmed order
             new_order = Order.objects.create(user_id=user_id)
             shopping_cart = new_order
             print("Creating new order with id: " + str(shopping_cart.id))
         return shopping_cart
+
+    '''
+    Checks how many items user has in cart. Deletes oreder if empty
+    '''
+
+    def number_of_items_in_cart(self, owner):
+        order_products = OrderProduct.objects.filter(user_id=owner)
+        items_in_cart = len(order_products)
+        print("number of items" + str(items_in_cart))
+        return items_in_cart
+
+    def delete_active_order(self, owner):
+        print("deleting order")
+        Order.objects.filter(user_id=owner, confirmed=False).delete()
 
     '''
     Price calculated
@@ -90,10 +101,8 @@ class OrderProduct(models.Model):
         user = User.objects.get(pk=user_id)
         product = Product.objects.get(pk=product_id)
 
-
-
         # Get order id for active non-confirmed order
-        shopping_cart = self.check_active_order(user_id)
+        shopping_cart = self.active_order(user)
 
         # Check if item is in cart
         in_cart = self.check_if_already_in_cart(user_id, product)
@@ -105,11 +114,19 @@ class OrderProduct(models.Model):
             self.update_product_in_cart(in_cart, new_quantity, user, shopping_cart)
 
     '''
-    Removes item from cart
+    Removes item from cart. If last item removed - delete open order.
     '''
 
     def remove_product_from_cart(self, orderprod_id):
-        OrderProduct.objects.filter(pk=orderprod_id).delete()
+        order_product = OrderProduct.objects.get(pk=orderprod_id)
+        owner = order_product.user_id
+        order_product.delete()
+
+        qty_in_cart = self.number_of_items_in_cart(owner)
+
+        if qty_in_cart == 0:
+            self.delete_active_order(owner)
+
 
     '''
     Add to or subtract item in cart
@@ -120,7 +137,6 @@ class OrderProduct(models.Model):
 
         order_product = OrderProduct.objects.get(pk=orderprod_id)
         order_product_quantity = order_product.quantity
-
 
         if change_type == "add":
             new_quantity = order_product.quantity + 1
