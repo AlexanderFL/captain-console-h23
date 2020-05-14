@@ -27,10 +27,12 @@ window.onload = function(){
                 password: password
             },
             success : function(response){
-                $("#loader").hide()
+                // Status 200: Ok, continue
+                // Status 0  : Incorrect credentials
                 if (response.status === 0){
                     M.toast({html: response.message, classes: "red"})
-                } else if(response.status === 1){
+                    $("#loader").hide()
+                } else if(response.status === 200){
                     window.location.replace(response.message)
                 }
                 console.log(response)

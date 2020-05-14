@@ -6,7 +6,6 @@
             <div class="row col s12">
                 <div class="img-field col s12">
                     <i class="large material-icons">account_circle</i>
-                    <img class="circle responsive-img"  src="" alt=""/>
                 </div>
             </div>
 
@@ -15,6 +14,7 @@
                     <i class="material-icons prefix">face</i>
                     <input id="id_username" type="text" required>
                     <label for="id_username">Username</label>
+                    <span class="helper-text" data-error="Username needs to be at least 4 characters long"></span>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
                     <i class="material-icons prefix">email</i>
                     <input id="email" type="email" class="validate" required >
                     <label for="email">Email</label>
-                    <span class="helper-text" data-error="Please enter a valid email address"></span>
+                    <span id="email-helper-text" class="helper-text" data-error="Please enter a valid email address"></span>
                 </div>
             </div>
 
@@ -32,6 +32,7 @@
                     <i class="material-icons prefix">vpn_key</i>
                     <input id="password" type="password">
                     <label for="password">Password</label>
+                    <span class="helper-text" data-error="Password needs to be at least 6 characters long"></span>
                 </div>
             </div>
 
@@ -40,6 +41,7 @@
                     <i class="material-icons prefix">vpn_key</i>
                     <input id="re-password" type="password">
                     <label for="re-password">Repeat Password</label>
+                    <span class="helper-text" data-error="Passwords do not match"></span>
                 </div>
             </div>
 
@@ -52,6 +54,9 @@
 
         </div>
     </form>
+    <div class="progress blue lighten-4" id="loader">
+        <div class="indeterminate blue"></div>
+    </div>
 </div>
 <span>Already have an account?<a href="{% url "login_index" %}"> Sign in</a></span>
 

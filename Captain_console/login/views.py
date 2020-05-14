@@ -27,7 +27,7 @@ def index(request):
             if bcrypt.checkpw(plain_password, hashed_pass):
                 request.session['user_id'] = User.objects.get(email=email).id
                 url = '/account/'
-                response = json.dumps({'status': 1, 'message': url})
+                response = json.dumps({'status': 200, 'message': url})
                 return HttpResponse(response, content_type='application/json')
 
         response = json.dumps({'status': 0, 'message': 'Email/password was incorrect'})
