@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/store.css" %}">
+    <link rel="stylesheet" href="{% static 'css/shared/product-card-view.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shared/custom-breadcrumbs.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row store-container">
+        <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li class="active"><a href="#">Store</a></li>
+        </ul>
+        <div class="col s12 m12 l2">    <!-- Filter and select-->
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="search_product" type="text" class="validate" />
+                        <label for="search_product">Search product by name</label>
+                    </div>
+                     <div class="input-field col s12">
+                        <select id="orderby">
+                            <option value="" disabled="disabled" selected="selected">Order by</option>
+                            <option value="1">Price</option>
+                            <option value="3">Name</option>
+                            <option value="3">Rating</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
+                        <select class="filterby" id="developer_filter" >
+                            <option value="" disabled="disabled" selected="selected">Developer</option>
+                            <option value="0">All</option>
+                            <option value="1">Nintendo PTD</option>
+                            <option value="2">Sony</option>
+                            <option value="3">Sega</option>
+                            <option value="4">Amiga</option>
+                            <option value="5">Commadore 64</option>
+                            <option value="6">Legacy Engineering</option>
+
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
+                        <select class="filterby" id="genre_filter">
+                            <option value="" disabled="disabled" selected="selected">Genre</option>
+                            <option value="0">All</option>
+                            <option value="1">First Person Shooter</option>
+                            <option value="2">Adventure</option>
+                            <option value="3">Arcade</option>
+                            <option value="4">RPG</option>
+                            <option value="5">Platform</option>
+                        </select>
+                    </div>
+                 <div class="input-field col s12">
+                        <select class="filterby" id="category_filter">
+                            <option value="" disabled="disabled" selected="selected">Category</option>
+                            <option value="0">All</option>
+                            <option value="1">Games</option>
+                            <option value="2">Console</option>
+                            <option value="2">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="content col s10">  <!-- Products-->
+        <div class="filter-message"></div>
+            <div class="row all_products">
+                {% for product in products %}
+                    {% include 'store/single_product.html' with product=product%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% block js %}
+        <script src="{% static "js/store.js" %}"></script>
+    {%endblock%}
+{% endblock %}

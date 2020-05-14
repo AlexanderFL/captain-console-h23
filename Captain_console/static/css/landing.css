@@ -1,0 +1,32 @@
+/**
+* landing.css
+*
+* Index
+* - Banner
+* - News cards
+*/
+
+/**
+* Banner
+*/
+
+.place_higher{
+  object-position: bottom;
+  bottom: 150px !important;
+}
+
+main.content-background{
+  background-color: transparent;
+}
+
+/**
+* News cards
+*/
+
+.card-news{
+  background: #5194ff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #5194ff 0%, #2979ff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #5194ff 0%,#2979ff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #5194ff 0%,#2979ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5194ff', endColorstr='#2979ff',GradientType=0 ); /* IE6-9 */
+}

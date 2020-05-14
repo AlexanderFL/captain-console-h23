@@ -1,0 +1,125 @@
+/**
+* main.css
+*
+* Index
+* - Font
+* - Footer placement
+* - Container override
+* - Content background color
+* - Correct coloring on forms
+* - Navbar placements and styles
+* - Mobile navbar styles
+*/
+
+/**
+* Font
+ */
+#store-link {
+    font-family: 'Chelsea Market', serif;
+    font-size: 22px;
+}
+
+/**
+* Footer placement
+*/
+
+/* Sticking the footer to the end of the page */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/**
+* Container override
+*/
+
+/* Making the container larger */
+.container{
+    max-width: none !important;
+}
+
+/**
+* Content background color
+*/
+
+.content-background{
+    background-color: #F6F6F6;
+}
+
+/**
+* Correct coloring on forms
+*/
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=tel]:focus + label{
+    color: #2979ff !important;
+}
+.input-field .prefix.active {
+    color: #2979ff;
+}
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus,
+.input-field input[type=tel]:focus{
+    border-bottom: 1px solid #2979ff !important;
+    box-shadow: 0 1px 0 0 #2979ff !important;
+}
+
+/**
+* Navbar placements and styles
+*/
+
+.indent-links{
+    margin-left: 20em;
+}
+
+nav .brand-logo{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+/* Override search bar color scheme */
+nav div div ul li .input-field input[type=text]:focus {
+    border-bottom: 1px solid #ffffff !important;
+    box-shadow: 0 1px 0 0 #ffffff !important;
+}
+
+nav div div ul li .input-field input{
+    padding-left: 10px !important;
+}
+
+
+/**
+* Mobile navbar styles
+*/
+
+.sidenav .input-field .prefix.active{
+    color: #FFFFFF !important;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: 1px solid #FFFFFF;
+    box-shadow: 0 1px 0 0 #FFFFFF;
+}
+
+.seperator{
+    border-top: 1px solid #c1c1c1;
+}
+
+.sidenav li .input-field{
+    margin: 0 !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Lowers the search icon inline with the search bar */
+.sidenav li .input-field .prefix{
+    top: 2rem;
+}

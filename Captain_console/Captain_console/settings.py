@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'login.apps.LoginConfig',
     'shoppingcart.apps.ShoppingcartConfig',
-    'store.apps.StoreConfig'
+    'store.apps.StoreConfig',
+    'account.apps.AccountConfig'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
         'NAME': 'captainconsole',
         'USER': 'postgres',
         'PASSWORD': 'Elk9vdu53x5PO7KDKl67m6awa4ldpfuu',
-        'HOST': 'sql-connect.alexfreyr.com',
+        'HOST': '157.245.44.28',
         'PORT': '5432',
     }
 }

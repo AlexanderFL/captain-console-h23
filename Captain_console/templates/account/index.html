@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/account.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col s12 m6">
+
+            {% if page_account == 'profile' %}
+                {% include 'account/profile.html' with user=user %}
+            {% elif page_account == 'edit_profile' %}
+                {% include 'account/edit_profile.html' with user=user %}
+            {% endif %}
+
+        </div>
+        <div class="col s12 m6">
+            <div class="card-panel white">
+                <h4>Order history</h4>
+                {% if not orders %}
+                    <p>You have no orders </p>
+                {% else %}
+                    {% for order in orders %}
+
+                        {% include 'account/order_history.html'%}
+
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+    {% if page_account == 'edit_profile' %}
+        <script src="{% static "js/account_edit.js" %}"></script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/checkout.css" %}">
+    <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class = "checkout container">
+    <div class="checkout_inner container">
+        {% include 'checkout/crumbs.html' %}
+    <div class="row">
+        <div class="col s12 m12 l6">
+            {% if page_checkout == 'contactinfo' %}
+                {% include 'checkout/contactinfo.html' with user=user%}
+            {% elif page_checkout == 'shipping' %}
+                {% include 'checkout/shipping.html'%}
+            {% elif page_checkout == 'paymentinfo' %}
+                {% include 'checkout/paymentinfo.html' %}
+            {% endif %}
+        </div>
+        <div class="col s12 m12 l6 fix-content card-panel white">
+            <div class="col s12 blue accent 2 cart-header">
+                <h4 id="shopping-cart-title">Shopping cart</h4>
+            </div>
+             <div class="col s12">
+                <h5 id="sub-total">Sub-total:</h5>
+            </div>
+                <span class="col s12">
+                    {% include 'checkout/shoppingcart.html' with order_products=order_products %}
+                </span>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{% static "js/checkout.js" %}"></script>
+    {% if page_checkout == 'paymentinfo' %}
+        <script src="{% static "js/paymentinfo.js" %}"></script>
+        <script src="{% static "js/checkout.js" %}"></script>
+    {% endif %}
+{%endblock%}

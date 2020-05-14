@@ -1,10 +1,24 @@
 from django.shortcuts import render
+from store.models import Product
 
-# Create your views here.
-
-context = [
-    {'name': 'supermario','price': 123},
-    {'name': 'crashbandicoot',"price": 50}]
 
 def index(request):
-    return render(request, 'home/index.html', context={"data": context})
+    context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}
+    return render(request, 'home/index.html', context)
+
+
+def terms(request):
+    context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}
+    return render(request, 'home/terms.html', context)
+
+
+def aboutus(request):
+    context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}
+    return render(request, 'home/aboutus.html', context)
+
+
+def logout(request):
+    if request.session.__contains__('user_id'):
+        request.session.pop('user_id')
+    context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}
+    return render(request, 'home/index.html', context)

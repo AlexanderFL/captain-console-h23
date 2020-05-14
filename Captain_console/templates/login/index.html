@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/account.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class = "login container">
+    <div class="signup ">
+        <div class="col s12 m6">
+
+
+            {% if page_login == 'login_index' %}
+                {% include 'login/login.html' with user=user %}
+            {% elif page_login == 'login_register' %}
+                {% include 'login/register.html' with user=user %}
+            {% endif %}
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+/**
+* product_details.css
+*
+* Index
+* - Image placement
+* - Product pricing styles
+* - Rating styles
+*/
+
+/**
+* Image placement
+*/
+.product-image{
+    padding-top: 4%;
+    float: right;
+}
+
+/* Make image fall to the left when screen is under 600px*/
+@media only screen and (max-width: 600px) {
+    .product-image{
+        float: none !important;
+        margin: auto;
+    }
+}
+
+.store {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.product-image{
+    padding-top: 4%;
+    float: right;
+}
+
+.content {
+    margin: auto;
+}
+/**
+* Product pricing styles
+ */
+
+#product-price {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.normal-price{
+    color: black;
+    text-decoration: line-through;
+}
+
+.stock-text{
+    font-weight: bold;
+}
+
+.in-stock {
+    color: #4caf50 !important;
+}
+
+.out-stock{
+    color: #c80007 !important;
+}
+
+.set-price{
+    color: #2979ff;
+}
+
+.copies-sold{
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+/**
+* Ratings styles
+*/
+
+.checked {
+    color: orange;
+}
+#stars {
+    padding-top: 1rem;
+}
+
+.star {
+    background: none;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-color: white;
+    border-style: solid;
+}
+
+
+.star.fill {
+    color: orange;
+}
+
+.rate {
+    color: black;
+}
+
+.rate:hover {
+    color: orange;
+}
+
+.rate:hover span {
+    transform: translateY(0) scale(2);
+}
+
+#give_review {
+    margin-left: 0.5rem;
+}
+
+.star[disabled] {
+    pointer-events:none;
+}
+
+#rating-count {
+    padding-bottom: 2rem;
+}

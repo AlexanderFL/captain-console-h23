@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/product_details.css" %}">
+    <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row store">
+        <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li><a href="{% url "store_index" %}">Store</a></li>
+            <li class="active"><a href="#">{{ product.name }}</a></li>
+        </ul>
+        <div class="card-panel white col s12">
+            <div class="row">
+                <div class="col s12 m6 l4">
+                    <div class="product-image">
+                        <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
+                        <div class="copies-sold">
+                            <span id="copies-sold-nr"></span>
+                            <span>copies sold</span>
+                        </div>
+                        <div id="stars" data-average="{{ product.average_rating}}" >
+                            <button class="star" data-rate="1" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="2" data-prod="{{ product.id }}" ><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="3" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="4" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button><span id="rating-count" data-current-count="{{ product.review_set.count }}">({{ product.review_set.count }})</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l8">
+                    <h4>{{ product.name }}</h4>
+                    <span class="stock-text in-stock">In stock</span>
+                    <h6>{{ product.productdetails_set.first.description }}</h6>
+                    <h6><strong>Release date:</strong> {{ product.productdetails_set.first.release_date }}</h6>
+                    <h6><strong>Developer: </strong>{{ product.productdetails_set.first.developer_id.developer }}</h6>
+                    <h6><strong>Genre: </strong>{{ product.productdetails_set.first.genre_id.genre }} </h6>
+                    <div>
+                        <div id="product-price">
+                            {% if product.discount > 0 %}
+                                <span class="set-price">${{ product.get_discounted_price }}</span>
+                                <sup class="normal-price">{{ product.price }}</sup>
+                            {% else %}
+                                <span class="set-price">${{ product.price }}</span>
+                            {% endif %}
+                        </div>
+                        <a class="waves-effect waves-light btn blue accent-3 add-to-cart" data-prod="{{ product.id }}"><i class="material-icons left">shopping_cart</i>Add to cart</a>
+                        {% if 'user_id' in request.session %}
+                            <a class="waves-effect waves-light btn blue accent-3" data-prod="{{ product }}" id="give-review" >Rate product</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% block js %}
+    <script src="{% static "js/store.js" %}"></script>
+    <script src="{% static "js/product_details.js" %}"></script>
+{%endblock%}
+
+{% endblock %}

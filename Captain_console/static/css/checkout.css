@@ -1,0 +1,59 @@
+/**
+* checkout.css
+*
+* Index
+* - Cards placement
+* - Shopping cart elements
+* - Card information placement
+*/
+
+/**
+    Cards placement
+*/
+div.checkout.container {
+    width: 90%;
+}
+.fix-content {
+    margin-left: 15px;
+    flex-grow: 1;
+}
+
+/**
+    Shopping cart elements
+*/
+
+#quantity{
+    margin-left: 10px;
+}
+
+/**
+    Card information placement
+*/
+
+.move-buttons{
+    margin-top: 5px;
+    margin-left: 3rem;
+}
+#game-title{
+    margin: 0 !important;
+}
+
+.cart-header{
+    border-radius: 2px;
+    border-color: white;
+}
+
+#shopping-cart-title {
+    color: white;
+    margin-left: 15px;
+}
+
+#sub-total {
+    margin-left: 30px;
+}
+
+.account-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}

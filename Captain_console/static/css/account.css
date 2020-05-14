@@ -1,0 +1,43 @@
+/**
+* checkout.css
+*
+* Index
+* - Cards placement (Login/Register page only)
+* - Forms styling
+* - Account image styling
+*/
+
+/**
+    Cards placement (Login/Register page only)
+*/
+div.signup {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    max-width: 450px;
+}
+
+/**
+    Forms styling
+*/
+.row{
+    margin-bottom: 0;
+}
+.move-buttons{
+    margin-top: 5px;
+    margin-left: 3rem;
+}
+.push-down{
+    margin-top: 10px;
+}
+
+/**
+    Account image styling
+*/
+.account-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
