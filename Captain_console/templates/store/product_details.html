@@ -30,6 +30,7 @@
                             <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
                             <span id="rating-count" data-current-count="{{ product.review_set.count }}">({{ product.review_set.count }})</span>
                         </div>
+                        <a href="{% url "reviews" product.id %}">Read reviews</a>
                     </div>
                 </div>
                 <div class="col s12 m6 l8">

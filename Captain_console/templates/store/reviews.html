@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/review.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
+{% endblock %}
+{% block content %}
+    <div class="row store">
+        <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li><a href="{% url "store_index" %}">Store</a></li>
+            <li><a href="{% url "product_details" product.id %}">{{ product.name }}</a></li>
+            <li class="active"><a href="#">Reviews</a></li>
+        </ul>
+        <div class="card-panel white col s12">
+            {% for review in reviews %}
+                {% include "store/single_review.html" %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "js/store.js" %}"></script>
+    <script src="{% static "js/product_details.js" %}"></script>
+{%endblock%}

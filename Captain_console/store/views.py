@@ -8,12 +8,11 @@ import json
 from django.db.models import F, Func
 
 
-
 @csrf_exempt
 def index(request):
     context = {}
     context['developers'] = Developer.objects.all()
-    context['genres'] =  Genre.objects.all()
+    context['genres'] = Genre.objects.all()
     context['categories'] = Category.objects.all()
 
     print("hello1")
@@ -29,12 +28,12 @@ def index(request):
             return HttpResponse(response, content_type='application/json')
 
         else:
-            #Get data from post request
+            # Get data from post request
             data = request.POST
             prod_id = data.get("prod_id")
             quantity = int(data.get("quantity"))
             print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
-            #Create a new instance of order product and add to cart
+            # Create a new instance of order product and add to cart
             add_product_to_cart(prod_id, quantity, user_id)
 
             prod_list = []
@@ -52,7 +51,7 @@ def index(request):
         print("Search by: {}".format(search_by))
 
         prod_list = []
-        for x in products :
+        for x in products:
             prod_list.append({'id': x.id})
         return JsonResponse({'data': prod_list})
 
@@ -61,14 +60,14 @@ def index(request):
         sort_by = request.GET['sort_by']
 
         if sort_by == "price":
-            products = Product.objects.all().order_by(F('price') * (100-F('discount'))/100)
+            products = Product.objects.all().order_by(F('price') * (100 - F('discount')) / 100)
         elif sort_by == "name":
             products = Product.objects.all().order_by('name')
         elif sort_by == "rating":
             products = Product.objects.all().order_by('-average_rating')
 
         prod_list = []
-        for x in products :
+        for x in products:
             prod_list.append({'id': x.id, 'name': x.name})
         return JsonResponse({'data': prod_list})
 
@@ -144,3 +143,9 @@ def get_product_by_id(request, id):
         'product': get_object_or_404(Product, pk=id)
     })
 
+
+def reviews(request, id):
+    context = {}
+    context['reviews'] = Review.objects.exclude(comment__exact="").filter(product_id=id).order_by("rating")
+    context['product'] = Product.objects.get(pk=id)
+    return render(request, 'store/reviews.html', context)
