@@ -60,17 +60,26 @@ INSERT INTO Store_Developer (developer) VALUES ('Commadore 64');
 INSERT INTO Store_Developer (developer) VALUES ('Legacy Engineering');
 
 
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 1, 3, 1, '1999-11-22', 'Classic');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 2, 2, 1, '1986-2-21', 'Lorum ipsum description');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 3, 4, 1, '1996-6-23', 'This game was very very very very popular!');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 4, 3, 4, '1992-1-1', 'Who even remembers this stuff?');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 5, 4, 3, '1992-11-21', 'Fastest Hedgehog Alive!');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 6, 1, 5, '1990-1-1', 'Best Commadore 64 game of no time!');
-
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 7, 5, 1, '2017-6-26', 'The best retro console you can buy');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 8, 5, 3, '1988-10-29', 'The best option for SEGA fans');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 9, 5, 6, '2004-11-21', 'The best-value retro console');
-INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 10, 5, 2, '2018-1-1', 'The best retro console with 3D games');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 1, 3, 1, '1999-11-22',
+    'This 1999 classic is the first Donkey Kong game to feature 3D gameplay. It`s up to you, Donkey Kong, to rescue your kidnapped friends from King K. Rool. Use your special abilities to overcome obstacles and receive all kinds of collectibles along the way. Last man standing and deathmatch games are available in multiplayer mode, where up to four players can compete.');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 2, 2, 1, '1986-2-21',
+    'Join Link on his journey, as he tries to defeat the dark lord Ganon, save Hyrule and rescue the descendants of the Seven Sages. Get familiar with the Master Sword and parallel worlds as you embark on this adventure.');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 3, 4, 1, '1996-6-23',
+    'It`s Super Mario to the rescue when Princess Peach is kidnapped by the malicious Bowser. Run through Peach`s castle and overcome obstacles and fight off enemies in order to save Peach. This outstanding game takes you on a journey like no other!');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 4, 3, 4, '1992-1-1',
+    'Aarbron has reclaimed his human shape, nevertheless, he hasn`t completely liberated himself from evil Maletoth`s curse. You, as Aarbron, must solve problems and collect four special items, with the aim of becoming powerful enough to face Maletoth and vanquish him once and for all!');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 5, 4, 3, '1992-11-21',
+    'In this classic game, Sonic and his good friend and sidekick, Tails, have to use their powers and strengths to fight the evil Dr. Eggman. Run and fly with Sonic and Tails on their journey to destroy Dr. Eggman`s wicked plans and rescue the kidnapped animals!');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 6, 1, 5, '1990-1-1',
+    'Morgul, the three-headed demon, has been causing everyone in the galaxy terrible nightmares. It`s up to you, Turrican, to find and defeat Morgul. On your journey to save the galaxy, you can  come across many different weapons that you can collect and use to help you on your quest. People are terrified of sleeping and some are even at death`s door as a result of exhaustion. Only you can rescue the people and put an end to this misery.');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 7, 5, 1, '2017-6-26',
+    'Apart from being a lot smaller, the Super NES Classic looks like the original console and certainly has the same feel. It has 21 pre-installed games and two consoles, which allows you and your friends to indulge in some of the best 2-player games of the era!');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 8, 5, 3, '1988-10-29',
+    'This ultra-lightweight, Genesis Mini, presents 42 games and is very simple in use. There are solely two ports on the back, for HDMI and power. The Genesis Mini is actually a quite accurate recreation of the original hardware. It has detailed features that serve a nostalgic purpose, more so than an actual functional purpose. The simplicity of Genesis Mini is definitely what sets it apart from the modern devices that regularly  require online updates. Very straightforward controller.');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 9, 5, 6, '2004-11-21',
+    '120 games are available in this edition. This comes with an easy-to-use system, a save, pause, and rewind feature and scan line filtering. There are legacy controller ports for facultative joysticks or paddles with wires. You will get the Atari Flashback 8 Gold Console, along with one set of paddle controllers and 2 wireless controllers. You will also receive an HDMI Cable, as there is an 720p HDMI output. Enjoy this great recreation!');
+INSERT INTO Store_ProductDetails (product_id_id, genre_id_id, developer_id_id, release_date, description) VALUES ( 10, 5, 2, '2018-1-1',
+    'This recreation of the classic PlayStation, captures the magic of the golden era. Apart from the size difference, the recreation is almost identical to the original. Despite being 45% smaller than the original, it comes with two of the iconic controllers, a virtual memory card and an HDMI cable that connects to your TV. Experience once again one of the best games from the original PlayStation that changed gaming forever.');
 
 
 INSERT INTO Store_ProductPhoto (product_id_id, path, alt) VALUES ( 1, 'https://photos.alexfreyr.com/game-covers/donkey-kong-cover.png', 'Donkey Kong 64 from Nintendo');
