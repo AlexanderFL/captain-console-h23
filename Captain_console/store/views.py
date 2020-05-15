@@ -1,7 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category, write_review
 from account.models import User
 from checkout.models import OrderProduct, add_product_to_cart, Order
 import json
@@ -145,6 +145,25 @@ def get_product_by_id(request, id):
 
 
 def reviews(request, id):
+
+    if "review_product" in request.GET:
+        data = request.GET
+        user_id = request.session.get("user_id")
+        prod_id = data.get("prod_id")
+        comment = data.get("comment")
+        stars = data.get("stars")
+
+        rating = write_review(prod_id, user_id, comment, stars)
+
+        if rating == "Rating updated":
+            response = json.dumps({'status': 999, 'message': 'Updated'})
+            print("Rating updated")
+        else:
+            response = json.dumps({'status': 200, 'message': 'Created'})
+            print("Rating created")
+        return HttpResponse(response, content_type='application/json')
+
+
     context = {}
     context['reviews'] = Review.objects.exclude(comment__exact="").filter(product_id=id).order_by("rating")
     context['product'] = Product.objects.get(pk=id)

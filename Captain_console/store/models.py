@@ -78,6 +78,18 @@ class ProductPhoto(models.Model):
         return self.path
 
 
+def write_review(prod_id, user_id, comment, rating):
+    product = Product.objects.get(pk=prod_id)
+    user = User.objects.get(pk=user_id)
+
+    try:
+        Review.objects.filter(user_id=user_id, product_id=prod_id).update(comment=comment)
+        message = "Rating updated"
+    except:
+        Review.objects.create(product_id=product, comment=comment, rating=rating, user_id=user)
+        message = "Rating created"
+    return "message"
+
 class Review(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)

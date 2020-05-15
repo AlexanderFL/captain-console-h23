@@ -19,6 +19,22 @@
         <div class=" col s12 m6 l4 photo">
             <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
             <h4>{{ product.name }}</h4>
+            <div class="col">
+            <a id = "write-review" class="waves-effect waves-light btn blue accent-3" data-prod="{{ product.id }}"><i class="material-icons left">mode_edit</i>Write review</a>
+                <form id="review-input">
+                        <textarea id="comment"></textarea>
+                             <label>Browser Select</label>
+                          <select id="select-stars" class="browser-default">
+                            <option value="" disabled selected>Choose your rating</option>
+                            <option value="1">1 star</option>
+                            <option value="2">2 stars </option>
+                            <option value="3">3 stars </option>
+                            <option value="4">4 stars </option>
+                            <option value="5">5 stars </option>
+                          </select>
+                        <a id="submit-review" class="waves-effect waves-light btn blue accent-3" data-prod="{{ product.id }}"><i class="material-icons left">check</i>Submit</a>
+                </form>
+            </div>
         </div>
         <div class=" col 12 m6 m8 review-cards">
         {% for review in reviews %}
@@ -29,11 +45,8 @@
     </div>
 </div>
 
-
-
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/store.js" %}"></script>
-    <script src="{% static "js/product_details.js" %}"></script>
+    <script src="{% static "js/reviews.js" %}"></script>
 {%endblock%}
