@@ -95,6 +95,11 @@ nav div div ul li .input-field input{
     padding-left: 10px !important;
 }
 
+/*.input#search-bar */
+
+div.input-field.col.s6.white-text {
+    padding-left: 15px;
+}
 
 /**
 * Mobile navbar styles
