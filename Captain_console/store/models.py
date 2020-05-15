@@ -1,8 +1,10 @@
 from django.db import models
 from account.models import User
 
+
 class Category(models.Model):
     name = models.CharField(max_length=64)
+
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
@@ -12,10 +14,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     average_rating = models.FloatField(null=True)
 
-
     """
     Sets average rating of a product
     """
+
     def set_rating(self, rating, prod_id):
         Product.objects.filter(pk=prod_id).update(average_rating="{:.2f}".format(rating))
 
@@ -82,12 +84,9 @@ class Review(models.Model):
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
 
-    def create_review(self, prod_id, rating, user_id =None):
+    def create_review(self, prod_id, rating, user_id=None):
         user = User.objects.get(pk=user_id)
         Review.objects.create(product_id=prod_id, rating=rating, user_id=user, comment="")
 
     def __str__(self):
         return str(self.rating)
-
-
-

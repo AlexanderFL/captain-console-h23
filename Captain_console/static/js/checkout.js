@@ -23,6 +23,32 @@ for (var i = 0; i < order_product_cards.length; i++) {
 }
 }
 
+function updateCart(order_info, order_prod_id) {
+    qty_id = order_prod_id + "-quantity"
+    qty_element = document.getElementById(qty_id)
+    price_id = order_prod_id + "-price"
+    price_element = document.getElementById(price_id)
+
+    total_price = 0
+    if (order_info.length !==0) {
+        for (i = 0; i < order_info.length; i++) {
+        order_product = order_info[i]
+
+        total_price += order_product.price
+
+            if (order_product.id == order_prod_id) {
+                qty_element.innerHTML = "" + order_product.qty + "";
+                price_element.innerHTML = "$" + order_product.price + "";
+            }
+        }
+        document.getElementById("sub-total").innerHTML = "Subtotal: " + "$" + total_price + " "
+    }
+    else {
+        document.getElementById("sub-total").innerHTML = "Your cart is empty. Go to store to check out the products."
+    }
+
+}
+
 //Change qty in shopping cart interface
 function changeQuantityInCart(change_type, order_prod_id) {
 qty_id = order_prod_id + "-quantity"
@@ -41,7 +67,6 @@ qty_element.innerHTML = "" + new_qty + ""
 }
 
 $('.change-qty').on('click', function (e) {
-    console.log("I'm init")
     e.preventDefault();
 
     const path = window.location.pathname
@@ -60,12 +85,15 @@ $('.change-qty').on('click', function (e) {
             order_prod_id: order_prod_id,
             change_type: change_type,
         },
-        success: function (status, resp) {
-            changeQuantityInCart(change_type, order_prod_id)
-            console.log("SUCCESS: " + status)
+        success: function (resp) {
+            order_info = resp.data
+            console.log(order_info)
+            updateCart(order_info, order_prod_id)
+            console.log("SUCCESS")
         }
         ,
         error: function (xhr, status, error) {
+            M.toast({html: "Something went wrong on our end", classes: "red"})
             console.log("ERROR: " + status.message)
         }
     });
@@ -82,8 +110,10 @@ $('.remove-item').on('click', function (e) {
         data: {
             order_prod_id: order_prod_id,
         },
-        success: function (resp, status) {
-            console.log("SUCCESS: " + status)
+        success: function (resp) {
+            order_info = resp.data
+            console.log(resp.data)
+            updateCart(order_info, order_prod_id)
             removeShoppingCartItem(order_prod_id)
             M.toast({html: "Product was removed from cart", classes: "green"})
         }

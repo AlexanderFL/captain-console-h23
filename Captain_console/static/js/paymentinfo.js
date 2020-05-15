@@ -12,6 +12,7 @@ window.onload = function(){
                     if (response.status === 200){
                         window.location.replace(response.message)
                     } else if(response.status === 900){
+
                         console.log(response.message)
                     }
                 }

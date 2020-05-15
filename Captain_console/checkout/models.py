@@ -141,7 +141,6 @@ def change_qty(orderprod_id, change_type):
             return
         new_quantity = order_product.quantity - 1
     update_product_in_cart(order_product, new_quantity)
-    return new_quantity
 
 
 '''

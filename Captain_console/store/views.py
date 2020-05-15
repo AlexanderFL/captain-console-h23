@@ -58,7 +58,6 @@ def index(request):
         elif sort_by == "rating":
             products = Product.objects.all().order_by('-average_rating')
 
-
         prod_list = []
         for x in products :
             prod_list.append({'id': x.id, 'name': x.name})
@@ -94,15 +93,10 @@ def index(request):
         filtered_products = dev_products & genre_products & cat_products
 
         prod_list = []
-        for x in filtered_products :
+        for x in filtered_products:
             prod_list.append({'id': x.id})
         return JsonResponse({'data': prod_list})
 
-        #
-        # product_resp = [{
-        #     'id': x.id,
-        # } for x in filtered_products]
-        # return JsonResponse({'data': product_resp})
 
     # Initial Store load - order by name
     print("hello3")

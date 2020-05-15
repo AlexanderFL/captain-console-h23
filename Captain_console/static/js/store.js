@@ -39,8 +39,6 @@ window.onload = function() {
                 url: '/store?sort_by=' + order_name,
                 type: 'GET',
                 success: function (resp) {
-                    console.log(resp)
-                    console.log(resp.data[0])
                     product_order = resp.data
                     order_products(product_order);
                 },

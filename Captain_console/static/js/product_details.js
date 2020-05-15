@@ -67,7 +67,7 @@ window.onload = function() {
                     console.log("ERROR: " + status.message)
                 }
             })
-            update_ratings();
+            updateRatings();
             $('#give-review').prop('disabled', false)
             $('#give-review').removeClass('disabled')
             $('#rating-count').html("(" + count + ")")

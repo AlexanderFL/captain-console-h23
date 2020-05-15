@@ -13,9 +13,18 @@ def base_context(user_id):
     user = User.objects.get(pk=user_id)
     order_products = OrderProduct.objects.filter(order_id__user_id=user_id, order_id__confirmed=False)
 
+    total_price = 0
+    if len(order_products) > 0:
+        for order_product in order_products:
+            total_price += order_product.price
+        total_price = "Subtotal: $" + str(total_price)
+    else:
+        total_price = "Your cart is empty. Go to store to check out the products."
+
     context = {
         'user': user,
         'order_products': order_products,
+        'total_price': total_price,
     }
     return context
 
@@ -26,21 +35,37 @@ def base_remove_from_cart(request):
     print("this is prod-id" + str(order_prod_id))
     remove_product_from_cart(order_prod_id)
 
-    product_resp = [{
-        'order_prod_id': order_prod_id
-    }]
-    return JsonResponse({'data': product_resp})
+    user_id = request.session.get("user_id")
+    user = User.objects.get(pk=user_id)
+    try:
+        prod_list = []
+        order = Order.objects.get(user_id=user, confirmed=False)
+        order_products = OrderProduct.objects.filter(order_id=order)
+        for x in order_products:
+            prod_list.append({'qty': x.quantity, 'price': x.price, 'id': x.id})
+        return JsonResponse({'data': prod_list})
+    except:
+        prod_list = []
+        return JsonResponse({'data': prod_list})
 
 
 def base_change_qty_of_prod(request):
     order_prod_id = request.GET['order_prod_id']
     change_type = request.GET['change_type']
-    new_quantity = change_qty(order_prod_id, change_type)
+    change_qty(order_prod_id, change_type)
 
-    product_resp = [{
-        'new_qty': new_quantity
-    }]
-    return JsonResponse({'new_quantity': product_resp})
+    user_id = request.session.get("user_id")
+    user = User.objects.get(pk=user_id)
+    print(user_id)
+
+    order = Order.objects.get(user_id=user, confirmed=False)
+    print(order.id)
+    order_products = OrderProduct.objects.filter(order_id=order)
+
+    prod_list = []
+    for x in order_products:
+        prod_list.append({'qty': x.quantity, 'price': x.price, 'id': x.id})
+    return JsonResponse({'data': prod_list})
 
 
 @csrf_exempt
@@ -152,7 +177,7 @@ def confirmation(request):
     # Base context
     context = base_context(user_id)
 
-    #Specific context
+    # Specific context
     context['page_checkout'] = 'confirmation'
     context['order'] = Order.objects.latest('id')
 
