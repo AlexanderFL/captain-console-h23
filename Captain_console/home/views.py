@@ -25,5 +25,11 @@ def logout(request):
     return render(request, 'home/index.html', context)
 
 
-def readmore(request):
-    return render(request, 'home/news1.html')
+def readmore(request, id=None):
+    if id != None :
+        print("readmore id: {}".format(id))
+
+        return render(request, 'home/article.html', {'article': News.objects.get(pk=id)})
+    else :
+        print("readmore failed")
+    # return render(request, '')
