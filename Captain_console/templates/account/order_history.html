@@ -34,6 +34,29 @@
                     <img class="product-img responsive-img" src="{{ order.products.photo }}" alt="{{ order.products.alt }}" height="150px" width="150px">
                 </div>
                 <div class="col s8">
+
+
+                   <div id="stars" class="star">
+                        {% if  order.products.rating > 0 %}
+                            <span><i class="material-icons yellow-star">star</i></span>
+                        {% endif %}
+                        {% if  order.products.rating > 1 %}
+                            <span><i class="material-icons yellow-star">star</i></span>
+                        {% endif %}
+                        {% if  order.products.rating > 2 %}
+                            <span><i class="material-icons yellow-star">star</i></span>
+                        {% endif %}
+                        {% if  order.products.rating > 3 %}
+                            <span><i class="material-icons yellow-star">star</i></span>
+                        {% endif %}
+                        {% if  order.products.rating > 4 %}
+                            <span><i class="material-icons yellow-star">star</i></span>
+                        {% endif %}
+                    </div>
+
+
+
+
                     <p><strong>Game rating:</strong> {{ order.products.rating }}<br>
                     <strong>Quantity:</strong> {{ order.products.quantity }}</p>
                 </div>
