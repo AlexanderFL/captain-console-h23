@@ -84,21 +84,22 @@ def write_review(prod_id, user_id, comment, rating):
 
     try:
         Review.objects.filter(user_id=user_id, product_id=prod_id).update(comment=comment)
-        message = "Rating updated"
+        return "Updated"
     except:
         Review.objects.create(product_id=product, comment=comment, rating=rating, user_id=user)
-        message = "Rating created"
-    return "message"
+        return "Created"
+
+
+def create_review(prod_id, rating, user_id=None):
+    user = User.objects.get(pk=user_id)
+    Review.objects.create(product_id=prod_id, rating=rating, user_id=user, comment="")
+
 
 class Review(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
-
-    def create_review(self, prod_id, rating, user_id=None):
-        user = User.objects.get(pk=user_id)
-        Review.objects.create(product_id=prod_id, rating=rating, user_id=user, comment="")
 
     def __str__(self):
         return str(self.rating)

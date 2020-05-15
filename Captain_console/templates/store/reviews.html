@@ -19,11 +19,12 @@
         <div class=" col s12 m6 l4 photo">
             <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
             <h4>{{ product.name }}</h4>
+            {% if 'user_id' in request.session %}
             <div class="col">
             <a id = "write-review" class="waves-effect waves-light btn blue accent-3" data-prod="{{ product.id }}"><i class="material-icons left">mode_edit</i>Write review</a>
                 <form id="review-input">
                         <textarea id="comment"></textarea>
-                             <label>Browser Select</label>
+                             <label>Rating</label>
                           <select id="select-stars" class="browser-default">
                             <option value="" disabled selected>Choose your rating</option>
                             <option value="1">1 star</option>
@@ -35,10 +36,13 @@
                         <a id="submit-review" class="waves-effect waves-light btn blue accent-3" data-prod="{{ product.id }}"><i class="material-icons left">check</i>Submit</a>
                 </form>
             </div>
+            {% endif %}
         </div>
         <div class=" col 12 m6 m8 review-cards">
         {% for review in reviews %}
             {% include "store/single_review.html" %}
+            {% empty %}
+            <h4>There are no reviews for this product.</h4>
         {% endfor %}
         </div>
         </div>

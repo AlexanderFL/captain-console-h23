@@ -58,8 +58,14 @@ window.onload = function() {
                 url: "/store/" + prod_id + "?review_product=" + prod_id,
                 type: "POST",
                 data: {prod_id: prod_id, rating: rating},
-                success: function(status){
-                    M.toast({html: "Rating was submitted, thank you.", classes: "green"})
+                success: function(status, resp){
+                    message = status.message
+                    if (message == "Created") {
+                        M.toast({html: "Rating was submitted, thank you.", classes: "green"})
+                    }
+                    else if (message == "Updated") {
+                        M.toast({html: "Your rating for this product was updated, thank you.", classes: "green"})
+                    }
                     console.log("SUCCESS: " + status)
                 },
                 error: function(status){
