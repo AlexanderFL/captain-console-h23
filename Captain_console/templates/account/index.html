@@ -37,7 +37,7 @@
 {#            'id': prod_.id,#}
 
                 {% else %}
-                        {% include 'account/order_history.html'%}
+                        {% include 'account/order_history.html' with orders=orders %}
                 {% endif %}
             </div>
         </div>

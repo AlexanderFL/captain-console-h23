@@ -1,20 +1,27 @@
-<div class="card-panel white">
-            <div class="row">
-                <h5>{{ order.name }}</h5>
+
+
 
 {#{'order_id': 11, 'quantity': 1, 'price': 12.39, 'tracking_nr': 'A0B43C01889D0119', 'date': datetime.date(2019, 4, 5), 'products': {'photo': 'https://photos.alexfreyr.com/game-covers/donkey-kong-cover.png', 'alt': 'Donkey Kong 64 from Nintendo', 'name': 'Donkey Kong 64', 'rating': 4.39, 'id': 1}}#}
 {#{'order_id': 19, 'quantity': 1, 'price': 15.9, 'tracking_nr': 'AFB43C01889D0122', 'date': datetime.date(2020, 3, 29), 'products': {'photo': 'https://photos.alexfreyr.com/game-covers/super-mario-64-cover.jpg', 'alt': 'Super Mario, Nintendo 64', 'name': 'Super Mario 64', 'rating': 3.67, 'id': 3}}#}
 {#{'order_id': 19, 'quantity': 1, 'price': 15.9, 'tracking_nr': 'AFB43C01889D0122', 'date': datetime.date(2020, 3, 29), 'products': {'photo': 'https://photos.alexfreyr.com/game-covers/super_nes_classic.jpg', 'alt': 'The best retro console you can buy', 'name': 'Super NES Classic', 'rating': None, 'id': 7}}#}
 
+                {#        'id': order_.id,#}
+{#        'price': order_.total_price,#}
+{#        'tracking_nr': order_.tracking_nr,#}
+{#        'date': order_.date,#}
+{#        'products': {#}
+{#            'photo': prod_.photo.path,#}
+{#            'alt': prod_.photo.alt,#}
+{#            'name': prod_.name,#}
+{#            'rating': prod_.average_rating,#}
+{#            'id': prod_.id,#}
+{#            'quantity': order.quantity,#}
+
+                <h5>{{ order.products.name }}</h5>
                 <div class="col s4">
-                    <img class="product-img responsive-img" src="{{ order.photo }}" alt="{{ order.alt }}" height="150px" width="150px">
+                    <img class="product-img responsive-img" src="{{ order.products.photo }}" alt="{{ order.products.alt }}" height="150px" width="150px">
                 </div>
                 <div class="col s8">
-                    <p>Game rating: {{ order.rating }}<br>
-                    Tracking number: {{ order.tracking_nr }}<br>
-                    Date of purchase: {{ order.date }}<br>
-                    Total price (including shipping): {{ order.price }}<br>
-                    Quantity: {{ order.quantity }}</p>
+                    <p>Game rating: {{ order.products.rating }}<br>
+                    Quantity: {{ order.products.quantity }}</p>
                 </div>
-            </div>
-        </div>

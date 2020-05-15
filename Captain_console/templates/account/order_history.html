@@ -1,10 +1,62 @@
-<div class="row">
-    <div class="input-field col s12">
-            {% for order in orders %}
-                <div class="card-panel white">
-                    <h5>{{ order.id }}</h5>
-                    {% include 'account/order_products.html' with order=order %}
+{% load filters %}
+
+{% for order in orders %}
+
+
+{#        'id': order_.id,#}
+{#        'price': order_.total_price,#}
+{#        'tracking_nr': order_.tracking_nr,#}
+{#        'date': order_.date,#}
+{#        'products': {#}
+{#            'photo': prod_.photo.path,#}
+{#            'alt': prod_.photo.alt,#}
+{#            'name': prod_.name,#}
+{#            'rating': prod_.average_rating,#}
+{#            'id': prod_.id,#}
+{#            'quantity': order.quantity,#}
+
+    {% with order_previous=orders|previous:forloop.counter0 %}
+
+        {% if order.id != order_previous %}  {# Starts header if new order  #}
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel white">
+                        <div class="row">
+                            <h5>Order number {{ order.id }}</h5>
+                        </div>
+         {%  endif %}
+    {% endwith %}
+
+                <div class="col s12">
+                    <h6>{{ order.products.name }}</h6></div>
+                <div class="col s4">
+                    <img class="product-img responsive-img" src="{{ order.products.photo }}" alt="{{ order.products.alt }}" height="150px" width="150px">
                 </div>
-            {% endfor %}
-    </div>
-</div>
+                <div class="col s8">
+                    <p>Game rating: {{ order.products.rating }}<br>
+                    Quantity: {{ order.products.quantity }}</p>
+                </div>
+
+
+
+                {% with order_next=orders|next:forloop.counter0 %}
+
+                    {% if order.id != order_next %} {# prints footer if last game in order has been printed  #}
+                <div class="row">
+            <div class="col s8">
+                Tracking number: {{ order.tracking_nr }}<br>
+                Date of purchase: {{ order.date }}<br>
+                Total price (including shipping): {{ order.price }}<br>
+
+            </div>
+
+
+
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    {%  endif %}
+                {% endwith %}
+{% endfor %}

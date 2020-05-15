@@ -1,5 +1,8 @@
 
-{% for product in products|in_products:order %}
+
+
+
+{% for product in order.products %}
     {% include 'account/order_element.html'  %}
 {% endfor %}
 
