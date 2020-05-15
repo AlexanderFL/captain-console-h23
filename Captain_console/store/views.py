@@ -1,7 +1,8 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
-from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category, write_review
+from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category, write_review, \
+    create_review
 from account.models import User
 from checkout.models import OrderProduct, add_product_to_cart, Order
 import json
@@ -115,19 +116,26 @@ def index(request):
 def get_product_by_id(request, id):
     # Review product
     if 'review_product' in request.GET:
-        new_review = Review()
         data = request.POST
         prod_id = data.get("prod_id")
-        product = get_object_or_404(Product, pk=prod_id)
         rating = data.get("rating")
 
-        if request.session.__contains__('user_id'):
-            user_id = request.session.get('user_id')
-            user = User.objects.get(pk=user_id)
-            new_review.create_review(product, rating, user_id)
+        product = get_object_or_404(Product, pk=prod_id)
+        user_id = request.session.get('user_id')
 
+        user = User.objects.get(pk=user_id)
+        user_review = Review.objects.filter(user_id=user_id, prod_id=prod_id)
+
+        if len(user_review) == 0:
+            create_review(product, rating, user_id)
+            response = json.dumps({'status': 200, 'message': 'Created'})
         else:
-            new_review.create_review(product, rating, 1)
+            Review.objects.filter(user_id=user, product_id=product).update(rating=rating)
+            response = json.dumps({'status': 999, 'message': 'Updated'})
+
+        return HttpResponse(response, content_type='application/json')
+
+
 
         # Update average rating for the product
         new_rating = product.get_rating()
@@ -146,7 +154,6 @@ def get_product_by_id(request, id):
 
 
 def reviews(request, id):
-
     if "review_product" in request.GET:
         data = request.GET
         user_id = request.session.get("user_id")
@@ -156,12 +163,12 @@ def reviews(request, id):
 
         rating = write_review(prod_id, user_id, comment, stars)
 
-        if rating == "Rating updated":
+        if rating == "Updated":
             response = json.dumps({'status': 999, 'message': 'Updated'})
             print("Rating updated")
         else:
             response = json.dumps({'status': 200, 'message': 'Created'})
-            print("Rating created")
+            print("Created")
         return HttpResponse(response, content_type='application/json')
 
 

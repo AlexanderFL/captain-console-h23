@@ -33,12 +33,13 @@ $("#submit-review").on("click", function() {
             comment: comment,
             stars: stars,
         },
-        success: function (resp) {
-            message = resp.message
+        success: function (status, resp) {
+            message = status.message
+            console.log(message)
             if (message == "Updated") {
             M.toast({html: "Your review and rating for this product has been updated.", classes: "green"})
             }
-            else {
+            else if (message == "Created") {
                 M.toast({html: "Thank you for your review", classes: "green"})
             }
         }
