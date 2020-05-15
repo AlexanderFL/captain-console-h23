@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+
+
+
+<!-- Make these cards dynamically served from models -->
+    {% for article in articles %}
+                    <div class="card blue accent-3 card-news">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ article.title }}</span>
+                            <p>{{ article.short }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="
+                                {% url "read_more" %}
+                                " class="yellow-text text-accent-2">Read more...</a>
+                        </div>
+                    </div>
+    {% endfor %}
+
+

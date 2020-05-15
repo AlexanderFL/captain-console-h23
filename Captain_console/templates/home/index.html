@@ -18,30 +18,8 @@
             <div class="row">
                 <div class="col s12 m12 l4">
                     <h3>News</h3>
-                    <!-- Make these cards dynamically served from models -->
-                    <div class="card blue accent-3 card-news">
-                        <div class="card-content white-text">
-                            <span class="card-title">New Super Mario Bros. speedrun record!</span>
-                            <p>A new speedrun record was set in the game Super Mario Bros.! Until now, the world record was a time of 4 minutes,
-                                55 seconds, and 583 milliseconds.
-                                The runner tonyterrific broke that record with a time of 4 minutes, 55 seconds, and 427 milliseconds!</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="{% url "read_more" %}" class="yellow-text text-accent-2">Read more...</a>
-                        </div>
-                    </div>
 
-                    <div class="card blue accent-3 card-news">
-                        <div class="card-content white-text">
-                            <span class="card-title">New PlayStation releases coming soon</span>
-                            <p> It has been reported that PlayStation will be releasing a good deal of
-                                new games for the second half of this year and early next year.</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="{% url "read_more" %}" class="yellow-text text-accent-2">Read more...</a>
-                        </div>
-                    </div>
-                    <!-- ################################################ -->
+                    {% include 'home/news.html' with articles=articles %}
 
                 </div>
                 <div class="col s12 m12 l8">
