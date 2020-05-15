@@ -41,3 +41,7 @@ div.signup {
     height: 150px;
     object-fit: cover;
 }
+
+.right-float{
+    text-align: right;
+}

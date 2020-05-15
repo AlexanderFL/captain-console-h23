@@ -103,7 +103,6 @@ def index(request):
         context = base_context(user_id, context)
         return render(request, 'account/index.html', context)
     else:
-        print("account/views.py: I'm exectued")
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
 
 
@@ -145,5 +144,17 @@ def edit(request):
             }
             context = base_context(user_id, context)
             return render(request, 'account/index.html', context)
+    else:
+        return render(request, 'login/index.html', context={'page_login': 'login_index'})
+
+
+@csrf_exempt
+def change_password(request):
+    user_id = request.session.get('user_id')
+    if user_id is not None:
+        context = {
+            'user': User.objects.get(pk=user_id)
+        }
+        return render(request, 'account/change_password.html', context)
     else:
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
