@@ -27,6 +27,7 @@ def index(request):
             if bcrypt.checkpw(plain_password, hashed_pass):
                 request.session['user_id'] = User.objects.get(email=email).id
                 url = '/account/'
+                print("login/view/index: User " + str(request.session['user_id']) + " was authenticated")
                 response = json.dumps({'status': 200, 'message': url})
                 return HttpResponse(response, content_type='application/json')
 

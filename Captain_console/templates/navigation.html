@@ -25,7 +25,10 @@
             {% if 'user_id' in request.session %}
                 <li><a href="{% url "checkout_index" %}">
                     <i class="material-icons">shopping_cart</i>
-                    <div class="shoppingcart">{{ quantity.quantity }}1</div></a></li>
+                    <div class="shoppingcart">
+                        <span id="shopping-cart-quantity"></span>
+                    </div></a>
+                </li>
                 <li><a href="{% url 'account_index' %}"><i class="material-icons">person</i></a></li>
             {% else %}
                 <li><a href="{% url "checkout_index" %}"><i class="material-icons">shopping_cart</i></a></li>

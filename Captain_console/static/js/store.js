@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
+// When user searches from navbar, checks the params sent and if
+// it includes ?search=64, it will fill the search bar with the value
 function fill_search_bar(){
     let params = window.location.search.substr(1);
     let params_s = params.split("=")
@@ -93,6 +95,7 @@ window.onload = function() {
             });
         });
 
+        let no_product_found = false
         $('#search_product').on('keyup', function (event) {
             // If keypress is 'Enter'
             val = $(this).val()
@@ -103,8 +106,13 @@ window.onload = function() {
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
 
-                    if (products_filtered.length == 0) {
-                        M.toast({html: "No products found", classes: "red"})
+                    if (products_filtered.length === 0) {
+                        if(!no_product_found){
+                            M.toast({html: "No products found", classes: "red"})
+                            no_product_found = true
+                        }
+                    }else{
+                        no_product_found = false
                     }
                     filter_products(products_filtered);
                 },
