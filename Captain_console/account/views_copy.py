@@ -8,90 +8,37 @@ from account.models import User, PaymentInfo, Address, UserPhoto
 from store.models import Product, ProductPhoto
 from checkout.models import OrderProduct, Order
 
-
-
 def base_context(id, context):
 
     context['user'] = User.objects.get(pk=id)
 
     query_order = Order.objects.filter(user_id=id, confirmed=True).order_by('-id')[:3]
     query_list = []
-    if query_order != None :
+    if query_order != None:
         for order in query_order:
             if order != None:
                 query_list.append(order.id)
 
-        print("Query_list: {}".format(query_list))
+        query_products = Product.objects.filter(orderproduct__order_id_id__in=query_list)
 
-        query_products = Product.objects.filter(orderproduct__order_id_id__in=[19])
-
-        if query_products.count() > 0 :
-            print("query_products.count() er: {}".format(query_products.count()))
-            counter = 0
-            for i, value in enumerate(query_products) :
+        if len(query_products) > 0:
+            for i, value in enumerate(query_products):
                 # print("i is: {}, and value is: {}".format(i, value))
                 # print("query_products[i] is: {}".format(query_products[i]))
-                query_orderproduct = OrderProduct.objects.filter(order_id_id=query_order[i].id)
 
-                if len(query_orderproduct) > 1 :
-                    #
-                    # query_copy = copy.deepcopy(query_order[i])
-                    #
-                    # for dic in query_orderproduct :
-                    #     photo_query = ProductPhoto.objects.get(product_id_id=value.id)
-                    #
-                    #     query_copy.quantity = query_orderproduct.quantity
-                    #     query_copy.path = photo_query.path
-                    #     query_copy.alt = photo_query.alt
-                    #     query_copy.name = value.name
-                    #     query_copy.photo = value.productphoto_set.name
-                    #     query_copy.rating = value.average_rating
-                    #
-                    # deep = copy.deepcopy()
-                    #
-                    #
+                photo_query = ProductPhoto.objects.get(product_id_id=value.id)
+                query_orderproduct = OrderProduct.objects.get(order_id_id=query_order[i].id)
 
-                    new_dict = {}
-                    for j, orderproducts in enumerate(query_orderproduct) :
+                query_order[i].quantity = query_orderproduct.quantity
+                query_order[i].path = photo_query.path
+                query_order[i].alt = photo_query.alt
+                query_order[i].name = value.name
+                query_order[i].photo = value.productphoto_set.name
+                query_order[i].rating = value.average_rating
 
-
-
-                        photo_query = ProductPhoto.objects.filter(product_id_id=orderproducts.product_id_id)
-
-                        print("photo_query: {}".format(photo_query))
-                        for p in photo_query :
-                            print("p in photoquery: {}".format(photo_query))
-
-                            new_dict = { j: {
-                                    'quantity': orderproducts.quantity,
-                                    'path':  p.path,
-                                    'alt': p.alt,
-                                    'name': value.name,
-                                    'photo': value.productphoto_set.name,
-                                    'rating': value.average_rating,
-                                }
-                            }
-
-                    query_order[i].many = new_dict
-                    print("Needs debugging")
-
-                else :
-                    for each in query_orderproduct : # should only have 1 anyways
-                        print("Hingað")
-                        photo_query = ProductPhoto.objects.get(product_id_id=value.id)
-
-                        query_order[i].quantity = each.quantity
-
-                        query_order[i].path = photo_query.path
-                        query_order[i].alt = photo_query.alt
-                        query_order[i].name = value.name
-                        query_order[i].photo = value.productphoto_set.name
-                        query_order[i].rating = value.average_rating
-                        print("og ekki lengra")
         context['orders'] = query_order
 
     return context
-
 
 @csrf_exempt
 def index(request):
@@ -105,7 +52,6 @@ def index(request):
     else:
         print("account/views.py: I'm exectued")
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
-
 
 @csrf_exempt
 def edit(request):
