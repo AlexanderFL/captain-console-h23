@@ -6,25 +6,16 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="parallax-container">
         <div class="parallax">
             <img src="https://photos.alexfreyr.com/banner-image.jpg" class="place_higher">
         </div>
     </div>
-
     <div class="content-background">
         <div class="container">
             <div class="row">
-                <div class="col s12 m12 l4">
-                    <h2>News</h2>
-
-                    {% include 'home/news.html' with articles=articles %}
-
-                </div>
                 <div class="col s12 m12 l8">
                     <h2>Trending Now</h2>
-
                     <div class="row">
                         {% for product in products %}
                             <div class="col s12 m6 l6 xl4">
@@ -32,6 +23,10 @@
                             </div>
                         {% endfor %}
                     </div>
+                </div>
+                <div class="col s12 m12 l4">
+                    <h2>News</h2>
+                    {% include 'home/news.html' with articles=articles %}
                 </div>
             </div>
         </div>
