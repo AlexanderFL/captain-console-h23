@@ -20,7 +20,7 @@ def base_context(user_id):
         total_price =  "{:.2f}".format(total_price)
         total_price = "Subtotal: $" + str(total_price)
     else:
-        total_price = "Your cart is empty. Go to store to check out the products."
+        total_price = "Your cart is empty. Feel free to go to store to start shopping."
 
     context = {
         'user': user,
