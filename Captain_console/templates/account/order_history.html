@@ -34,8 +34,8 @@
                     <img class="product-img responsive-img" src="{{ order.products.photo }}" alt="{{ order.products.alt }}" height="150px" width="150px">
                 </div>
                 <div class="col s8">
-                    <p>Game rating: {{ order.products.rating }}<br>
-                    Quantity: {{ order.products.quantity }}</p>
+                    <p><strong>Game rating:</strong> {{ order.products.rating }}<br>
+                    <strong>Quantity:</strong> {{ order.products.quantity }}</p>
                 </div>
 
 
@@ -44,9 +44,9 @@
                     {% if order.id != order_next %} {# prints footer if last game in order has been printed  #}
                 <div class="row">
             <div class="col s8">
-                Tracking number: {{ order.tracking_nr }}<br>
-                Date of purchase: {{ order.date }}<br>
-                Total price (including shipping): {{ order.price }}<br>
+                <strong>Tracking number: </strong>{{ order.tracking_nr }}<br>
+                <strong>Date of purchase: </strong>{{ order.date }}<br>
+                <strong>Total price (including shipping): </strong>{{ order.price }}<br>
             </div>
                 </div>
                         </div>
