@@ -17,6 +17,7 @@ def base_context(user_id):
     if len(order_products) > 0:
         for order_product in order_products:
             total_price += order_product.price
+        total_price =  "{:.2f}".format(total_price)
         total_price = "Subtotal: $" + str(total_price)
     else:
         total_price = "Your cart is empty. Go to store to check out the products."
