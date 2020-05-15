@@ -136,19 +136,5 @@ input[type=text]:not(.browser-default):focus:not([readonly]){
     color: white;
     background: transparent;
     height: 20px;
-    /*display:block;*/
-    /*top:-25px;*/
-    /*bottom:0;*/
-    /*margin:auto;*/
-    /*vertical-align:top;*/
-    /*display:inline-block;*/
-    /*line-height:1.6em;*/
-/*    position:absolute;!*need to be absolute position*!*/
-/*    top:0;*/
-/*    bottom:0;*/
-/*    !*margin:auto;*!*/
-/*    border-top:solid 10px lightblue;*/
-/*    width:20px;*/
-/*    height:20px;*/
-/*    background:darkgray;*/
+    pointer-events: none;
 }
