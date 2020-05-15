@@ -1,6 +1,6 @@
 
 window.onload = function(){
-    $('.modal').modal();
+  //  $('.modal').modal();
 
     function markOrderConfirmed() {
         const path = window.location.pathname
@@ -10,8 +10,9 @@ window.onload = function(){
                 type: 'POST',
                 success : function(response){
                     if (response.status === 200){
-                        console.log(response.message)
+                        window.location.replace(response.message)
                     } else if(response.status === 900){
+                        console.log(response.message)
                     }
                 }
             });

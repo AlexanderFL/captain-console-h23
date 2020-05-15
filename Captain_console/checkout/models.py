@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from account.models import User
 from store.models import Product
@@ -48,7 +49,7 @@ Checks if product is already in cart. Returns order_product object if product is
 
 
 def check_if_already_in_cart(user_id, product):
-    order_products = OrderProduct.objects.filter(user_id=user_id)
+    order_products = OrderProduct.objects.filter(user_id=user_id, order_id__confirmed=False)
     for order_product in order_products:
         if order_product.product_id.id == product.id:
             return order_product
@@ -72,7 +73,7 @@ Removes item from cart. If last item removed - delete open order.
 
 
 def remove_product_from_cart(orderprod_id):
-    order_product = OrderProduct.objects.get(pk=orderprod_id)
+    order_product = OrderProduct.objects.get(pk=orderprod_id, order_id__confirmed=False)
     owner = order_product.user_id
     order_product.delete()
 
@@ -89,7 +90,7 @@ Updates product in cart
 
 def update_product_in_cart(order_product, new_quantity):
     total_price = calculate_price(new_quantity, order_product.product_id)
-    OrderProduct.objects.filter(pk=order_product.id).update(quantity=new_quantity, price=total_price)
+    OrderProduct.objects.filter(pk=order_product.id, order_id__confirmed=False).update(quantity=new_quantity, price=total_price)
 
 
 '''
@@ -131,7 +132,7 @@ Add to or subtract item in cart
 
 
 def change_qty(orderprod_id, change_type):
-    order_product = OrderProduct.objects.get(pk=orderprod_id)
+    order_product = OrderProduct.objects.get(pk=orderprod_id, order_id__confirmed=False)
     order_product_quantity = order_product.quantity
 
     if change_type == "add":
@@ -145,12 +146,21 @@ def change_qty(orderprod_id, change_type):
 
 
 '''
+Get shipping address
+'''
+
+def get_track_number():
+    return str(random.randrange(1000000000, 9999999999))
+
+
+'''
 Mark order confirmed
 '''
 
 
 def mark_order_confirmed(user):
-    Order.objects.filter(user_id=user, confirmed=False).update(confirmed=True)
+    track_number = get_track_number()
+    Order.objects.filter(user_id=user, confirmed=False).update(confirmed=True, tracking_nr=track_number)
 
 
 class Order(models.Model):
