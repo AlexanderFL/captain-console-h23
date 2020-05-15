@@ -1,0 +1,25 @@
+.store {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.reviews  {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.yellow-star {
+    color: orange;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.review-content {
+    padding-top: 10px;
+}
+
+.photo {
+    padding-left: 3% !important;
+}

@@ -3,24 +3,31 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static "css/review.css" %}">
-
+    <link rel="stylesheet" href="{% static "css/store.css" %}">
     <link rel="stylesheet" href="{% static "css/shared/custom-breadcrumbs.css" %}">
 {% endblock %}
 {% block content %}
-    <div class="row store">
+    <div class="store">
         <ul class="crumbs">
             <li><a href="{% url "home_index" %}">Home</a></li>
             <li><a href="{% url "store_index" %}">Store</a></li>
             <li><a href="{% url "product_details" product.id %}">{{ product.name }}</a></li>
             <li class="active"><a href="#">Reviews</a></li>
         </ul>
-        <div class="card-panel white col s12">
-            {% for review in reviews %}
-                {% include "store/single_review.html" %}
-            {% endfor %}
+        <div class="card-panel white row reviews">
+        <div class="row review-content">
+        <div class=" col s12 m6 l4 photo">
+            <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
+            <h4>{{ product.name }}</h4>
+        </div>
+        <div class=" col 12 m6 m8 review-cards">
+        {% for review in reviews %}
+            {% include "store/single_review.html" %}
+        {% endfor %}
+        </div>
         </div>
     </div>
-
+</div>
 
 
 
