@@ -37,9 +37,7 @@
 {#            'id': prod_.id,#}
 
                 {% else %}
-                    {% for order in orders %}
                         {% include 'account/order_history.html'%}
-                    {% endfor %}
                 {% endif %}
             </div>
         </div>

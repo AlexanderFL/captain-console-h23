@@ -26,7 +26,7 @@ def base_context(id, context):
 
             order_ = Order.objects.get(pk=order.order_id_id)
 
-            query_list.append( {
+            query_list.append({
                 'order_id': order_.id,
                 'quantity': order.quantity,
                 'price': order_.total_price,
