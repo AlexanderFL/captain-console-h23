@@ -41,6 +41,7 @@ function updateCart(order_info, order_prod_id) {
                 price_element.innerHTML = "$" + order_product.price + "";
             }
         }
+        total_price = total_price.toFixed(2);
         document.getElementById("sub-total").innerHTML = "Subtotal: " + "$" + total_price + " "
     }
     else {

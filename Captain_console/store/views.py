@@ -5,6 +5,8 @@ from store.models import Product, ProductDetails, ProductPhoto, Review, Develope
 from account.models import User
 from checkout.models import OrderProduct, add_product_to_cart
 import json
+from django.db.models import F, Func
+
 
 
 @csrf_exempt
@@ -52,7 +54,7 @@ def index(request):
         sort_by = request.GET['sort_by']
 
         if sort_by == "price":
-            products = Product.objects.all().order_by('price')
+            products = Product.objects.all().order_by(F('price') * (100-F('discount'))/100)
         elif sort_by == "name":
             products = Product.objects.all().order_by('name')
         elif sort_by == "rating":
