@@ -49,6 +49,7 @@ window.onload = function() {
                 success: function(status, resp){
                     message = status.message
                     if (message == "Created") {
+                        $('#rating-count').html("(" + count + ")")
                         M.toast({html: "Rating was submitted, thank you.", classes: "green"})
                     }
                     else if (message == "Updated") {
@@ -64,7 +65,6 @@ window.onload = function() {
             updateRatings();
             $('#give-review').prop('disabled', false)
             $('#give-review').removeClass('disabled')
-            $('#rating-count').html("(" + count + ")")
         });
 
 

@@ -41,7 +41,9 @@ $("#submit-review").on("click", function() {
             }
             else if (message == "Created") {
                 M.toast({html: "Thank you for your review", classes: "green"})
+
             }
+        window.location.href = window.location
         }
         ,
         error: function (xhr, status, error) {
@@ -51,3 +53,8 @@ $("#submit-review").on("click", function() {
     });
     console.log(comment)
 })
+
+updateRatings() {
+
+
+}

@@ -83,7 +83,7 @@ def write_review(prod_id, user_id, comment, rating):
     user = User.objects.get(pk=user_id)
 
     try:
-        Review.objects.filter(user_id=user_id, product_id=prod_id).update(comment=comment)
+        Review.objects.filter(user_id=user_id, product_id=prod_id).update(comment=comment, rating=rating)
         return "Updated"
     except:
         Review.objects.create(product_id=product, comment=comment, rating=rating, user_id=user)

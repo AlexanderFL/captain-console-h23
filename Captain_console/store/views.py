@@ -124,7 +124,7 @@ def get_product_by_id(request, id):
         user_id = request.session.get('user_id')
 
         user = User.objects.get(pk=user_id)
-        user_review = Review.objects.filter(user_id=user_id, prod_id=prod_id)
+        user_review = Review.objects.filter(user_id=user_id, product_id=prod_id)
 
         if len(user_review) == 0:
             create_review(product, rating, user_id)
@@ -133,14 +133,10 @@ def get_product_by_id(request, id):
             Review.objects.filter(user_id=user, product_id=product).update(rating=rating)
             response = json.dumps({'status': 999, 'message': 'Updated'})
 
+            # Update average rating for the product
+            new_rating = product.get_rating()
+            product.set_rating(new_rating, prod_id)
         return HttpResponse(response, content_type='application/json')
-
-
-
-        # Update average rating for the product
-        new_rating = product.get_rating()
-        product.set_rating(new_rating, prod_id)
-        return redirect('product_details', id=id)
 
     amount = 0
     copies_sold = OrderProduct.objects.filter(product_id=id)
@@ -173,6 +169,6 @@ def reviews(request, id):
 
 
     context = {}
-    context['reviews'] = Review.objects.exclude(comment__exact="").filter(product_id=id).order_by("rating")
+    context['reviews'] = Review.objects.exclude(comment__exact="").filter(product_id=id).order_by("-rating")
     context['product'] = Product.objects.get(pk=id)
     return render(request, 'store/reviews.html', context)
