@@ -96,6 +96,8 @@ window.onload = function() {
                     }
                     console.log(this.url)
                     console.log("SUCCESS: " + response)
+                    items_in_cart = response.data.length
+                    updateCartQty(items_in_cart)
                     M.toast({html: "Product was added to cart", classes: "green"})
 
                 },
@@ -105,6 +107,12 @@ window.onload = function() {
 
                 }
             })
+
+            //Updates cart qty in nav bar
+            function updateCartQty(items_in_cart) {
+                document.getElementById("shopping-cart-quantity").innerHTML = "" + items_in_cart + ""
+                console.log("SUCCESS: " + status)
+            }
         });
     });
 }

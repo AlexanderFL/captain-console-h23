@@ -39,7 +39,6 @@
                 </div>
 
 
-
                 {% with order_next=orders|next:forloop.counter0 %}
 
                     {% if order.id != order_next %} {# prints footer if last game in order has been printed  #}
@@ -48,12 +47,8 @@
                 Tracking number: {{ order.tracking_nr }}<br>
                 Date of purchase: {{ order.date }}<br>
                 Total price (including shipping): {{ order.price }}<br>
-
             </div>
-
-
-
-                        </div>
+                </div>
                         </div>
                         </div>
                         </div>

@@ -42,7 +42,7 @@ window.onload = function() {
                 type: 'GET',
                 success: function (resp) {
                     product_order = resp.data
-                    order_products(product_order);
+                    orderProducts(product_order);
                 },
                 error: function (xhr, status, error) {
                     console.log(error);
@@ -85,7 +85,7 @@ window.onload = function() {
                 },
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
-                    filter_products(products_filtered);
+                    filterProducts(products_filtered);
                 },
                 error: function (xhr, status, error) {
                     console.log(error);
@@ -112,7 +112,7 @@ window.onload = function() {
                     }else{
                         no_product_found = false
                     }
-                    filter_products(products_filtered);
+                    filterProducts(products_filtered);
                 },
                 error: function (xhr, status, error) {
                     console.log(error);
@@ -140,8 +140,8 @@ window.onload = function() {
                     if (resp.status === 999){
                         window.location.replace(resp.message)
                     }
-                    console.log(this.url)
-                    console.log("SUCCESS: " + status)
+                    items_in_cart = resp.data.length
+                    updateCartQty(items_in_cart)
                     M.toast({html: "Product was added to cart", classes: "green"})
                 },
                 error: function(status){
@@ -157,7 +157,7 @@ window.onload = function() {
 /**
 Orders products in store according to users choise
  */
-function order_products(product_order) {
+function orderProducts(product_order) {
     all_products = document.getElementsByClassName("all_products")
     product_cards = []
 
@@ -175,7 +175,7 @@ function order_products(product_order) {
     }
 }
 
-function filter_products(products_filtered) {
+function filterProducts(products_filtered) {
     product_cards = $(".product-card")
     product_cards_id = $(".product-card").map(function() { return this.id; }).toArray();
     var empty = 1
@@ -194,6 +194,12 @@ function filter_products(products_filtered) {
             product_cards[i].style.display = 'none' //Do not display
         }
     }
+}
+
+//Updates cart qty in nav bar
+function updateCartQty() {
+    document.getElementById("shopping-cart-quantity").innerHTML = "" + items_in_cart + ""
+    console.log("SUCCESS: " + status)
 }
 
 function getCookie(name) {

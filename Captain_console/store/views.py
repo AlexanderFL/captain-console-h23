@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 from django.views.decorators.csrf import csrf_exempt
 from store.models import Product, ProductDetails, ProductPhoto, Review, Developer, Genre, Category
 from account.models import User
-from checkout.models import OrderProduct, add_product_to_cart
+from checkout.models import OrderProduct, add_product_to_cart, Order
 import json
 from django.db.models import F, Func
 
@@ -34,9 +34,16 @@ def index(request):
             prod_id = data.get("prod_id")
             quantity = int(data.get("quantity"))
             print("Quantity is" + str(quantity) + "and type" + str(type(quantity)))
-
             #Create a new instance of order product and add to cart
             add_product_to_cart(prod_id, quantity, user_id)
+
+            prod_list = []
+            user = User.objects.get(pk=user_id)
+            order = Order.objects.get(user_id=user, confirmed=False)
+            order_products = OrderProduct.objects.filter(order_id=order)
+            for x in order_products:
+                prod_list.append({'qty': x.quantity, 'price': x.price, 'id': x.id})
+            return JsonResponse({'data': prod_list})
 
     # Search
     if 'search_by' in request.GET:
@@ -99,9 +106,7 @@ def index(request):
             prod_list.append({'id': x.id})
         return JsonResponse({'data': prod_list})
 
-
     # Initial Store load - order by name
-    print("hello3")
     context['products'] = Product.objects.all().order_by('name')
     return render(request, 'store/index.html', context)
 

@@ -28,12 +28,12 @@ function updateCart(order_info, order_prod_id) {
     qty_element = document.getElementById(qty_id)
     price_id = order_prod_id + "-price"
     price_element = document.getElementById(price_id)
-
     total_price = 0
+
+    //Get information about qty and price of order products
     if (order_info.length !==0) {
         for (i = 0; i < order_info.length; i++) {
         order_product = order_info[i]
-
         total_price += order_product.price
 
             if (order_product.id == order_prod_id) {
@@ -47,7 +47,9 @@ function updateCart(order_info, order_prod_id) {
     else {
         document.getElementById("sub-total").innerHTML = "Your cart is empty. Go to store to check out the products."
     }
-
+    //Update shopping cart qty in nav bar
+    items_in_cart = order_info.length
+    document.getElementById("shopping-cart-quantity").innerHTML = " " + items_in_cart + " "
 }
 
 //Change qty in shopping cart interface
@@ -88,7 +90,6 @@ $('.change-qty').on('click', function (e) {
         },
         success: function (resp) {
             order_info = resp.data
-            console.log(order_info)
             updateCart(order_info, order_prod_id)
             console.log("SUCCESS")
         }
@@ -113,7 +114,6 @@ $('.remove-item').on('click', function (e) {
         },
         success: function (resp) {
             order_info = resp.data
-            console.log(resp.data)
             updateCart(order_info, order_prod_id)
             removeShoppingCartItem(order_prod_id)
             M.toast({html: "Product was removed from cart", classes: "green"})
