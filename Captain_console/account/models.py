@@ -56,6 +56,7 @@ class PaymentInfo(models.Model):
     @staticmethod
     def insert(user_id, name, number, exp, cvc):
         try:
+            PaymentInfo.objects.get(user_id=user_id)
             PaymentInfo.objects.filter(user_id=user_id).update(user_id=user_id, name=name, card_number=number,
                                                             exp_date=exp, cvc=cvc)
         except:
@@ -72,9 +73,9 @@ class Address(models.Model):
     @staticmethod
     def insert(user_id, address, city, country, zip_code):
         try:
-            Address.objects.get(user_id=user_id).update(address=address, city=city, country=country,
-                                                           zip_code=zip_code)
-        except Exception:
+            Address.objects.get(user_id=user_id)
+            Address.objects.filter(user_id=user_id).update(address=address, city=city, country=country, zip_code=zip_code)
+        except:
             Address.objects.create(user_id=user_id, address=address, city=city, country=country, zip_code=zip_code)
 
 

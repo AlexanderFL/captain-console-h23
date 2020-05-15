@@ -21,7 +21,7 @@ def aboutus(request):
 def logout(request):
     if request.session.__contains__('user_id'):
         request.session.pop('user_id')
-    context = {'products': Product.objects.all()[:3]}
+    context = {'products': Product.objects.all()[:3], 'articles': News.objects.all().order_by('-date')[:3]}
     return render(request, 'home/index.html', context)
 
 

@@ -36,7 +36,6 @@
                 <div class="col s12 m6 l8">
                     <h4>{{ product.name }}</h4>
                     <span class="stock-text in-stock">In stock</span>
-                    <h6>{{ product.productdetails_set.first.description }}</h6>
                     <h6><strong>Release date:</strong> {{ product.productdetails_set.first.release_date }}</h6>
                     <h6><strong>Developer: </strong>{{ product.productdetails_set.first.developer_id.developer }}</h6>
                     <h6><strong>Genre: </strong>{{ product.productdetails_set.first.genre_id.genre }} </h6>
@@ -56,11 +55,7 @@
                         {% endif %}
                     </div>
                     <div class="description">
-                        <br>
-                        <p>
-                            This 1999 classic is the first Donkey Kong game to feature 3D gameplay. It’s up to you, Donkey Kong, to rescue your kidnapped friends from King K. Rool. Use your special abilities to overcome obstacles and receive all kinds of collectibles along the way.
-                            Last man standing and deathmatch games are available in multiplayer mode, where up to four players can compete.
-                        </p>
+                        <h6>{{ product.productdetails_set.first.description }}</h6>
                     </div>
 
                 </div>

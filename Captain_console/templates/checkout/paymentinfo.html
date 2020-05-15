@@ -17,13 +17,13 @@
 
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">date_range</i>
-            <input id="exp_date" type="text" class="validate" required  value="">
+            <input id="exp_date" type="text" class="validate" required  value="{{ user.paymentinfo_set.first.exp_date }}">
             <label for="exp_date">Expiration date (01/21)</label>
         </div>
 
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">security</i>
-            <input id="cvc_number" type="text" class="validate" required  value="">
+            <input id="cvc_number" type="text" class="validate" required  value="{{ user.paymentinfo_set.first.cvc }}">
             <label for="cvc_number">CVC</label>
         </div>
     </div>
