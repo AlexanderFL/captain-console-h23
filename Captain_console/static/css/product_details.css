@@ -121,9 +121,7 @@
     padding-bottom: 2rem;
 }
 
-#right-side {
-    width: 50%;
-    margin-left: auto;
-    float: right;
-    font-size: 1px;
+.description {
+    font-size: 16px;
+    line-height: 25px;
 }
