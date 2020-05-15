@@ -17,20 +17,8 @@ function updateRatings() {
     }
 }
 
-// Appends the nr of copies sold to the element with the id #copies-sold-nr
-function getCopiesSold(){
-    $.ajax({
-        url: '?copies_sold=true',
-        type: 'GET',
-        success : function(response){
-            $("#copies-sold-nr").append(response.message)
-        }
-    })
-}
-
 window.onload = function() {
     $(document).ready(function () {
-        getCopiesSold();
         updateRatings();
 
         //Turn stars into rating buttons

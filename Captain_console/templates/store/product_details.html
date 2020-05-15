@@ -19,7 +19,7 @@
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
                         <div class="copies-sold">
-                            <span id="copies-sold-nr"></span>
+                            <span id="copies-sold-nr-sdf">{{ copies_sold }}</span>
                             <span>copies sold</span>
                         </div>
                         <div id="stars" data-average="{{ product.average_rating}}" >
