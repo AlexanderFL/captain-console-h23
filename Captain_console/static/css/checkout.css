@@ -37,6 +37,8 @@ div.checkout.container {
 }
 #game-title{
     margin: 0 !important;
+    text-decoration: none;
+    color: black;
 }
 
 .cart-header{
