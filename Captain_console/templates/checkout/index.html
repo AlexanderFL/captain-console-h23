@@ -21,22 +21,10 @@
                 {% include 'checkout/confirmation.html' %}
             {% endif %}
         </div>
-        <div class="col s12 m12 l6 fix-content card-panel white">
-            <div class="col s12 blue accent 2 cart-header">
-                <h4 id="shopping-cart-title">Shopping Cart</h4>
-            </div>
-             <div class="col s12">
-                <h5 id="sub-total">Subtotal:</h5>
-            </div>
-            <div class="col s12">
-                {% for order_product in order_products %}
-                    <div class="row card-panel white order-product-card" id = {{ order_product.id }}>
-                        {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
-                    </div>
-                {% endfor %}
-            </div>
+        {% if page_checkout != 'confirmation' %}
+            {% include 'checkout/shoppingcart.html' with order_product=order_product %}
+        {%  endif %}
         </div>
-    </div>
     </div>
 </div>
 {% endblock %}
