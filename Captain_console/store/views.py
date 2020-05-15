@@ -107,7 +107,7 @@ def index(request):
         return JsonResponse({'data': prod_list})
 
     # Initial Store load - order by name
-    context['products'] = Product.objects.all().order_by('name')
+    context['products'] = Product.objects.all().order_by('price')
     return render(request, 'store/index.html', context)
 
 

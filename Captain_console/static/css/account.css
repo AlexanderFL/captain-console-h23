@@ -45,3 +45,10 @@ div.signup {
 .right-float{
     text-align: right;
 }
+
+
+@media only screen and (max-width: 650px){
+    .account-image {
+        visibility: collapse;
+    }
+}
