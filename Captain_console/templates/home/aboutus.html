@@ -1,12 +1,17 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/footerinfo.css" %}">
+{% endblock %}
 
 
 {% block content %}
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/is_IS/sdk.js#xfbml=1&version=v7.0"></script>
-
+ <body>
+      <div class="container">
+    <div class="card-panel white">
     <div class="row container">
         <div class="row">
             <div class="col s8 offset-s2">
@@ -44,6 +49,9 @@
 {#    https://www.facebook.com/Captain-Console-100282701679447/#}
 
     </div>
+    </div>
+     </div>
+    </body>
 
 
 {% endblock %}

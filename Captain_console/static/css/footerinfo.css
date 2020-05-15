@@ -1,0 +1,12 @@
+.container {
+    text-align: center;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+div.fb-page {
+    display: inline-block;
+    vertical-align: central;
+}
+
+
