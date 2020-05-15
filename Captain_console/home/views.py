@@ -22,3 +22,7 @@ def logout(request):
         request.session.pop('user_id')
     context = {'products': Product.objects.all()[:3], 'user_session': request.session.get('user_session')}
     return render(request, 'home/index.html', context)
+
+
+def readmore(request):
+    return render(request, 'home/news1.html')
