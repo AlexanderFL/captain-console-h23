@@ -34,6 +34,17 @@ class User(models.Model):
             return user.password
         return None
 
+    @staticmethod
+    def get_password_from_id(id):
+        user_obj = User.objects.filter(pk=id)
+        for user in user_obj:
+            return user.password
+        return None
+
+    @staticmethod
+    def update_user_password(id, new_password):
+        User.objects.filter(pk=id).update(password=new_password)
+
 
 class PaymentInfo(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)

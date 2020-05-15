@@ -26,5 +26,5 @@ def logout(request):
 
 
 def readmore(request, id):
-    return render(request, 'home/article.html', {'article': News.objects.get(pk=id)})
+    return render(request, 'home/article.html', {'article': News.objects.get(pk=id), 'articles': News.objects.all().order_by('-date')[:5]})
 

@@ -1,4 +1,4 @@
-import json
+import json, bcrypt
 from copy import deepcopy
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
@@ -152,6 +152,23 @@ def edit(request):
 def change_password(request):
     user_id = request.session.get('user_id')
     if user_id is not None:
+
+        if request.method == "POST":
+            current_password = request.POST.get('current_password').encode('utf-8')
+            new_password = request.POST.get('new_password').encode('utf-8')
+            stored_password = User.get_password_from_id(user_id)
+
+            hashed_pass = stored_password.encode('utf-8')
+            if bcrypt.checkpw(current_password, hashed_pass):
+                new_password_hash = bcrypt.hashpw(new_password, bcrypt.gensalt())
+                new_password_hash = new_password_hash.decode('utf-8')
+                User.update_user_password(user_id, new_password_hash)
+
+                response = json.dumps({'status': 200, 'message': '/account/'})
+                return HttpResponse(response, content_type='application/json')
+            else:
+                response = json.dumps({'status': 0, 'message': 'Incorrect password'})
+                return HttpResponse(response, content_type='application/json')
         context = {
             'user': User.objects.get(pk=user_id)
         }
