@@ -22,10 +22,25 @@
                 <h4>Order history</h4>
                 {% if not orders %}
                     <p>You have no orders </p>
+
+
+{#        'order_id': order_.id,#}
+{#        'quantity': order.quantity,#}
+{#        'price': order_.total_price,#}
+{#        'tracking_nr': order_.tracking_nr,#}
+{#        'date': order_.date,#}
+{#        'products': {#}
+{#            'photo': prod_.photo.path,#}
+{#            'alt': prod_.photo.alt,#}
+{#            'name': prod_.name,#}
+{#            'rating': prod_.average_rating,#}
+{#            'id': prod_.id,#}
+
                 {% else %}
                     {% for order in orders %}
 
                         {% include 'account/order_history.html'%}
+
 
                     {% endfor %}
                 {% endif %}
