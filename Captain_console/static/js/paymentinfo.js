@@ -47,7 +47,7 @@ window.onload = function(){
         }
         // If card number is not 16 letters
         if (cardNumber.trim().length !== 16){
-            M.toast({html: "Please enter a correct card number", classes: "red"})
+            M.toast({html: "Not a valid card number", classes: "red"})
             return
         }
         // If date is not on the format (01/20 -> 12/29)

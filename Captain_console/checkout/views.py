@@ -71,7 +71,6 @@ def base_change_qty_of_prod(request):
 
 @csrf_exempt
 def index(request):
-    # Test
     if request.method == "GET":
         try:
             navbar_request = request.GET['navbar']
