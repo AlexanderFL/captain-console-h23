@@ -7,43 +7,61 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/is_IS/sdk.js#xfbml=1&version=v7.0"></script>
 
-
     <div class="row container">
-        <div class="row">
-            <div class="col s8 offset-s2">
-                <div class="row">
-                    <h3>{{ article.title }}</h3>
+       <div class="row">
+           <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="col s4 m4 l4">
+                        <div class="card-panel white">
+                            <h5>Other news</h5>
+                            {% include 'home/news.html' with articles=articles %}
+                        </div>
+                    </div>
+
+                    <div class="col s8 m8 l8">
+                        <div class="card-panel white">
+                            <div class="row">
+                                <h3>{{ article.title }}</h3>
+                            </div>
+
+                             <div class="row">
+                                <p>
+                                {{ article.date }}
+                                </p>
+                             </div>
+
+                             <div class="row">
+                                <p>{{ article.article }}</p>
+                             </div>
+                        </div>
+                         <div class="col s8 m8 l8 ">
+                            <div class="row">
+
+                                <div class="fb-page responsive"
+                                  data-href="https://www.facebook.com/Captain-Console-100282701679447"
+                                  data-width="380"
+                                  data-hide-cover="false"
+                                  data-show-facepile="false"
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
                 </div>
+           </div>
 
-                <div class="row">
-                    <p>
-                    {{ article.date }}
-                    </p>
-                </div>
+{#        <div class="row">#}
 
-                <div class="row">
-                    <p>{{ article.article }}</p>
-                </div>
-
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s3 offset-s2">
-                <div class="row">
-                    <div class="fb-page"
-                      data-href="https://www.facebook.com/Captain-Console-100282701679447"
-                      data-width="380"
-                      data-hide-cover="false"
-                      data-show-facepile="false"></div>
-                </div>
-            </div>
         </div>
 
 {#    https://www.facebook.com/Captain-Console-100282701679447/#}
 
-    </div>
+    </div>  {# container #}
+
 
 
 {% endblock %}
