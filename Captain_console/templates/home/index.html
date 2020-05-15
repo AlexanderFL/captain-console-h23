@@ -19,6 +19,7 @@
                     <div class="row">
                         {% for product in products %}
                             <div class="col s12 m6 l6 xl4">
+                                {% csrf_token %}
                                 {% include 'product-card-view.html' with product=product %}
                             </div>
                         {% endfor %}
