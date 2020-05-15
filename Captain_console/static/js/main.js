@@ -33,6 +33,27 @@ $('#mobile-search-bar').on('keyup', function(event){
     }
 });
 
+$(document).ready(function () {
+    $.ajax({
+        url: "/checkout/contactinfo?navbar=true",
+        method: "GET",
+        success : function(response){
+            // Status 200: Ok, continue
+            // Status 0:   Something went wrong
+            if (response.status === 200){
+                console.log("hello from main.js: " + response.message)
+                $('#shopping-cart-quantity').html(response.message)
+            }else if(response.status === 0){
+                console.log("Server returned an error: " + response.message)
+            }
+            console.log(response)
+        },
+        error : function (response) {
+            console.log(response)
+        }
+    })
+})
+
 
 $('.filterby').on('change', function (e) {
             e.preventDefault();

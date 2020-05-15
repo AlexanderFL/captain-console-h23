@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from account.models import User, PaymentInfo
 from store.models import Product
-from checkout.models import OrderProduct, remove_product_from_cart, change_qty, mark_order_confirmed, Order
+from checkout.models import OrderProduct, remove_product_from_cart, change_qty, mark_order_confirmed, Order, number_of_items_in_cart
 
 
 # Base functions for all checkout views
@@ -70,6 +70,15 @@ def base_change_qty_of_prod(request):
 
 @csrf_exempt
 def index(request):
+    # Test
+    if request.method == "GET":
+        try:
+            navbar_request = request.GET['navbar']
+            response_message = number_of_items_in_cart(request.session['user_id'])
+            response = json.dumps({'status': 200, 'message': response_message})
+            return HttpResponse(response, content_type='application/json')
+        except Exception:
+            pass
     # If user is not logged in - render login page
     user_id = request.session.get("user_id")
     if user_id is None:
