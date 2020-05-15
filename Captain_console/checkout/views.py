@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from account.models import User, PaymentInfo
 from store.models import Product
-from checkout.models import OrderProduct, remove_product_from_cart, change_qty, mark_order_confirmed
+from checkout.models import OrderProduct, remove_product_from_cart, change_qty, mark_order_confirmed, Order
 
 
 # Base functions for all checkout views
@@ -149,9 +149,12 @@ def payment(request, id=None):
 def confirmation(request):
     user_id = request.session.get("user_id")
 
-    context = {
-        'page_checkout': 'confirmation',
-    }
-
+    # Base context
     context = base_context(user_id)
+
+    #Specific context
+    context['page_checkout'] = 'confirmation'
+    context['order'] = Order.objects.latest('id')
+
+    print(context)
     return render(request, 'checkout/index.html', context)

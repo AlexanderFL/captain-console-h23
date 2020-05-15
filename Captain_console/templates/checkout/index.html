@@ -18,7 +18,7 @@
             {% elif page_checkout == 'paymentinfo' %}
                 {% include 'checkout/paymentinfo.html' %}
             {% elif page_checkout == 'confirmation' %}
-                {% include 'checkout/confirmation.html' %}
+                {% include 'checkout/confirmation.html' with order=order%}
             {% endif %}
         </div>
         {% if page_checkout != 'confirmation' %}
