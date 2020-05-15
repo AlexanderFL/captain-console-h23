@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var instances = M.FormSelect.init(elems);
         });
 
+// When user searches from navbar, checks the params sent and if
+// it includes ?search=64, it will fill the search bar with the value
 function fill_search_bar(){
     let params = window.location.search.substr(1);
     let params_s = params.split("=")
@@ -26,27 +28,23 @@ window.onload = function() {
             console.log(order_var)
 
             //Check what order variable was pressed
-            if (order_var === 1) {
+            if (order_var === 0) {
                 var order_name = "price"
-            } else if (order_var === 2) {
+            } else if (order_var === 1) {
                 var order_name = "name"
-            } else if (order_var === 3) {
+            } else if (order_var === 2) {
                 var order_name = "rating"
             }
 
             //GET request with product ID's in new order
             $.ajax({
-                url: '/store?sort_by=' + order_name + "/",
+                url: '/store?sort_by=' + order_name,
                 type: 'GET',
-
                 success: function (resp) {
-                    console.log(resp)
-                    console.log(resp.data[0])
                     product_order = resp.data
-                    order_products(product_order);
+                    orderProducts(product_order);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
@@ -87,15 +85,15 @@ window.onload = function() {
                 },
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
-                    filter_products(products_filtered);
+                    filterProducts(products_filtered);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
         });
 
+        let no_product_found = false
         $('#search_product').on('keyup', function (event) {
             // If keypress is 'Enter'
             val = $(this).val()
@@ -105,10 +103,18 @@ window.onload = function() {
                 type: 'GET',
                 success: function (resp) {
                     products_filtered = resp.data.map(d => d.id) //Map id's into array
-                    filter_products(products_filtered);
+
+                    if (products_filtered.length === 0) {
+                        if(!no_product_found){
+                            M.toast({html: "No products found", classes: "red"})
+                            no_product_found = true
+                        }
+                    }else{
+                        no_product_found = false
+                    }
+                    filterProducts(products_filtered);
                 },
                 error: function (xhr, status, error) {
-                    // TODO: Show TOASTR
                     console.log(error);
                 }
             });
@@ -126,16 +132,16 @@ window.onload = function() {
             var quantity = 1
 
              $.ajax({
-                url: "/store/?add_to_cart=" + prod_id,
-                 type: "POST",
+                url: "?add_to_cart=" + prod_id,
+                type: "POST",
                 data: {prod_id: prod_id, quantity: quantity},
 
                 success: function(resp, status){
                     if (resp.status === 999){
                         window.location.replace(resp.message)
                     }
-                    console.log(this.url)
-                    console.log("SUCCESS: " + status)
+                    items_in_cart = resp.data.length
+                    updateCartQty(items_in_cart)
                     M.toast({html: "Product was added to cart", classes: "green"})
                 },
                 error: function(status){
@@ -151,7 +157,7 @@ window.onload = function() {
 /**
 Orders products in store according to users choise
  */
-function order_products(product_order) {
+function orderProducts(product_order) {
     all_products = document.getElementsByClassName("all_products")
     product_cards = []
 
@@ -169,7 +175,7 @@ function order_products(product_order) {
     }
 }
 
-function filter_products(products_filtered) {
+function filterProducts(products_filtered) {
     product_cards = $(".product-card")
     product_cards_id = $(".product-card").map(function() { return this.id; }).toArray();
     var empty = 1
@@ -188,6 +194,12 @@ function filter_products(products_filtered) {
             product_cards[i].style.display = 'none' //Do not display
         }
     }
+}
+
+//Updates cart qty in nav bar
+function updateCartQty(items_in_cart) {
+    document.getElementById("shopping-cart-quantity").innerHTML = "" + items_in_cart + ""
+    console.log("SUCCESS: " + status)
 }
 
 function getCookie(name) {

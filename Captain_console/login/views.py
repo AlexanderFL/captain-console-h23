@@ -26,8 +26,9 @@ def index(request):
             # Compare the plain password to the stored hash
             if bcrypt.checkpw(plain_password, hashed_pass):
                 request.session['user_id'] = User.objects.get(email=email).id
-                url = 'http://localhost:8000/account/'
-                response = json.dumps({'status': 1, 'message': url})
+                url = '/account/'
+                print("login/view/index: User " + str(request.session['user_id']) + " was authenticated")
+                response = json.dumps({'status': 200, 'message': url})
                 return HttpResponse(response, content_type='application/json')
 
         response = json.dumps({'status': 0, 'message': 'Email/password was incorrect'})
@@ -60,7 +61,7 @@ def register(request):
 
             # Create the session for the user and redirect him to his account page
             request.session['user_id'] = user_inserted.id
-            response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/'})
+            response = json.dumps({'status': 200, 'message': '/account/'})
             return HttpResponse(response, content_type='application/json')
         else:
             response = json.dumps({'status': 0, 'message': 'This email is already in use'})

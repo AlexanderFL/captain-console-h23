@@ -1,0 +1,16 @@
+
+{% for article in articles %}
+
+    <div class="card-panel  red lighten-4">
+        <div class="black-text">
+            <span class="card-title"><strong>{{ article.title }}</strong></span>
+            <p>{{ article.short }}</p>
+            <p>{{ article.date }}</p>
+        </div>
+        <div class="card-action">
+            <a href="{% url "read_more" %}/{{ article.id }}" class="blue-text text-accent-2">Read more...</a>
+        </div>
+    </div>
+{% endfor %}
+
+

@@ -1,0 +1,26 @@
+<div class="card-panel red lighten-4">
+   <div id="stars" data-average="{{ product.average_rating}}" >
+        {% if  review.rating > 0 %}
+            <span><i class="material-icons yellow-star">star</i></span>
+        {% endif %}
+        {% if  review.rating > 1 %}
+            <span><i class="material-icons yellow-star">star</i></span>
+        {% endif %}
+            {% if  review.rating > 2 %}
+        <span><i class="material-icons yellow-star">star</i></span>
+            {% endif %}
+        {% if  review.rating > 3 %}
+            <span><i class="material-icons yellow-star">star</i></span>
+        {% endif %}
+            {% if  review.rating > 4 %}
+        <span><i class="material-icons yellow-star">star</i></span>
+        {% endif %}
+    </div>
+<span class="black-text">
+    <h6>"{{ review.comment }}"</h6>
+</span>
+<div class="black-text">
+    <h7 class="username">{{ review.user_id.username }}</h7>
+</div>
+</div>
+

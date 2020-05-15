@@ -92,7 +92,6 @@
     border-style: solid;
 }
 
-
 .star.fill {
     color: orange;
 }
@@ -111,6 +110,7 @@
 
 #give_review {
     margin-left: 0.5rem;
+    margin-top: 2px;
 }
 
 .star[disabled] {
@@ -119,4 +119,11 @@
 
 #rating-count {
     padding-bottom: 2rem;
+}
+
+.description {
+    text-align: justify;
+    line-height: 29px;
+    font-size: 18px;
+    margin-right: 20px;
 }

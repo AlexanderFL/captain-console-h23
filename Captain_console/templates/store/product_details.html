@@ -13,13 +13,13 @@
             <li><a href="{% url "store_index" %}">Store</a></li>
             <li class="active"><a href="#">{{ product.name }}</a></li>
         </ul>
-        <div class="card-panel white col s12">
+        <div class="card-panel white col s12 m12 l8">
             <div class="row">
                 <div class="col s12 m6 l4">
                     <div class="product-image">
                         <img class="responsive-img" width="300ems" src="{{product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}"/>
                         <div class="copies-sold">
-                            <span id="copies-sold-nr"></span>
+                            <span id="copies-sold-nr-sdf">{{ copies_sold }}</span>
                             <span>copies sold</span>
                         </div>
                         <div id="stars" data-average="{{ product.average_rating}}" >
@@ -27,18 +27,20 @@
                             <button class="star" data-rate="2" data-prod="{{ product.id }}" ><i class="material-icons">star</i></button>
                             <button class="star" data-rate="3" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
                             <button class="star" data-rate="4" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
-                            <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button><span id="rating-count" data-current-count="{{ product.review_set.count }}">({{ product.review_set.count }})</span>
+                            <button class="star" data-rate="5" data-prod="{{ product.id }}"><i class="material-icons">star</i></button>
+                            <span id="rating-count" data-current-count="{{ product.review_set.count }}">({{ product.review_set.count }})</span>
                         </div>
+                        <a href="{% url "reviews" product.id %}">Read reviews</a>
                     </div>
                 </div>
                 <div class="col s12 m6 l8">
                     <h4>{{ product.name }}</h4>
                     <span class="stock-text in-stock">In stock</span>
-                    <h6>{{ product.productdetails_set.first.description }}</h6>
                     <h6><strong>Release date:</strong> {{ product.productdetails_set.first.release_date }}</h6>
                     <h6><strong>Developer: </strong>{{ product.productdetails_set.first.developer_id.developer }}</h6>
                     <h6><strong>Genre: </strong>{{ product.productdetails_set.first.genre_id.genre }} </h6>
                     <div>
+                        <br>
                         <div id="product-price">
                             {% if product.discount > 0 %}
                                 <span class="set-price">${{ product.get_discounted_price }}</span>
@@ -51,6 +53,10 @@
                         {% if 'user_id' in request.session %}
                             <a class="waves-effect waves-light btn blue accent-3" data-prod="{{ product }}" id="give-review" >Rate product</a>
                         {% endif %}
+                    </div>
+                    <br>
+                    <div class="description">
+                        <p>{{ product.productdetails_set.first.description }}</p>
                     </div>
                 </div>
             </div>

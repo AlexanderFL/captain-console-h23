@@ -18,12 +18,13 @@ div.checkout.container {
     flex-grow: 1;
 }
 
+
 /**
     Shopping cart elements
 */
 
-#quantity{
-    margin-left: 10px;
+.quantity{
+    margin-left: 12px;
 }
 
 /**
@@ -36,6 +37,8 @@ div.checkout.container {
 }
 #game-title{
     margin: 0 !important;
+    text-decoration: none;
+    color: black;
 }
 
 .cart-header{
@@ -56,4 +59,20 @@ div.checkout.container {
     width: 150px;
     height: 150px;
     object-fit: cover;
+    position: relative;
+}
+
+/* 1220px wide or less, put price and title beneath image */
+@media only screen and (max-width: 1220px){
+    .fall-beneath{
+        width: 100% !important;
+        margin-left: 50px !important;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .account-image {
+        left: 75px;
+        top: 5px;
+    }
 }

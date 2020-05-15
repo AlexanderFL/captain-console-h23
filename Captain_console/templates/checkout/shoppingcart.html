@@ -1,36 +1,15 @@
-
-<div class="row">
-    <div class="input-field col s12">
+<div class="col s12 m12 l6 fix-content card-panel white">
+    <div class="col s12 blue accent 2 cart-header">
+        <h4 id="shopping-cart-title">Shopping Cart</h4>
+    </div>
+     <div class="col s12">
+        <h5 id="sub-total">{{ total_price }}</h5>
+    </div>
+    <div class="col s12">
         {% for order_product in order_products %}
-            {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
+            <div class="row card-panel white order-product-card" id = {{ order_product.id }}>
+                {% include 'checkout/shoppingcart_element.html' with order_product=order_product %}
+            </div>
         {% endfor %}
     </div>
 </div>
-{% comment %}
-
-
-<!--
-    A single card that contains the product title, image, price and available discount (if any)
--->
-
-            <div class="row">
-                <img class="product-img" src="{{ product.productphoto_set.first.path}}" alt="{{ product.productphoto_set.first.alt }}">
-
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ product.name }}</span>
-                            {% if product.discount <= 0 %}
-                                <strong class="flow-text set-price">${{ product.price }}</strong>
-                            {% else %}
-                                <strong class="flow-text">
-                                    <span class="discount">
-                                        <sup>{{ product.price }}</sup>
-                                    </span>
-                                </strong>
-                            {% endif %}
-                    </div>
-                </div>
-            </div>
-{#        </span>#}
-{#    </div>#}
-{#</div>#}{% endcomment %}

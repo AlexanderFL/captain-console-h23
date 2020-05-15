@@ -17,27 +17,19 @@
                 {% include 'checkout/shipping.html'%}
             {% elif page_checkout == 'paymentinfo' %}
                 {% include 'checkout/paymentinfo.html' %}
+            {% elif page_checkout == 'confirmation' %}
+                {% include 'checkout/confirmation.html' with order=order%}
             {% endif %}
         </div>
-        <div class="col s12 m12 l6 fix-content card-panel white">
-            <div class="col s12 blue accent 2 cart-header">
-                <h4 id="shopping-cart-title">Shopping cart</h4>
-            </div>
-             <div class="col s12">
-                <h5 id="sub-total">Sub-total:</h5>
-            </div>
-                <span class="col s12">
-                    {% include 'checkout/shoppingcart.html' with order_products=order_products %}
-                </span>
-
+        {% if page_checkout != 'confirmation' %}
+            {% include 'checkout/shoppingcart.html' with order_product=order_product %}
+        {%  endif %}
         </div>
     </div>
 </div>
 {% endblock %}
+
 {% block js %}
     <script src="{% static "js/checkout.js" %}"></script>
-    {% if page_checkout == 'paymentinfo' %}
-        <script src="{% static "js/paymentinfo.js" %}"></script>
-        <script src="{% static "js/checkout.js" %}"></script>
-    {% endif %}
-{%endblock%}
+    <script src="{% static "js/paymentinfo.js" %}"></script>
+{% endblock %}

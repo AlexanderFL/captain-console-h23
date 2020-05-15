@@ -1,0 +1,29 @@
+
+.confirmation {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2979FF;
+    line-height: 35px;
+}
+
+.light-text {
+    color: gray;
+}
+
+.info-title {
+    font-size: 24px;
+    line-height: 33px;
+}
+
+.playing {
+    font-size: 18px;
+    text-align: right;
+    font-style: italic;
+    line-height: 30px;
+    margin-top: 20px;
+}
+
+.customer-info p, .shipping-info p{
+    padding: 5px;
+    margin: 0;
+}

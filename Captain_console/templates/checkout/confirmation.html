@@ -1,34 +1,38 @@
-    <a class="modal-trigger" href="#modal1"><i class="material-icons icn_profile waves-effect">person</i></a>
 
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/confirmation.css" %}">
+{% endblock %}
 
+<div class="card-panel white s12">
+    <p class="confirmation">Your order has been placed</p>
+    <p>Thank you for your purchase!</p>
+    <p>A confirmation email will be sent to: <strong>{{ order.user_id.email }}</strong></p>
+    <p>Order number: <strong>{{order.tracking_nr}}</strong> <span class="light-text">(Please quote this in any corrispondance to us)</span></p>
+    <p>Total cost: <strong>${{ order.total_price }}</strong> <span class="light-text">(Tax included)</span></p>
+    <p>Your order will be sent for shipping on the next business day</p>
 
-   <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+    <div class="row">
+        <div class="col s12 shipping-info">
+            <br><br>
+            <div class="info-title">Shipping address:</div>
+            <p>{{ order.user_id.address_set.first.address }}</p>
+            <p>{{ order.user_id.address_set.first.zip_code }}, {{ order.user_id.address_set.first.city }}</p>
+            <p>{{ order.user_id.address_set.first.country }}</p>
+        </div>
+        <div class="col s12 customer-info">
+            <br>
+            <span class="info-title ">Customer:</span>
+            <span><p>{{ order.user_id.username }}</p></span>
+
+            <br>
+            <span class="info-title">Order date </span>
+            <span><p>{{ order.date }}</p></span>
+
+            <div class="playing">Happy playing!</div>
+            <a class="btn waves-effect blue accent-3" href="{% url 'home_index' %}">Continue shopping
+            <i class="material-icons right">shopping_basket</i></a>
+
+        </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-
-
-
-{##}
-{#<div class="card-panel white">#}
-{#    <h3 class="card-title">Confirmation</h3>#}
-{#    <form class="col s12">#}
-{##}
-{#        <div class="row">#}
-{#            <div class="input-field col s12">#}
-{#                <h5>Your order has been placed</h5>#}
-{#                <p>Thank you for your purchase!</p>#}
-{#                <p>A confirmation email will be sent to: personpersonsson@gmail.com</p>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <a class="btn waves-effect blue accent-3"  href="/store">Continue shopping#}
-{#        <i class="material-icons right">shopping_cart</i></a>#}
-{##}
-{#    </form>#}
-{#</div>#}
+</div>

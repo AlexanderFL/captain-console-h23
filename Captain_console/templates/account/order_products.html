@@ -1,0 +1,17 @@
+
+
+
+
+{% for product in order.products %}
+    {% include 'account/order_element.html'  %}
+{% endfor %}
+
+{#  {% for thing in things|in_category:category %}#}
+
+{% comment %}
+{% for category in categories %}
+
+  {% for thing in things|in_category:category %}
+    {{ thing }}
+  {% endfor %}
+{% endfor %}{% endcomment %}

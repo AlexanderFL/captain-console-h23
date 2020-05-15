@@ -1,54 +1,58 @@
 
 {% extends 'base.html' %}
 {% load static %}
-
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/footerinfo.css" %}">
+{% endblock %}
 
 {% block content %}
-
-    <div class="row container" ">
+<body>
+<div class="container">
+    <div class="row container">
+        <div class="card-panel white">
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h3>Please read these Terms of Service carefully before using CaptainConsole.</h3>
+                    <h4>Please read these terms of service carefully before using Captain Console</h4>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Disclaimer</h5>
-                    <p>The materials like game files, manuals, screenshots and others on CaptainConsole's website are provided on an 'as is' basis. CaptainConsole makes no warranties for the files you run or download to your computer.</p>
+                    <h6>Disclaimer</h6>
+                    <p>The materials, like game files, manuals, screenshots, and others on CaptainConsole's website are provided on an 'as is' basis. Captain Console makes no warranties for the files you run or download to your computer.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Limitations</h5>
-                    <p>In no event shall RetroGames.cz be liable for any damages arising out of the use or inability to use the materials downloaded from CaptainConsole's website.</p>
+                    <h6>Limitations</h6>
+                    <p>In no event shall RetroGames.cz be liable for any damages arising out of the use or inability to use the materials downloaded from Captain Console's website.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Accuracy of materials</h5>
-                    <p>The materials appearing on RetroGames.cz's website could include technical, typographical, or photographic errors. CaptainConsole does not warrant that any of the materials on its website are accurate, complete or current. CaptainConsole may make chan­ges to the materials contained on its website at any time without notice. However CaptainConsole does not make any commitment to update the materials.</p>
+                    <h6>Accuracy of Materials</h6>
+                    <p>The materials appearing on RetroGames.cz's website could include technical, typographical, or photographic errors. Captain Console does not warrant that any of the materials on its website are accurate, complete or current. Captain Console may make changes to the materials contained on its website at any time without notice. However, Captain Console does not make any commitment to update the materials.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Links To Other Web Sites</h5>
-                    <p>CaptainConsole has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by CaptainConsole of the site. Use of any such linked website is at the user's own risk.</p>
+                    <h6>Links to Other Web Sites</h6>
+                    <p>Captain Console has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Captain Console of the site. Use of any such linked website is at the user's own risk.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Governing Law</h5>
+                    <h6>Governing Law</h6>
                     <p>These terms and conditions are governed by and construed in accordance with the laws of Iceland and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>
                 </div>
             </div>
@@ -56,20 +60,22 @@
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Changes</h5>
-                    <p>CaptainConsole may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the current version of these terms of service.</p>
+                    <h6>Changes</h6>
+                    <p>Captain Console may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the current version of these terms of service.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s8 offset-s2">
                 <div class="row">
-                    <h5>Contact Us</h5>
-                    <p>If you have any questions about these Terms, please contact us.</p>
+                    <h6>Contact Us</h6>
+                    <p>If you have any questions regarding these terms, please contact us.</p>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+     </div>
+    </body>
 
 {% endblock %}

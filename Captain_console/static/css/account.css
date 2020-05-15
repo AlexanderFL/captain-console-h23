@@ -41,3 +41,14 @@ div.signup {
     height: 150px;
     object-fit: cover;
 }
+
+.right-float{
+    text-align: right;
+}
+
+
+@media only screen and (max-width: 650px){
+    .account-image {
+        visibility: collapse;
+    }
+}

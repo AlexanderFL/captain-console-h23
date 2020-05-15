@@ -1,6 +1,6 @@
-
+{%  load static %}
 <div class="card-panel white">
-    <h3 class="card-title">Payment information</h3>
+    <h3 class="card-title">Payment Information</h3>
 
     <div class="row">
         <div class="input-field col s12">
@@ -17,13 +17,13 @@
 
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">date_range</i>
-            <input id="exp_date" type="text" class="validate" required  value="">
-            <label for="exp_date">Expire date (01/21)</label>
+            <input id="exp_date" type="text" class="validate" required  value="{{ user.paymentinfo_set.first.exp_date }}">
+            <label for="exp_date">Expiration date (mm/yy)</label>
         </div>
 
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">security</i>
-            <input id="cvc_number" type="text" class="validate" required  value="">
+            <input id="cvc_number" type="text" class="validate" required  value="{{ user.paymentinfo_set.first.cvc }}">
             <label for="cvc_number">CVC</label>
         </div>
     </div>
@@ -44,7 +44,7 @@
            href="{% url 'checkout_shipping' %}">Back
         <i class="material-icons right">arrow_back</i></a>
 
-        <a class="btn waves-effect blue accent-3 modal-trigger move-buttons" href="#modal1" id="confirm-payment">Submit
+        <a class="btn waves-effect blue accent-3 modal-trigger move-buttons" id="confirm-payment">Submit
         <i class="material-icons right">arrow_forward</i></a>
     </div>
 </div>
@@ -61,3 +61,7 @@
     </div>
 </div>
 
+{% comment %}
+{% block js %}
+    <script src="{% static "js/paymentinfo.js" %}"></script>
+{% endblock %}{% endcomment %}

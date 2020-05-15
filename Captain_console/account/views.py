@@ -1,5 +1,5 @@
-import json
-
+import json, bcrypt
+from copy import deepcopy
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -9,37 +9,37 @@ from store.models import Product, ProductPhoto
 from checkout.models import OrderProduct, Order
 
 
-
 def base_context(id, context):
 
     context['user'] = User.objects.get(pk=id)
+    query_order = OrderProduct.objects.filter(user_id=id, order_id__confirmed=True).order_by('-order_id__date', 'order_id_id')
 
-    query_order = Order.objects.filter(user_id=id, confirmed=True).order_by('-id')[:3]
     query_list = []
-    if query_order != None :
+    if query_order != None:
         for order in query_order:
-            if order != None:
-                query_list.append(order.id)
 
-        query_products = Product.objects.filter(orderproduct__order_id_id__in=query_list)
+            prod_ = Product.objects.get(pk=order.product_id_id)
+            prod_photo = ProductPhoto.objects.get(product_id_id=order.product_id_id)
+            prod_.photo = prod_photo
 
-        if len(query_products) > 0 :
-            for i, value in enumerate(query_products) :
-                # print("i is: {}, and value is: {}".format(i, value))
-                # print("query_products[i] is: {}".format(query_products[i]))
+            order_ = Order.objects.get(pk=order.order_id_id)
 
-                photo_query = ProductPhoto.objects.get(product_id_id=value.id)
-                query_orderproduct = OrderProduct.objects.get(order_id_id=query_order[i].id)
+            query_list.append({
+                'id': order_.id,
+                'price': order_.total_price,
+                'tracking_nr': order_.tracking_nr,
+                'date': order_.date,
+                'products': {
+                    'photo': prod_.photo.path,
+                    'alt': prod_.photo.alt,
+                    'name': prod_.name,
+                    'rating': prod_.average_rating,
+                    'id': prod_.id,
+                    'quantity': order.quantity,
+                }
+            })
 
-                query_order[i].quantity = query_orderproduct.quantity
-                query_order[i].path = photo_query.path
-                query_order[i].alt = photo_query.alt
-                query_order[i].name = value.name
-                query_order[i].photo = value.productphoto_set.name
-                query_order[i].rating = value.average_rating
-
-        context['orders'] = query_order
-
+        context['orders'] = query_list
     return context
 
 
@@ -53,7 +53,6 @@ def index(request):
         context = base_context(user_id, context)
         return render(request, 'account/index.html', context)
     else:
-        print("account/views.py: I'm exectued")
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
 
 
@@ -87,7 +86,7 @@ def edit(request):
                 if photo_url != "":
                     UserPhoto.update_photo(user_id, photo_url)
 
-                response = json.dumps({'status': 200, 'message': 'http://localhost:8000/account/'})
+                response = json.dumps({'status': 200, 'message': '/account/'})
                 return HttpResponse(response, content_type='application/json')
         else:
             context = {
@@ -95,5 +94,34 @@ def edit(request):
             }
             context = base_context(user_id, context)
             return render(request, 'account/index.html', context)
+    else:
+        return render(request, 'login/index.html', context={'page_login': 'login_index'})
+
+
+@csrf_exempt
+def change_password(request):
+    user_id = request.session.get('user_id')
+    if user_id is not None:
+
+        if request.method == "POST":
+            current_password = request.POST.get('current_password').encode('utf-8')
+            new_password = request.POST.get('new_password').encode('utf-8')
+            stored_password = User.get_password_from_id(user_id)
+
+            hashed_pass = stored_password.encode('utf-8')
+            if bcrypt.checkpw(current_password, hashed_pass):
+                new_password_hash = bcrypt.hashpw(new_password, bcrypt.gensalt())
+                new_password_hash = new_password_hash.decode('utf-8')
+                User.update_user_password(user_id, new_password_hash)
+
+                response = json.dumps({'status': 200, 'message': '/account/'})
+                return HttpResponse(response, content_type='application/json')
+            else:
+                response = json.dumps({'status': 0, 'message': 'Incorrect password'})
+                return HttpResponse(response, content_type='application/json')
+        context = {
+            'user': User.objects.get(pk=user_id)
+        }
+        return render(request, 'account/change_password.html', context)
     else:
         return render(request, 'login/index.html', context={'page_login': 'login_index'})
