@@ -45,8 +45,8 @@ window.onload = function(){
             M.toast({html: "Cardholder name can't be shorter than 4 letters", classes: "red"})
             return
         }
-        // If card number is less than 15 letters or bigger than 19
-        if (cardNumber.trim().length < 15 || cardNumber.trim().length > 19){
+        // If card number is not 16 letters
+        if (cardNumber.trim().length !== 16){
             M.toast({html: "Please enter a correct card number", classes: "red"})
             return
         }
