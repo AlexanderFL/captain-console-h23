@@ -197,7 +197,7 @@ function filterProducts(products_filtered) {
 }
 
 //Updates cart qty in nav bar
-function updateCartQty() {
+function updateCartQty(items_in_cart) {
     document.getElementById("shopping-cart-quantity").innerHTML = "" + items_in_cart + ""
     console.log("SUCCESS: " + status)
 }
