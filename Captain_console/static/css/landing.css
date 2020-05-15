@@ -12,7 +12,14 @@
 
 .place_higher{
   object-position: bottom;
-  bottom: 150px !important;
+  bottom: 140px !important;
+}
+.parallax-container {
+  height: 400px;
+}
+
+.parallax {
+  bottom: auto;
 }
 
 main.content-background{
