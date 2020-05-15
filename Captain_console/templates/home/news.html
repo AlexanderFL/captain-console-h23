@@ -3,18 +3,30 @@
 
 <!-- Make these cards dynamically served from models -->
     {% for article in articles %}
-                    <div class="card blue accent-3 card-news">
-                        <div class="card-content white-text">
-                            <span class="card-title">{{ article.title }}</span>
-                            <p>{{ article.short }}</p>
-                            <p>{{ article.date }}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="
-                                {% url "read_more" %}/{{ article.id }}
-                                " class="yellow-text text-accent-2">Read more...</a>
-                        </div>
-                    </div>
+{#                    <div class="card red lighten-4 accent-3 card-news">#}
+
+
+    <div class="card-panel  red lighten-4">
+        <div class="black-text">
+            <span class="card-title">{{ article.title }}</span>
+            <p>{{ article.short }}</p>
+            <p>{{ article.date }}</p>
+        </div>
+        <div class="card-action">
+            <a href="{% url "read_more" %}/{{ article.id }}" class="blue-text text-accent-2">Read more...</a>
+        </div>
+
+    </div>
+
+
+{#                        #}
+{#                        <div class="card-content white-text" >#}
+{#                            <span class="card-title">{{ article.title }}</span>#}
+{#                            <p>{{ article.short }}</p>#}
+{#                            <p>{{ article.date }}</p>#}
+{#                        </div>#}
+{#                        #}
+{#                    </div>#}
     {% endfor %}
 
 
