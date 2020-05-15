@@ -9,12 +9,10 @@ from store.models import Product, ProductPhoto
 from checkout.models import OrderProduct, Order
 
 
-
 def base_context(id, context):
 
     context['user'] = User.objects.get(pk=id)
-
-    query_order = OrderProduct.objects.filter(user_id=id, order_id__confirmed=True).order_by('order_id__date', 'order_id_id')
+    query_order = OrderProduct.objects.filter(user_id=id, order_id__confirmed=True).order_by('-order_id__date', 'order_id_id')
 
     query_list = []
     if query_order != None:
@@ -42,54 +40,6 @@ def base_context(id, context):
             })
 
         context['orders'] = query_list
-
-########################## DEBUGGING ########################
-        #
-        # for p in context['orders'] :
-        #     print(p)
-            # print(prod_.photo.path)
-            # print(prod_.name)
-            # print(prod_.average_rating)
-            # print(prod_.id)
-            #
-            # print(order.quantity)
-            #
-            # print(order_.total_price)
-            # print(order_.tracking_nr)
-            # print(order_.date)
-##########################################################
-
-
-
-########################## OLD ########################
-
-    # query_order = Order.objects.filter(user_id=id, confirmed=True).order_by('-id')[:3]
-    # query_list = []
-    # if query_order != None :
-    #     for order in query_order:
-    #         if order != None:
-    #             query_list.append(order.id)
-    #
-    #     query_products = Product.objects.filter(orderproduct__order_id_id__in=query_list)
-    #
-    #     if len(query_products) > 0 :
-    #         for i, value in enumerate(query_products) :
-    #             # print("i is: {}, and value is: {}".format(i, value))
-    #             # print("query_products[i] is: {}".format(query_products[i]))
-    #
-    #             photo_query = ProductPhoto.objects.get(product_id_id=value.id)
-    #             query_orderproduct = OrderProduct.objects.get(order_id_id=query_order[i].id)
-    #
-    #             query_order[i].quantity = query_orderproduct.quantity
-    #             query_order[i].path = photo_query.path
-    #             query_order[i].alt = photo_query.alt
-    #             query_order[i].name = value.name
-    #             query_order[i].photo = value.productphoto_set.name
-    #             query_order[i].rating = value.average_rating
-    #
-    #     context['orders'] = query_order
-    ###########################################################
-
     return context
 
 

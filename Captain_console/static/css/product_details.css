@@ -123,4 +123,6 @@
 
 .description {
     text-align: justify;
+    line-height: 29px;
+    font-size: 18px;
 }

@@ -18,6 +18,7 @@ div.checkout.container {
     flex-grow: 1;
 }
 
+
 /**
     Shopping cart elements
 */
@@ -56,6 +57,7 @@ div.checkout.container {
     width: 150px;
     height: 150px;
     object-fit: cover;
+    position: relative;
 }
 
 /* 1220px wide or less, put price and title beneath image */
@@ -63,5 +65,12 @@ div.checkout.container {
     .fall-beneath{
         width: 100% !important;
         margin-left: 50px !important;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .account-image {
+        left: 75px;
+        top: 5px;
     }
 }

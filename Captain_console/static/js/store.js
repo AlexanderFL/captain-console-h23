@@ -28,11 +28,11 @@ window.onload = function() {
             console.log(order_var)
 
             //Check what order variable was pressed
-            if (order_var === 1) {
+            if (order_var === 0) {
                 var order_name = "price"
-            } else if (order_var === 2) {
+            } else if (order_var === 1) {
                 var order_name = "name"
-            } else if (order_var === 3) {
+            } else if (order_var === 2) {
                 var order_name = "rating"
             }
 
@@ -197,7 +197,7 @@ function filterProducts(products_filtered) {
 }
 
 //Updates cart qty in nav bar
-function updateCartQty() {
+function updateCartQty(items_in_cart) {
     document.getElementById("shopping-cart-quantity").innerHTML = "" + items_in_cart + ""
     console.log("SUCCESS: " + status)
 }
