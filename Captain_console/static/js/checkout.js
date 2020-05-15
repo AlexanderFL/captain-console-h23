@@ -17,7 +17,7 @@ for (var i = 0; i < order_product_cards.length; i++) {
     order_product_cards_id[i] = parseInt(order_product_cards_id[i])
     card_id = order_product_cards_id[i]
 
-    if (card_id == order_prod_id) {
+    if (card_id === order_prod_id) {
         order_product_cards[i].style.display = 'none' //Do not display
     }
 }
@@ -36,7 +36,7 @@ function updateCart(order_info, order_prod_id) {
         order_product = order_info[i]
         total_price += order_product.price
 
-            if (order_product.id == order_prod_id) {
+            if (order_product.id === order_prod_id) {
                 qty_element.innerHTML = "" + order_product.qty + "";
                 price_element.innerHTML = "$" + order_product.price + "";
             }
@@ -61,7 +61,7 @@ current_qty = parseInt(qty_element.innerHTML)
 if (change_type === "add") {
     new_qty = current_qty + 1
 } else {
-    if (current_qty == 1) {
+    if (current_qty === 1) {
         return
     }
     new_qty = current_qty - 1
@@ -125,6 +125,5 @@ $('.remove-item').on('click', function (e) {
         }
     });
 })
-
 
 
