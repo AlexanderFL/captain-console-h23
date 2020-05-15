@@ -152,3 +152,9 @@ INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, o
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (5, 2, 3, 33.33, 13);
 INSERT INTO checkout_orderproduct (user_id_id, product_id_id, quantity, price, order_id_id) VALUES (1, 2, 1, 12.25, 1);
 
+INSERT INTO home_news (title, date, short, article) VALUES ('New Super Mario Bros. speedrun record!', '2020-04-04',
+    'A new speedrun record was set in the game Super Mario Bros.! Until now, the world record was a time of 4 minutes, 55 seconds, and 583 milliseconds. The runner tonyterrific broke that record with a time of 4 minutes, 55 seconds, and 427 milliseconds!',
+    'He said he was really surprised when he realized he had broken the record, as his only focus was going as fast as he could to try to break his own previous record, and not expecting to break the world record. His previous record was a time of 4 minutes, 57 seconds, and 237 milliseconds. So he went from 21st place to 1st place, and now holds a world record!');
+INSERT INTO home_news (title, date, short, article) VALUES ('New PlayStation releases coming soon',  '2020-04-04',
+    'It has been reported that PlayStation will be releasing a good deal of new games for the second half of this year and early next year.',
+    'It has been reported that PlayStation will be releasing a good deal of new games for the second half of this year and early next year. Both games, and of course, the highly anticipated PlayStation 5 will make an appearance soon. The games that are expected, will be for both PS4 and PS5. These upcoming releases are sure to appeal to people‘s versatile tastes, as the the genres of the games are versatile. For instance, you can expect action, adventure, strategy and sports games. We can‘t tell you the names of the games just yet, but just know that you‘re in for a great game season!');
