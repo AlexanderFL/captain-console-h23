@@ -53,8 +53,3 @@ $("#submit-review").on("click", function() {
     });
     console.log(comment)
 })
-
-updateRatings() {
-
-
-}
