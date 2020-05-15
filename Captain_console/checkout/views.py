@@ -189,7 +189,7 @@ def confirmation(request):
 
     # Specific context
     context['page_checkout'] = 'confirmation'
-    context['order'] = Order.objects.latest('id')
+    context['order'] = Order.objects.filter(user_id=user_id).order_by('-id')[0]
 
     print(context)
     return render(request, 'checkout/index.html', context)

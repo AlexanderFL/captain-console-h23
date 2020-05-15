@@ -4,31 +4,31 @@
     <link rel="stylesheet" href="{% static "css/confirmation.css" %}">
 {% endblock %}
 
-    <div class="card-panel white s12">
-        <p class="confirmation">Your order has been placed</p>
-        <pre class="text">Thank you for your purchase!
-            <br>A confirmation email will be sent to: {{ order.user_id.email }}
-            <br>Order number:       {{order.tracking_nr}} <span class="light-text">(Please quote this in any corrispondance to us)</span>
-            <br>Total cost:          ${{ order.total_price }} <span class="light-text">(Tax included)</span>
-            <br>Your order will be sent for shipping on the next business day
-        </pre>
-        <br>
-        <div class="row">
-            <div class="left-column">
-                <div class="info-title">Shipping address:</div>
-                <div class="shipping-info">
-                    <p>{{ order.user_id.address_set.first.address }}</p>
-                    <p>{{ order.user_id.address_set.first.zip_code }}, {{ order.user_id.address_set.first.city }}</p>
-                    <p>{{ order.user_id.address_set.first.country }}</p>
-                </div>
-            </div>
-            <div class="right-column">
-                <div class="right-alignment"><span class="info-title words-space">Customer: </span><span class="info">{{ order.user_id.username }}</span> </div>
-                <div class="left-alignment"><span class="date-title">Order </span><span class="date-title words-space">date: </span><span class="info">{{ order.date }}</span> </div>
-                <br>
-                <br>
-                <div class="playing">Happy playing!</div>
-            </div>
+<div class="card-panel white s12">
+    <p class="confirmation">Your order has been placed</p>
+    <p>Thank you for your purchase!</p>
+    <p>A confirmation email will be sent to: <strong>{{ order.user_id.email }}</strong></p>
+    <p>Order number: <strong>{{order.tracking_nr}}</strong> <span class="light-text">(Please quote this in any corrispondance to us)</span></p>
+    <p>Total cost: <strong>${{ order.total_price }}</strong> <span class="light-text">(Tax included)</span></p>
+    <p>Your order will be sent for shipping on the next business day</p>
+
+    <div class="row">
+        <div class="col s12 shipping-info">
+            <div class="info-title">Shipping address:</div>
+            <p>{{ order.user_id.address_set.first.address }}</p>
+            <p>{{ order.user_id.address_set.first.zip_code }}, {{ order.user_id.address_set.first.city }}</p>
+            <p>{{ order.user_id.address_set.first.country }}</p>
+        </div>
+        <div class="col s12 customer-info">
+            <span class="info-title ">
+                Customer:
+            </span>
+            <span><p>{{ order.user_id.username }}</p></span>
+
+            <span class="info-title">Order date </span>
+            <span><p>{{ order.date }}</p></span>
+
+            <div class="playing">Happy playing!</div>
         </div>
     </div>
-
+</div>
