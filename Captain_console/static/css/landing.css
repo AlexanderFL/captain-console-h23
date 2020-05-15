@@ -13,10 +13,26 @@
 .place_higher{
   object-position: bottom;
   bottom: 140px !important;
+   position: relative
 }
+
 .parallax-container {
   height: 400px;
 }
+
+/* Makes frontpage image and it's container disappear on screens less then 650px */
+@media screen and (max-width: 650px) {
+  .place_higher {
+    visibility: collapse;
+  }
+  .parallax-container {
+    height: 0px;
+  }
+}
+
+
+
+
 
 .parallax {
   bottom: auto;
@@ -36,4 +52,8 @@ main.content-background{
   background: -webkit-linear-gradient(top,  #5194ff 0%,#2979ff 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  #5194ff 0%,#2979ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5194ff', endColorstr='#2979ff',GradientType=0 ); /* IE6-9 */
+}
+
+.place_higher {
+
 }
