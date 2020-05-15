@@ -18,6 +18,7 @@ class User(models.Model):
         Checks if email already exists in the database
         Returns True if email exists, False otherwise
     """
+
     @staticmethod
     def email_already_exists(email):
         data_count = User.objects.filter(email=email).count()
@@ -43,7 +44,11 @@ class PaymentInfo(models.Model):
 
     @staticmethod
     def insert(user_id, name, number, exp, cvc):
-        PaymentInfo.objects.create(user_id=user_id, name=name, card_number=number, exp_date=exp, cvc=cvc)
+        try:
+            PaymentInfo.objects.filter(user_id=user_id).update(user_id=user_id, name=name, card_number=number,
+                                                            exp_date=exp, cvc=cvc)
+        except:
+            PaymentInfo.objects.create(user_id=user_id, name=name, card_number=number, exp_date=exp, cvc=cvc)
 
 
 class Address(models.Model):
@@ -56,7 +61,8 @@ class Address(models.Model):
     @staticmethod
     def insert(user_id, address, city, country, zip_code):
         try:
-            Address.objects.filter(user_id=user_id).update(address=address, city=city, country=country, zip_code=zip_code)
+            Address.objects.filter(user_id=user_id).update(address=address, city=city, country=country,
+                                                           zip_code=zip_code)
         except Exception:
             Address.objects.create(user_id=user_id, address=address, city=city, country=country, zip_code=zip_code)
 
@@ -69,7 +75,6 @@ class UserPhoto(models.Model):
     @staticmethod
     def insert(user_id, path, alt):
         UserPhoto.objects.update_or_create(user_id=user_id, path=path, alt=alt)
-
 
     @staticmethod
     def update_photo(user_id, path):

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems);
 });
 
-function update_ratings() {
+function updateRatings() {
     //Updates ratings
     $('.star').prop('disabled',true)
     stars = document.getElementsByClassName("star")
@@ -18,7 +18,7 @@ function update_ratings() {
 }
 
 // Appends the nr of copies sold to the element with the id #copies-sold-nr
-function get_copies_sold(){
+function getCopiesSold(){
     $.ajax({
         url: '?copies_sold=true',
         type: 'GET',
@@ -30,8 +30,8 @@ function get_copies_sold(){
 
 window.onload = function() {
     $(document).ready(function () {
-        get_copies_sold();
-        update_ratings();
+        getCopiesSold();
+        updateRatings();
 
         //Turn stars into rating buttons
         $('#give-review').on("click", function (e) {
@@ -75,7 +75,6 @@ window.onload = function() {
 
 
         //Add to cart
-        //TODO: Implement for add to cart in product details
         $('.add-to-cart').on('click', function (e) {
             e.preventDefault()
             console.log("add to cart")

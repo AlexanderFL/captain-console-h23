@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from account.models import User, PaymentInfo
 from store.models import Product
-from checkout.models import OrderProduct, remove_product_from_cart, change_qty
+from checkout.models import OrderProduct, remove_product_from_cart, change_qty, mark_order_confirmed
 
 
 # Base functions for all checkout views
@@ -103,6 +103,17 @@ def payment(request, id=None):
     # Specific context
     context['page_checkout'] = "paymentinfo"
 
+    if 'check_cart' in request.GET:
+        order_products = OrderProduct.objects.filter(user_id=user_id, order_id__confirmed=False)
+
+        if len(order_products) == 0:
+            response = json.dumps({'status': 999, 'message': 'empty'})
+            print("no items in cart")
+        else:
+            response = json.dumps({'status': 200, 'message': 'not_empty'})
+            print("items in cart")
+        return HttpResponse(response, content_type='application/json')
+
     # Change qty of item in cart
     if 'change_qty' in request.GET:
         return base_change_qty_of_prod(request)
@@ -111,11 +122,8 @@ def payment(request, id=None):
     if 'remove_from_cart' in request.GET:
         return base_remove_from_cart(request)
 
-    if request.method == 'POST':
-        # Make sure user is logged in
-        if request.session.get('user_id') is None:
-            response = json.dumps({'status': 999, 'message': 'User not logged in'})
-            return HttpResponse(response, content_type='application/json')
+    if 'save_card' in request.GET:
+        print("saving card")
 
         cardHolder = request.POST.get('cardHolder')
         cardNumber = request.POST.get('cardNumber')
@@ -127,17 +135,23 @@ def payment(request, id=None):
         response = json.dumps({'status': 200, 'message': 'Yes'})
         return HttpResponse(response, content_type='application/json')
 
+    if 'confirmed' in request.GET:
+        print("confirming")
+        user = request.session.get('user_id')
+        print(user)
+        mark_order_confirmed(user)
+        print("order confirmed")
+        response = json.dumps({'status': 200, 'message': '/checkout/confirmation'})
+        return HttpResponse(response, content_type='application/json')
     return render(request, 'checkout/index.html', context)
 
 
 def confirmation(request):
     user_id = request.session.get("user_id")
-    if user_id is None:
-        return render(request, 'login/index.html')
 
     context = {
         'page_checkout': 'confirmation',
     }
 
-    context = base_context(user_id, context)
+    context = base_context(user_id)
     return render(request, 'checkout/index.html', context)
