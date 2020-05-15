@@ -1,14 +1,25 @@
 
 {% extends 'base.html' %}
 {% load static %}
-
+{% block style %}
+{#    <link rel="stylesheet" href="{% static "css/store.css" %}">#}
+{#    <link rel="stylesheet" href="{% static 'css/shared/product-card-view.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/shared/custom-breadcrumbs.css' %}">
+{% endblock %}
 
 {% block content %}
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/is_IS/sdk.js#xfbml=1&version=v7.0"></script>
 
+
+
+
     <div class="row container">
-       <div class="row">
+       <ul class="crumbs">
+            <li><a href="{% url "home_index" %}">Home</a></li>
+            <li class="active"><a href="#">News</a></li>
+        </ul>
+        <div class="row">
            <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="col s4 m4 l4">
