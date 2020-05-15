@@ -143,7 +143,6 @@ def payment(request, id=None):
         print("order confirmed")
         response = json.dumps({'status': 200, 'message': '/checkout/confirmation'})
         return HttpResponse(response, content_type='application/json')
-
     return render(request, 'checkout/index.html', context)
 
 
