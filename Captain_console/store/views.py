@@ -114,11 +114,6 @@ def index(request):
 @csrf_exempt
 # Get product details
 def get_product_by_id(request, id):
-    if 'copies_sold' in request.GET:
-        copies_sold = OrderProduct.objects.filter(product_id=id).count()
-        response = json.dumps({'status': 200, 'message': copies_sold})
-        return HttpResponse(response, content_type='application/json')
-
     # Review product
     if 'review_product' in request.GET:
         data = request.POST
@@ -147,8 +142,14 @@ def get_product_by_id(request, id):
         product.set_rating(new_rating, prod_id)
         return redirect('product_details', id=id)
 
+    amount = 0
+    copies_sold = OrderProduct.objects.filter(product_id=id)
+    for copy in copies_sold:
+        amount += copy.quantity
+
     return render(request, 'store/product_details.html', {
-        'product': get_object_or_404(Product, pk=id)
+        'product': get_object_or_404(Product, pk=id),
+        'copies_sold': amount
     })
 
 
