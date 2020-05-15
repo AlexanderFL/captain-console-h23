@@ -45,7 +45,7 @@ function updateCart(order_info, order_prod_id) {
         document.getElementById("sub-total").innerHTML = "Subtotal: " + "$" + total_price + " "
     }
     else {
-        document.getElementById("sub-total").innerHTML = "Looks like your cart is empty. Feel free to go to the store to start shopping."
+        document.getElementById("sub-total").innerHTML = "Your cart is empty. Feel free to go to store to start shopping."
     }
     //Update shopping cart qty in nav bar
     items_in_cart = order_info.length
