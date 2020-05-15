@@ -10,69 +10,47 @@
 {% block content %}
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/is_IS/sdk.js#xfbml=1&version=v7.0"></script>
-
-
-
-
     <div class="row container">
-       <ul class="crumbs">
+        <ul class="crumbs">
             <li><a href="{% url "home_index" %}">Home</a></li>
             <li class="active"><a href="#">News</a></li>
         </ul>
         <div class="row">
-           <div class="row">
-                <div class="col s12 m12 l12">
-                    <div class="col s4 m4 l4">
-                        <div class="card-panel white">
-                            <h5>Other news</h5>
-                            {% include 'home/news.html' with articles=articles %}
+            <div class="col s12 m12 l12">
+                <div class="col s12 m12 l8">
+                    <div class="card-panel white">
+                        <div class="row">
+                            <h3>{{ article.title }}</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>
+                                {{ article.date }}
+                            </p>
+                        </div>
+
+                        <div class="row">
+                            <p>{{ article.article|safe }}</p>
                         </div>
                     </div>
-
-                    <div class="col s8 m8 l8">
-                        <div class="card-panel white">
-                            <div class="row">
-                                <h3>{{ article.title }}</h3>
-                            </div>
-
-                             <div class="row">
-                                <p>
-                                {{ article.date }}
-                                </p>
-                             </div>
-
-                             <div class="row">
-                                <p>{{ article.article|safe }}</p>
-                             </div>
-                        </div>
-                         <div class="col s5 m5 l5 ">
-                            <div class="row">
-
-                                <div class="fb-page responsive"
-                                  data-href="https://www.facebook.com/Captain-Console-100282701679447"
-                                  data-width="380"
-                                  data-hide-cover="false"
-                                  data-show-facepile="false"
-                                </div>
+                    <div class="col s12 m12 l5 ">
+                        <div class="row">
+                            <div class="fb-page responsive"
+                                 data-href="https://www.facebook.com/Captain-Console-100282701679447"
+                                 data-width="380"
+                                 data-hide-cover="false"
+                                 data-show-facepile="false">
                             </div>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
-           </div>
-
-{#        <div class="row">#}
-
+                <div class="col s12 m12 l4">
+                    <div class="card-panel white">
+                        <h5>Other news</h5>
+                        {% include 'home/news.html' with articles=articles %}
+                    </div>
+                </div>
+            </div>
         </div>
-
-{#    https://www.facebook.com/Captain-Console-100282701679447/#}
-
-    </div>  {# container #}
-
-
-
+    </div>
 {% endblock %}

@@ -4,51 +4,31 @@
     <link rel="stylesheet" href="{% static "css/confirmation.css" %}">
 {% endblock %}
 
-        <div class="font textbox">
-            <div class="box-border">
-                <p class="confirmation">Your order has been placed</p>
-                <pre class="text">Thank you for your purchase!
-                    <br>A confirmation email will be sent to: {{ order.user_id.email}}
-                    <br>Order number:       {{order.tracking_nr}} <span class="light-text">(Please quote this in any corrispondance to us)</span>
-                    <br>Total cost:          ${{ order.total_price }} <span class="light-text">(Tax included)</span>
-                    <br>Your order will be sent for shipping on the next business day
-                </pre>
-                <br>
-                <div class="row">
-                    <div class="left-column">
-                        <div class="info-title">Shipping address:</div>
-                        <div class="shipping-info">
-                            <p>{{ order.user_id.address_set.first.address }}</p>
-                            <p>{{ order.user_id.address_set.first.zip_code }}, {{ order.user_id.address_set.first.city }}</p>
-                            <p>{{ order.user_id.address_set.first.country }}</p>
-                        </div>
-                    </div>
-                    <div class="right-column">
-                        <div class="right-alignment"><span class="info-title words-space">Customer: </span><span class="info">{{ order.user_id.username }}</span> </div>
-                        <div class="left-alignment"><span class="date-title">Order </span><span class="date-title words-space">date: </span><span class="info">{{ order.date }}</span> </div>
-                        <br>
-                        <br>
-                        <div class="playing">Happy playing!</div>
-                    </div>
-                    </div>
+    <div class="card-panel white s12">
+        <p class="confirmation">Your order has been placed</p>
+        <pre class="text">Thank you for your purchase!
+            <br>A confirmation email will be sent to: {{ order.user_id.email }}
+            <br>Order number:       {{order.tracking_nr}} <span class="light-text">(Please quote this in any corrispondance to us)</span>
+            <br>Total cost:          ${{ order.total_price }} <span class="light-text">(Tax included)</span>
+            <br>Your order will be sent for shipping on the next business day
+        </pre>
+        <br>
+        <div class="row">
+            <div class="left-column">
+                <div class="info-title">Shipping address:</div>
+                <div class="shipping-info">
+                    <p>{{ order.user_id.address_set.first.address }}</p>
+                    <p>{{ order.user_id.address_set.first.zip_code }}, {{ order.user_id.address_set.first.city }}</p>
+                    <p>{{ order.user_id.address_set.first.country }}</p>
                 </div>
             </div>
-
-{% comment %}
-<div class="card-panel white">
-    <h3 class="card-title">Confirmation</h3>
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <h5>Your order has been placed</h5>
-                <p>Thank you for your purchase!</p>
-                <p>A confirmation email will be sent to: personpersonsson@gmail.com</p>
+            <div class="right-column">
+                <div class="right-alignment"><span class="info-title words-space">Customer: </span><span class="info">{{ order.user_id.username }}</span> </div>
+                <div class="left-alignment"><span class="date-title">Order </span><span class="date-title words-space">date: </span><span class="info">{{ order.date }}</span> </div>
+                <br>
+                <br>
+                <div class="playing">Happy playing!</div>
             </div>
         </div>
-        <a class="btn waves-effect blue accent-3"  href="/store">Continue shopping
-        <i class="material-icons right">shopping_cart</i></a>
-    </form>
-</div>
-
-{% endcomment %}
+    </div>
 

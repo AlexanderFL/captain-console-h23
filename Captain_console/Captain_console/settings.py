@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'checkout.apps.CheckoutConfig',
     'home.apps.HomeConfig',
     'login.apps.LoginConfig',
-    'shoppingcart.apps.ShoppingcartConfig',
     'store.apps.StoreConfig',
     'account.apps.AccountConfig'
 ]

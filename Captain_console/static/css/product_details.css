@@ -120,3 +120,8 @@
 #rating-count {
     padding-bottom: 2rem;
 }
+
+.description {
+    font-size: 16px;
+    line-height: 25px;
+}
