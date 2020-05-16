@@ -37,13 +37,15 @@ $("#submit-review").on("click", function() {
             message = status.message
             console.log(message)
             if (message == "Updated") {
-            M.toast({html: "Your review and rating for this product has been updated.", classes: "green"})
+                window.location.href = window.location
+                M.toast({html: "Your review and rating for this product has been updated.", classes: "green"})
             }
             else if (message == "Created") {
+                window.location.href = window.location
                 M.toast({html: "Thank you for your review", classes: "green"})
 
             }
-        window.location.href = window.location
+
         }
         ,
         error: function (xhr, status, error) {
